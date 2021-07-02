@@ -73,6 +73,9 @@
 }
 
 .navbar-search-wishlist p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 15px;
     width: 30px;
     background-color: rgb(46, 46, 46);
