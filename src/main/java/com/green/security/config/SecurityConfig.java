@@ -33,13 +33,11 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
 import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.green.oauth2.service.CustomOAuth2UserService;
 import com.green.oauth2.service.CustomOidcUserService;
 import com.green.security.service.CustomUserDetailsService;
-import com.green.security.utils.CustomLoginFailuerHandler;
 import com.green.security.utils.CustomLoginSuccessHandler;
 
 import lombok.Setter;
@@ -109,7 +107,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.invalidateHttpSession(true)
 			//for spring security
 			.clearAuthentication(true)
-			.deleteCookies("JSESSION_ID");
+			
+			.deleteCookies("JSESSIONID");
 		
 	}
 	
@@ -224,12 +223,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public UserDetailsService userDetailsService() {
 		return new CustomUserDetailsService();
 	}
-	
-	@Bean
-	public AuthenticationFailureHandler authenticationFailureHandler() {
-		return new CustomLoginFailuerHandler();
-	}
-	
 	@Bean
 	public AuthenticationSuccessHandler authenticationSuccessHandler() {
 		return new CustomLoginSuccessHandler();

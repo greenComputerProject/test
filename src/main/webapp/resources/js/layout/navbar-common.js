@@ -14,7 +14,7 @@ console.log("ready!");
 let userName  = document.querySelectorAll(".dropdown-button a p")[0];
 let dropMenu = document.querySelectorAll(".dropdown-menu ul")[0];
 
-let authorizationRequestBaseUri = "oauth2/authorization";
+let authorizationRequestBaseUri = "/oauth2/authorization";
 let listStart = '<li class="dropdown-menu-link">';
 let listEnd = "</li>";
 let menuHtml = "";
@@ -62,7 +62,7 @@ let checkUser = function(){
 		userName.innerHTML = result.name;
 		menuHtml = '<li class="dropdown-menu-link"><a href="/library">라이브러리</a></li>'
 		+ '<li class="dropdown-menu-link"><a href="/wishlist">위시리스트</a></li>'
-		+ '<li class="dropdown-menu-link"><a href="/user/info">내 정보 수정</a></li>'
+		+ '<li class="dropdown-menu-link"><a href="/user/info">내 정보</a></li>'
 		+ '<li class="dropdown-menu-link"><a href="/logout">로그아웃</a></li>';
 		dropMenu.innerHTML = menuHtml;
 		wishlistCount();

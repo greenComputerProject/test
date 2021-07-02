@@ -6,10 +6,10 @@
 <mapper namespace="com.green.oauth2.mapper.OAuthUserMapper">
 
 	<insert id="insert" parameterType="com.green.oauth2.domain.OAuthUserVO">
-		<selectKey keyProperty="userid" resultType="Long" order="BEFORE">
+		<selectKey keyProperty="userid" resultType="String" order="BEFORE">
 			select seq_member.nextval from dual
 		</selectKey>
-		insert into tbl_member values(#{userid}, #{name}, #{email}, #{picture, jdbcType=VARCHAR}, #{role})
+		insert into tbl_member(userid, name, email, picture, role) values(#{userid}, #{name}, #{email}, #{picture, jdbcType=VARCHAR}, #{role})
 	</insert>
 	
 	<select id="findByEmail" resultType="com.green.oauth2.domain.OAuthUserVO" parameterType="String">

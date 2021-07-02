@@ -44,8 +44,7 @@ public class UserController {
 	//서버 로그인 로직 시작
 	
 	@GetMapping("/login")
-	public String getPages(Model model, @RequestParam(value = "error", required = false) String error,
-									@RequestParam(value="success") String success) {
+	public String getPages(Model model, @RequestParam(value = "error", required = false) String error) {
 		
 		log.info("ERROR => " + error);
 		if(error != null && error.equals("error")) {
@@ -91,8 +90,14 @@ public class UserController {
 		userMap.put("name", user.getName());
 		userMap.put("email", user.getEmail());
 		userMap.put("picture", user.getPicture());
-		model.addAttribute("user", userMap);
 		
+		String password = service.getMember(user.getEmail()).getPassword();
+		if(password == null || password.equals("")) {
+			userMap.put("hasPassword", "no");
+		} else {
+			userMap.put("hasPassword", "yes");
+		}
+		model.addAttribute("user", userMap);
 		return "user/info";
 	}
 	

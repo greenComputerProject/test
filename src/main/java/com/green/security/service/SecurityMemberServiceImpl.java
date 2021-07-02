@@ -41,8 +41,16 @@ public class SecurityMemberServiceImpl implements SecurityMemberService {
 	@Override
 	public boolean delete(String userid) {
 		// TODO Auto-generated method stub
-		return mapper.delete(userid) == 1 ? true: false;
+		boolean isSuccess = mapper.delete(userid) == 1 ? true: false;
+		
+		if(isSuccess) {
+			session.setAttribute("user", null);
+			return isSuccess;
+		}
+		
+		return isSuccess;
 	}
+	
 
 	@Override
 	public boolean updateUser(SecurityMemberVO vo) {

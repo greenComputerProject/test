@@ -3,7 +3,7 @@ let changeNavbarSearch = function() {
 	console.log(searchLinks)
     searchLinks[0].innerHTML = '<a href="/" id="not-selected" onclick="clickSearch(this)">< 메인으로 돌아가기</a>'
     searchLinks[1].innerHTML = "<span>"+ 
-        "| 내 정보 수정"
+        "| 내 정보 "
     +"</span"
 
     let searchForm = document.querySelector(".navbar-search-wishlist-and-form");

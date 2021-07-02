@@ -1,7 +1,109 @@
 @charset "UTF-8";
 
+.signup-form div{
+	width: 80%;
+	display: flex;
+	align-items: center;
+	height: 10%;
+	border-radius: 8px;
+}
 
-span{
+.signup-form .buttons{
+	margin: 0;
+	padding: 0;
+	margin-bottom: 5%;
+}
+
+form .link{
+	width: 60%;
+	display: flex;
+	align-items: center;
+	height: 10%;
+	border-radius: 8px;
+	margin-top: 3%;
+}
+
+form .link.google {
+	background-color: rgb(0, 0, 0);
+	-webkit-transition: background-color 0.3s;
+}
+
+form .link.google:hover {
+	-webkit-transition: background-color 0.3s;
+	background-color: rgb(55, 55, 55); ;
+}
+
+form .link.facebook {
+	background-color: rgb(40, 40, 194);
+	-webkit-transition: background-color 0.3s;
+}
+form .link.facebook:hover {
+	
+	-webkit-transition: background-color 0.3s;
+	background-color: rgb(118, 118, 226);
+}
+form .link.google i{
+	color: rgba(255, 255, 255, 0.535);
+}
+form .link.google .text a{
+	color: rgba(255, 255, 255, 0.535);
+	font-weight: lighter;
+	letter-spacing: 1px;
+}
+form .link.facebook i{
+	color: white;
+}
+form .link.facebook .text a{
+	color: white;
+	font-weight: lighter;
+	letter-spacing: 1px;
+}
+
+
+form .link .text{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 80%;
+	height: 100%;
+	
+}
+
+form .link .text a{
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	font-size: 11px;
+}
+
+form .link i{
+	width: 20%;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+}
+
+form .or{
+	height: 5%;
+	width: 65%;
+	display: flex;
+	align-items: center;
+}
+
+form .or div{
+	height: 1px;
+	border-bottom: 1px solid rgb(121, 121, 121);
+}
+
+form .or span{
+	text-align: center;
+	width: 15%;
+	color: rgb(121,121,121);
+	font-size: 10px;
+}
+
+form .error{
     font-size: 8px;
     color: tomato;
 }
