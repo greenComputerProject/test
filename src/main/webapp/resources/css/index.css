@@ -267,6 +267,9 @@ html, body {
     height: 12px;
     width: 120px;
     border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .wishlist-title-link:hover {
@@ -276,6 +279,7 @@ html, body {
 
 .wishlist-title-link a{
     font-size: 14px;
+    text-align: center;
 }
 
 .wishlist-game{

@@ -51,18 +51,18 @@ let clickOrderButton = function(button){
 
 let deleteWishlist = function(wno){
     console.log("deleteWishlist");
-    let wishlistCount = document.querySelectorAll(".navbar-search-wishlist p")[0];
 
     $.ajax({
         type: 'DELETE',
         url: '/wishlist/' + wno,
         dataType: 'json',
         success: function(result){
-            wishlistCount.innerHTML = result;
+            alert("성공적으로 삭제되었습니다.")
             location.reload();
         },
         error: function(error){
             location.reload();
+            alert(error);
         }
     })
 }
