@@ -95,11 +95,10 @@
     <!-- article start -->
     <div class="displayed-games">
     	<c:forEach items="${games}" var="game" begin="0" end="2">
+	    	<a href="#">
 	    	<div class="game-box">
-	            <div class="game-box-image">
-	                <a href="#">
-	                    <img src="<c:out value="${game.titlePicture}"></c:out>" alt="">
-	                    </a>
+	            <div class="game-box-image">     
+                    <img src="<c:out value="${game.titlePicture}"></c:out>" alt="">
 	            </div>
 	            <div class="game-box-text">
 	                <div class="game-box-title"><c:out value="${game.title}"></c:out></div>
@@ -115,6 +114,7 @@
 	                
 	            </div>
 	        </div>
+	         </a>
     </c:forEach>
     
     
