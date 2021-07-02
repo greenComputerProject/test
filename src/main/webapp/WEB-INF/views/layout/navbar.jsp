@@ -11,6 +11,7 @@
 	    <link rel="stylesheet" href="/resources/css/layout/navbar.css">
 	    <link rel="stylesheet"  href="/resources/css/layout/footer.css">
         <link rel="stylesheet" href="/resources/css/layout/navbar-search.css">
+        <link rel="stylesheet" href="/resources/css/layout/media-query.css">
 
 	    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
@@ -43,7 +44,7 @@
 			</li>
             
            
-             <li><a class="downloadLink" href=""><p>에픽게임즈 받기</p></a></li>
+             <li><a class="downloadLink" href="https://github.com/greenComputerProject/test"><p>깃허브 구경가기</p></a></li>
         </ul>
 
     </div>

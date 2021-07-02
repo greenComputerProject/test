@@ -17,15 +17,12 @@
         justify-content: center;
         align-items: center;
     }
+    
 
-    body *{
+    body>*:not(.mobile){
         display: none;
         width: 0%;
         height: 0%;
-    }
-
-    * {
-        display: none;
     }
 
     .mobile{
@@ -49,14 +46,8 @@
         
     }
 
-
-
-    .navbar-search {
-        display: none;
+    .mobile.icon i{
+        display: flex;
+        align-items: center;
     }
-
-    .form{
-        display: none;
-    }
-
 }

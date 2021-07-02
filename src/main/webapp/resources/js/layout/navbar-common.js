@@ -1,3 +1,4 @@
+
 let currUrl = window.location.href;
 
 console.log(currUrl);
