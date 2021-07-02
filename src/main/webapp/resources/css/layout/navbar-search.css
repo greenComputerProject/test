@@ -1,0 +1,134 @@
+/* navbar-search 시작 */
+
+.navbar-search {
+    background-color: rgb(17, 17, 17);
+    width: 75%;
+    height: 78px;
+    color: white;
+    position: fixed;
+    margin-top: 55px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+    opacity: 0.95;
+}
+
+.navbar-search.white{
+    background-color: white;
+}
+
+.navbar-search *{
+
+    font-size: 14px;
+    color: rgb(121, 121, 121);
+    letter-spacing: 1px;
+    font-weight: bold;
+    z-index: 10;
+    /* color: rgb(85, 85, 85); */
+}
+
+.navbar-search-links{
+    margin: 0;
+    display: flex;
+    padding-left: 0;
+    align-items: center;
+
+}
+
+.navbar-search-links #selected{
+    color: white;
+}
+
+.navbar-search-links a{
+    padding-right: 20px;
+    color: rgb(121, 121, 121);
+    -webkit-transition: color 0.3s;
+}
+
+.navbar-search-links a:hover{
+    -webkit-transition: color 0.3s;
+    color: rgb(211, 211, 211);
+}
+
+
+.navbar-search-wishlist-and-form{
+    display: flex;
+    padding: 0, 0, 0, 0;
+}
+
+.navbar-search-wishlist{
+    display: flex;
+}
+
+.navbar-search-wishlist li{
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-search-wishlist a:hover{
+    -webkit-transition: color 0.3s;
+    color: rgb(211, 211, 211);
+}
+
+.navbar-search-wishlist p{
+    height: 15px;
+    width: 30px;
+    background-color: rgb(46, 46, 46);
+    text-align: center;
+    border-radius:15px;
+}
+
+.navbar-search-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.navbar-search-form form{
+    background-color: rgb(31, 31, 31);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+    padding: 0;
+    height: 40px;
+    width: 220px;
+    border-radius: 4px;
+}
+
+.navbar-search-form form *{
+    background-color: rgb(31, 31, 31);
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+}
+
+.navbar-search-form .input{
+    display: flex;
+}
+
+.navbar-search-form input{
+    width: 100px;
+    border: none;
+}
+
+.navbar-search-form input:focus{
+    outline: none;
+}
+
+.navbar-search-form .button{
+    display: flex;
+    border: none;
+    margin-left: 0;
+}
+.navbar-search-form button{
+    border: none;
+    cursor: pointer;
+}
+
+
+
+/* navbar-search 끝 */

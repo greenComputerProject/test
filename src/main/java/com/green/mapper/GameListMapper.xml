@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.green.mapper.GameListMapper">
+
+	<resultMap type="com.green.domain.GameListVO" id="gameListMap">
+		<id property="gno" column="gno"/>
+		<result property="title" column="title"/>
+		<result property="price" column="price"/>
+		<result property="company" column="company"/>
+		<result property="titlePicture" column="titlePicture"/>
+	</resultMap>
+
+	<select id="getList" resultMap="gameListMap">
+<![CDATA[
+		select a.gno, a.title, a.price, a.company, a.titlePicture, a.rn from (
+    select s.gno, s.title, s.price, s.company, s.titlePicture, rownum rn from   
+    (select /* INDEX_DESC(tbl_games pk_games)*/g.gno, g.title, g.price, g.regDate, g.isOnSale,c.country,  c.company, gr.titlePicture, t.tagName
+        from tbl_games g
+        right outer join tbl_company c on g.cno = c.cno
+        left outer join tbl_games_resources gr on g.gno = gr.gno
+        left outer join tbl_tag t on t.gno = g.gno 
+	]]>        
+	<if test="sort != null">
+ 		<if test="sort.filterList != null or sort.keyword != null">
+			where
+			<if test="sort.filterList != null">
+				<foreach collection="sort.filterList" item="filter"   separator=" and ">
+					<!-- ( g.ageLimit like '%'||#{filter}||'%' or g.isOnSale like '%'||#{filter}||'%'
+					 or t.tagName like '%'||#{filter}||'%' or c.country like '%'||#{filter}||'%' ) -->
+					 ( g.ageLimit = #{filter} or g.isOnSale = #{filter}
+					 or t.tagName like '%'||#{filter}||'%' or c.country = #{filter} ) 
+				</foreach>
+			</if>
+			<if test="sort.filterList != null and sort.keyword != null">
+				and
+			</if>
+			
+			<if test="sort.keyword != null">
+				(g.title like '%'||#{sort.keyword}||'%' or c.company like '%'||#{sort.keyword}||'%'
+				or t.tagName like '%'||#{sort.keyword}||'%')
+			</if>
+		</if>
+		
+		<choose>
+			<when test="sort.order != null and sort.direction != null">
+				order by ${sort.order} ${sort.direction}) s 
+			</when>
+			
+			<otherwise>
+				order by g.regDate desc) s
+			</otherwise>
+		</choose>
+		
+	</if>
+	<if test="sort == null">
+		order by g.regDate desc ) s
+	</if>
+<![CDATA[	 
+
+        where rownum <= ${cri.pageNum} * ${cri.amount}) a
+        
+        where a.rn > (${cri.pageNum}-1) * ${cri.amount}
+]]> 
+	</select>
+	
+	
+	<select id="getListForIndex" resultType="com.green.domain.GameIndexVO">
+	<![CDATA[	
+	select a.gno, a.title, a.content, a.price, a.isOnSale, a.titlePicture, a.logo, a.regDate , rownum rn from 
+		(select /* INDEX_DESC(tbl_games pk_games)*/ g.gno, g.title, g.content, g.price, g.isOnSale, r.titlePicture, r.logo,  g.regDate 
+		from tbl_games g
+		left outer join tbl_games_resources r on g.gno = r.gno
+	order by g.regDate desc) a where rownum <= 6 
+	]]>
+	</select>
+	
+	<select id="getCount" resultType="Integer">
+		select /* INDEX_DESC(tbl_games pk_games)*/ count(*)
+        from tbl_games g
+        right outer join tbl_company c on g.cno = c.cno
+        left outer join tbl_games_resources gr on g.gno = gr.gno
+        left outer join tbl_tag t on t.gno = g.gno        
+	<if test="sort != null">
+ 		<if test="sort.filterList != null or sort.keyword != null">
+			where
+			<if test="sort.filterList != null">
+				<foreach collection="sort.filterList" item="filter"   separator=" and ">
+					<!-- ( g.ageLimit like '%'||#{filter}||'%' or g.isOnSale like '%'||#{filter}||'%'
+					 or t.tagName like '%'||#{filter}||'%' or c.country like '%'||#{filter}||'%' ) -->
+					 ( g.ageLimit = #{filter} or g.isOnSale = #{filter}
+					 or t.tagName like '%'||#{filter}||'%' or c.country = #{filter} ) 
+				</foreach>
+			</if>
+			<if test="sort.filterList != null and sort.keyword != null">
+				and
+			</if>
+			
+			<if test="sort.keyword != null">
+				(g.title like '%'||#{sort.keyword}||'%' or c.company like '%'||#{sort.keyword}||'%'
+				or t.tagName like '%'||#{sort.keyword}||'%')
+			</if>
+		</if>
+				
+		<choose>
+			<when test="sort.order != null and sort.direction != null">
+				order by ${sort.order} ${sort.direction}
+			</when>
+			
+			<otherwise>
+				order by g.regDate desc
+			</otherwise>
+		</choose> 
+		
+	</if>
+	<if test="sort == null">
+		order by g.regDate desc
+	</if>
+	</select>
+		
+</mapper>

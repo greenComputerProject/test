@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.green.oauth2.mapper.OAuthUserMapper">
+
+	<insert id="insert" parameterType="com.green.oauth2.domain.OAuthUserVO">
+		<selectKey keyProperty="userid" resultType="Long" order="BEFORE">
+			select seq_member.nextval from dual
+		</selectKey>
+		insert into tbl_member values(#{userid}, #{name}, #{email}, #{picture, jdbcType=VARCHAR}, #{role})
+	</insert>
+	
+	<select id="findByEmail" resultType="com.green.oauth2.domain.OAuthUserVO" parameterType="String">
+		select * from tbl_member where email = #{email}
+	</select>
+	
+	<delete id="deleteAll">
+		delete from tbl_member
+	</delete>
+	
+	<update id="update" parameterType="com.green.oauth2.domain.OAuthUserVO">
+		update tbl_member set name = #{name}, picture = #{picture, jdbcType=VARCHAR} where userid = #{userid}
+	</update>
+
+	
+</mapper>

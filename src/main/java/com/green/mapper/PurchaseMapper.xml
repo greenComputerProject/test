@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.green.mapper.PurchaseMapper">
+
+	<resultMap type="com.green.domain.PurchaseListVO" id="purchaseListMap">
+		<id column="pno" property="pno"/>
+		<result column="gno" property="gno"/>
+		<result column="title" property="title"/>
+		<result column="titlePicture" property="titlePicture"/>
+	</resultMap>
+
+	<insert id="insert" parameterType = "com.green.domain.PurchaseVO">
+		<selectKey resultType="Long" keyProperty="pno" order="BEFORE">
+			select seq_purchase.nextval from dual 
+		</selectKey>
+		
+		insert into tbl_purchase_list(pno, orderid, purchasedate, gno, userid)
+		 values(#{pno}, #{orderid}, sysdate, #{gno}, #{userid} )
+	</insert>
+	
+	<select id="getList" resultMap="purchaseListMap" parameterType="String">
+		select p.pno, p.gno, g.title, r.titlePicture from tbl_purchase_list p
+	    left outer join tbl_games g on g.gno = p.gno
+	    left outer join tbl_games_resources r on p.gno = r.gno 
+	    where p.userid = #{userid}
+	</select>
+
+	<delete id="delete" parameterType = "Long">
+		delete from tbl_purchase_list where pno = #{pno}
+	</delete>
+	
+	<select id="getCount" resultType="Integer">
+		select count(*) from tbl_purchase_list where gno=#{gno} and userid = #{userid}
+	</select>
+
+</mapper>
