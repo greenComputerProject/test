@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri = "http://www.springframework.org/security/tags" prefix="sec" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +54,7 @@
 <div class="navbar-search">
     <ul class="navbar-search-links">
         <li><a href="#" id="not-selected" onclick="clickSearch(this)">< 검색으로 돌아가기</a></li>
-        <li>| 원신</li>
+        <li>| ${game.title}</li>
     </ul>
 
     <div class="navbar-search-wishlist-and-form">
@@ -77,7 +81,7 @@
     <div class="game-content">
         
         <div class="game-title">
-            원신
+            ${game.title}
         </div>
         <div class="game-slide">
             <div class="slide-image active"><img src="/resources/img/game/genshin-slide-image-1.jpg" alt=""></div>
@@ -99,44 +103,38 @@
         </div>
         <div class="game-text">
             <p>
-                당신은 게임 속에서 「티바트」라 불리는 판타지 세계를 탐험하게 됩니다. 이 광활한 세계에서 당신은 일곱 나라를 돌아다니면서 다양한 성격과 독특한 능력을 지닌 동료들과 만나고 강력한 적을 함께 무찌르며 잃어버린 혈육을 되찾는 여정을 나서게 됩니다. 또한, 목적 없이 여행하며 생명이 충만한 세상에서 구석구석의 숨겨진 비밀들을 파헤칠 수도 있습니다. 당신이 잃어버린 혈육과 재회하는 날, 이 모든 것의 진실을 알게 될 것입니다.
+               ${game.content}
             </p>
         </div>
         <div class="game-attr">
             <div class="attr-box">
                 <div class="attr-content">
                     <div class="attr-title">개발사</div>
-                    <div class="attr-name">miHoYo Limited</div>
+                    <div class="attr-name">${game.companyvo.company}</div>
+                </div>
+                <div class="attr-content">
+                    <div class="attr-title">퍼블리셔</div>
+                    <div class="attr-name">${game.companyvo.company}</div>
+                </div>
+            </div>
+            <div class="attr-box">
+            	<div class="attr-content">
+                    <div class="attr-title">장르</div>
+                    <div class="attr-name">${tag0}</div>
                 </div>
                 <div class="attr-content">
                     <div class="attr-title">태그</div>
-                    <div class="attr-name">
-                        <ul class="attr-tags">
-                            <li>RPG</li>,
-                            <li>Open World</li>,
-                            <li>Adventure</li>
-                        </ul>
-                    </div>
+                    <div class="attr-name">${tag}</div>
                 </div>
             </div>
             <div class="attr-box">
                 <div class="attr-content">
-                    <div class="attr-title">퍼블리셔</div>
-                    <div class="attr-name">miHoYo Limited</div>
+                    <div class="attr-title">연령제한</div>
+                    <div class="attr-name">${game.ageLimit}</div>
                 </div>
-                <div class="attr-content">
-                    <div class="attr-title">플랫폼</div>
-                    <div class="attr-name">Windows</div>
-                </div>
-            </div>
-            <div class="attr-box">
                 <div class="attr-content">
                     <div class="attr-title">출시일</div>
-                    <div class="attr-name">2021년 6월 9일</div>
-                </div>
-                <div class="attr-content">
-                    <div class="attr-title"></div>
-                    <div class="attr-name"></div>
+                    <div class="attr-name">${game.regDate}</div>
                 </div>
             </div>
         </div>
@@ -144,130 +142,35 @@
             <div class="review-head">
                 <div>유저 리뷰</div>
             </div>
-            <ul>
-                <li class="reviews-head">
+            <li class="reviews-head">
                     <div class="writer">작성자</div>
                     <div class="content">내용</div>
                     <div class="regdate">등록일</div>
                     <div class="likes">좋아요 수</div>
                     <div class="buttons"></div>
                 </li>
-                <li>
-                    <div class="writer">송강찬</div>
-                    <div class="content">재밌어요</div>
-                    <div class="regdate">2021-06-22</div>
-                    <div class="likes">12</div>
-                    <div class="buttons">
-                        <button class="like-button">좋아요</button>
-                        <button class="delete-button">삭제</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="writer">송강찬</div>
-                    <div class="content">재밌어요</div>
-                    <div class="regdate">2021-06-22</div>
-                    <div class="likes">12</div>
-                    <div class="buttons">
-                        <button class="like-button">좋아요</button>
-                        <button class="delete-button">삭제</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="writer">송강찬</div>
-                    <div class="content">재밌어요</div>
-                    <div class="regdate">2021-06-22</div>
-                    <div class="likes">12</div>
-                    <div class="buttons">
-                        <button class="like-button">좋아요</button>
-                        <button class="delete-button">삭제</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="writer">송강찬</div>
-                    <div class="content">재밌어요</div>
-                    <div class="regdate">2021-06-22</div>
-                    <div class="likes">12</div>
-                    <div class="buttons">
-                        <button class="like-button">좋아요</button>
-                        <button class="delete-button">삭제</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="writer">송강찬</div>
-                    <div class="content">재밌어요</div>
-                    <div class="regdate">2021-06-22</div>
-                    <div class="likes">12</div>
-                    <div class="buttons">
-                        <button class="like-button">좋아요</button>
-                        <button class="delete-button">삭제</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="writer">송강찬</div>
-                    <div class="content">재밌어요</div>
-                    <div class="regdate">2021-06-22</div>
-                    <div class="likes">12</div>
-                    <div class="buttons">
-                        <button class="like-button">좋아요</button>
-                        <button class="delete-button">삭제</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="writer">송강찬</div>
-                    <div class="content">재밌어요</div>
-                    <div class="regdate">2021-06-22</div>
-                    <div class="likes">12</div>
-                    <div class="buttons">
-                        <button class="like-button">좋아요</button>
-                        <button class="delete-button">삭제</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="writer">송강찬</div>
-                    <div class="content">재밌어요</div>
-                    <div class="regdate">2021-06-22</div>
-                    <div class="likes">12</div>
-                    <div class="buttons">
-                        <button class="like-button">좋아요</button>
-                        <button class="delete-button">삭제</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="writer">오윤식</div>
-                    <div class="content">재미없어요</div>
-                    <div class="regdate">2021-06-21</div>
-                    <div class="likes">12</div>
-                    <div class="buttons">
-                        <button class="like-button">좋아요</button>
-                        <button class="delete-button">삭제</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="writer">송민섭</div>
-                    <div class="content">그냥 그래요</div>
-                    <div class="regdate">2021-06-20</div>
-                    <div class="likes">12</div>
-                    <div class="buttons">
-                        <button class="like-button">좋아요</button>
-                        <button class="delete-button">삭제</button>
-                    </div>
-                </li>
-                <li class="reviews-form">
-                        <form action="#">
-                            <div class="review-form-writer">
-                                <input type="text" id="writer" name="writer" value="유저1" readonly>
-                            </div>
-                            <div class="review-form-content">
-                                <input type="text" id="content" name="content" placeholder="리뷰를 입력하세요." required>
-                            </div>
-                            <div class="review-form-button">
-                                <button type="submit">등록</button>
-                            </div>
-                        </form>
-                </li>
-            </ul>
-            
+
+            <ul class= "chat"></ul><!-- 댓글의 리스트 처리 -->
+                
+       		<div class="panel-footer"></div> <!-- 댓글의 페이지 처리 -->
+        
+		
+            <li class="reviews-form">
+	            <div class="review-apply">
+	                <div class="review-form-writer">
+	                	<!-- <input type="hidden" class="eot" id="rno" name ="rno"/> -->
+	                    <input class="eot" type="text" id="userid" name ="userid" value="유저1" readonly>
+	                </div>
+	                <div class="review-form-content">
+	                    <input class="eot" id='content' name = "content" placeholder="리뷰를 입력하세요." required>
+	                </div>
+	                <div class="review-form-button">
+	                    <button id='addReplyBtn'>등록</button>
+	                </div>
+	            </div>
+             </li> 
         </div>
+		
         <div class="spec">사양</div>
         <div class="game-spec">
             <div class="spec-head">WINDOWS
@@ -275,56 +178,27 @@
             </div>
             
             <div class="spec-content">
-                <div id="minimum" class="content-box">
-                    <div class="content-box-head">
-                        최소
-                    </div>
-                    <div id="os">
-                        <div class="spec-title">운영체제</div>
-                        <div class="spec-content">Windows 7 SP1 64비트, Windows 8.1 64비트, 또는 Windows 10 64비트(Windows 10 개발자 빌드는 현재 지원되지 않음)</div>
-                    </div>
-                    <div id="processor">
-                        <div class="spec-title">프로세서</div>
-                        <div class="spec-content">Intel Core i5 또는 동급의 제품</div>
-                    </div>
-                    <div id="memory">
-                        <div class="spec-title">메모리</div>
-                        <div class="spec-content">8GB</div>
-                    </div>
-                    
-                    <div id="storage">
-                        <div class="spec-title">스토리지</div>
-                        <div class="spec-content">30GB</div>
-                    </div>
-                    <div id="directX">
-                        <div class="spec-title">DirectX</div>
-                        <div class="spec-content">11</div>
-                    </div>
-                    <div id="gpu">
-                        <div class="spec-title">그래픽 카드</div>
-                        <div class="spec-content">NVIDIA® GeForce® GT 1030 이상</div>
-                    </div>
-                </div>
+                
                 <div id="recomended" class="content-box">
                     <div class="content-box-head">
                         권장
                     </div>
                     <div id="os">
                         <div class="spec-title">운영체제</div>
-                        <div class="spec-content">Windows 7 SP1 64비트, Windows 8.1 64비트, 또는 Windows 10 64비트(Windows 10 개발자 빌드는 현재 지원되지 않음)</div>
+                        <div class="spec-content">${game.specvo.os}</div>
                     </div>
-                    <div id="processor">
+                    <div id="cpu">
                         <div class="spec-title">프로세서</div>
-                        <div class="spec-content">Intel Core i7 또는 동급의 제품</div>
+                        <div class="spec-content">${game.specvo.cpu}</div>
                     </div>
-                    <div id="memory">
+                    <div id="ram">
                         <div class="spec-title">메모리</div>
-                        <div class="spec-content">16GB</div>
+                        <div class="spec-content">${game.specvo.ram}</div>
                     </div>
                     
-                    <div id="storage">
-                        <div class="spec-title">스토리지</div>
-                        <div class="spec-content">30GB</div>
+                    <div id="language">
+                        <div class="spec-title">지원 언어</div>
+                        <div class="spec-content">${game.specvo.language}</div>
                     </div>
                     <div id="directX">
                         <div class="spec-title">DirectX</div>
@@ -332,7 +206,7 @@
                     </div>
                     <div id="gpu">
                         <div class="spec-title">그래픽 카드</div>
-                        <div class="spec-content">NVIDIA® GeForce® GTX 1060 6GB 이상</div>
+                        <div class="spec-content">${game.specvo.gpu}</div>
                     </div>
                 </div>
             </div>
@@ -342,7 +216,7 @@
         <div class="game-aside-image">
             <img src="/resources/img/game/genshin-get-logo.webp" alt="">
         </div>
-        <div class="game-aside-price">무료</div>
+        <div class="game-aside-price">가격 | ${game.price}₩</div>
         <div class="game-aside-download">
             <button class="download-button" onclick="showPopup()">구매</button>
         </div>
@@ -453,10 +327,287 @@
         </div>
     </div>
 </footer>
+   
+
 <!-- footer end -->
 <script type="text/javascript" src="/resources/js/layout/navbar-search.js"></script>
 <script type="text/javascript" src="/resources/js/game/get.js"></script>
-        <script type="text/javascript" src="/resources/js/layout/footer.js"></script>
-        <script type="text/javascript" src="/resources/js/layout/order-form.js"></script>
+<script type="text/javascript" src="/resources/js/layout/footer.js"></script>
+<script type="text/javascript" src="/resources/js/layout/order-form.js"></script>
+<script type="text/javascript" src="/resources/js/reply.js"></script>
+
+
+
+
+    
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
 </body>
+
+
+<script>
+
+
+			$(document).ready(function () { 
+				var gnoValue = '<c:out value="${game.gno}"/>';
+				console.log("게임번호는" + gnoValue);
+				var replyUL = $(".chat");// div 태그의  class이름이 chat인 DOM 찾고 
+				showList(1); //함수 호출 
+		
+				//페이지처리
+				function showList(page) {
+					replyService.getList({ gno: gnoValue, page: page || 1 }, function (replyCnt, list) {//댓글 전체 목록 조회
+						console.log("댓글 갯수 get.jsp에서 getList 호출함수내에서 댓글 갯수  " + replyCnt);
+						console.log("댓글 갯수 get.jsp에서 getList 호출함수내에서 댓글 목록  " + list);
+						//마지막 페이지일경우 (-1) 
+						if (page == -1) {
+							pageNum = Math.ceil(replyCnt / 10.0);
+							showList(pageNum);//여기서 pageNum이 기존에 1이던것이 여기 pageNum의 값이 전달됨
+							return; //마지막 페이지 이면 함수 종료함 
+						}
+						var str = "";
+						if (list == null || list.length == 0) {
+							replyUL.html("");
+							return;
+						};
+						 for(var i =0, len = list.length || 0; i<len; i++){
+							str += " <li data-rno='" + list[i].rno+"'>"
+							str += " <div class='writer' id = 'id'>"+ list[i].userid + "</div>"
+							str += " <div class='content'id = 'con'>"+ list[i].content + "</div>"
+							str += " <div class='regDate'>"+ list[i].regDate + "</div>"
+							str += " <div class='likes'>"+ list[i].likes + "</div>"
+							str += " <div class='buttons'>"
+							str += "    <button class='like-button'>"+ "좋아요" + "</button>"
+							str += "    <button class='modify-button'>"+ "수정" + "</button>"
+							str += "    <button class='delete-button' id='reviewremove'>"+ "삭제" + "</button>"
+							str += " </div>" 
+							str += " </li>"					
+						}; 					
+						replyUL.html(str);
+						showReplyPage(replyCnt);
+					});//end getList , 첫번째 파라미터는  literal 객체 ,두번째 파라미터는 익명함수 
+				}; //end showList
+				
+				
+				var pageNum = 1;
+				var replyPageFooter = $(".panel-footer");
+
+				function showReplyPage(replyCnt) {  //페이지 계산 함수 정의 
+					var endNum = Math.ceil(pageNum / 10.0) * 10;
+					var startNum = endNum - 9;
+
+					var prev = startNum != 1;
+					var next = false;
+
+					if (endNum * 10 >= replyCnt) {
+						endNum = Math.ceil(replyCnt / 10.0);
+					}
+					if (endNum * 10 < replyCnt) {
+						next = true;
+					}
+
+					var str = "<ul class='pagination pull-right'>";
+					if (prev) {
+						str += "<li class='page-item'><a class='page-link' href ='" + (startNum - 1) + "'>이전 페이지</a></li>";
+					}
+					for (var i = startNum; i <= endNum; i++) {
+						var active = pageNum == i ? "active" : "";
+						str += "<li class='page-item " + active + " '><a class='page-link' href='" + i + "'>" + i + "</a></li>";
+					}
+					if (next) {
+						str += "<li class='page-item'><a class='page-link' href ='" + (endNum + 1) + "'>다음 페이지</a></li>";
+					}
+					str += "</ul></div>";
+					console.log(str);
+					replyPageFooter.html(str);
+				}
+
+
+				var modal = $(".modal");
+				var modalInputReply = modal.find("input[name='content']");
+				var modalInputReplyer = modal.find("input[name='userid']");
+				var modalInputReplyDate = modal.find("input[name='regDate']");
+
+				var modalModBtn = $("#modalModBtn");
+				var modalRemoveBtn = $("#modalRemoveBtn");
+				var modalRegisterBtn = $("#modalRegisterBtn");
+				var modalCloseBtn = $("#modalCloseBtn");
+				
+			
+				var replyer = null;
+				<sec:authorize access ="isAuthenticated()">
+					userid ='<sec:authentication property ="principal.username"/>';
+				</sec:authorize>
+				
+				var csrfHeaderName = "${_csrf.headerName}";
+			    var csrfTokenValue = "${_csrf.token}";   
+	
+				var eot = $(".eot");
+				var ec = $("#content");
+				var eu = $("#userid");
+				var en = $("#rno");
+				
+				var reviewReplyer = eot.find("input[name='userid']");
+				
+				$("#addReplyBtn").on("click",function(e){
+					var content={
+							content: ec.val(),
+							userid: eu.val(),
+							//rno: en.val(),
+							gno:gnoValue	
+					};
+					console.log("댓글 등록이 잘들어오나");
+					replyService.add(content,function(result){
+						alert(result);
+						eot.find("input").val("");
+						showList(-1);
+					})
+				});
+				
+				//댓글 삭제
+				$(".chat").on("click", ".delete-button", function (e) {
+					//var rno = modal.data("rno");
+					var rno = $(this).closest("li").data("rno");
+					console.log("Rno : " +rno);
+					console.log("Replyer : " +userid);
+					
+					/* if(!userid){
+						alert("로그인후 삭제가 가능합니다");
+						modal.modal("hide");
+						return ;
+					}*/
+					
+					var originalReplyer = reviewReplyer.val();
+					console.log("작성자는? "+ originalReplyer);
+					/*
+					console.log("OriginalReplyer : " + originalReplyer); //댓글의 원래 작성자 
+					if(userid!= originalReplyer){
+						alert("자신이 작성한 댓글만  삭제가 가능합니다");
+						modal.modal("hide");
+						return ;
+					} */
+					replyService.remove(rno, originalReplyer , function (result) {
+						alert(result);
+						showList(pageNum);
+					})
+					flag = true;
+				});
+						
+				var inputCo = "";
+                var flag = true;
+				var chat = $(".chat");
+				//부모(.chat/ul) 아래의 수정버튼(modify-button)을 누르면 
+				 $(".chat").on("click", "button", function (e) {
+					 
+					 var thisClass =  this.getAttribute("class");
+					 var rno = $(this).closest("li").data("rno");// modify버튼 클릭 시 가까운 li(closest)를 찾아 data-rno의 정보에서 rno 정보만 가져옴
+ 					 var con = $(this).closest("li").find("div");
+ 					 var but = $(this).closest("div").find("button");
+
+                    if(flag){
+                    	
+    			 		
+                    	
+					 	if(thisClass == "modify-button"){
+						
+						inputCo = $(this).closest("li").find("#con").text();
+						console.log(inputCo);
+						con[1].innerHTML = "<input type='text' name = 'content' value='"+con[1].innerText+"' id='modifyReply' size='40' />";
+						
+						but[0].setAttribute("class", 'modifyBtn');
+						but[0].setAttribute("onclick", "clickModReview()")
+						but[0].innerHTML = "완료";
+						
+						but[1].setAttribute("class", 'cancelBtn');
+						but[1].innerHTML ="취소";
+
+                        flag = false;
+					 	}
+					 	
+					 	replyService.read(rno, function (content) {
+							console.log("두 번째 파라미터(콜백함수)에 들어오나? " + rno)
+							
+							//modifyReplyDate.val(replyService.displayTime(content.regDate)).attr("readonly", "readonly");
+							chat.data("rno", content.rno);
+						}); 
+                         
+                    }
+						
+					if(thisClass == "cancelBtn"){	
+						 //inputCo에 원래 content값을 저장
+						$("#modifyReply").remove(); //input태그의 modifyReply삭제
+						con[1].innerText = inputCo; //다시 div에 inputCo(content값)을 저장
+						console.log("im ")
+						but[0].setAttribute("class", 'like-button');
+						but[0].setAttribute("onclick", "null")
+						but[0].innerHTML = "좋아요";
+				
+						but[1].setAttribute("class", "modify-button");
+						but[1].innerHTML ="수정";
+                           flag = true;
+
+					}
+					
+						 
+				}); 
+				
+					window.clickModReview = function(){//수정 버튼을 누르면   | 주석처리된 내용  $(".chat") 으로 옮겨야됨(유저아이디 확인)
+							var modifyReply = chat.find("input[name='content']");
+							var modifyReplyer = chat.find("input[name='userid']");
+							var modifyReplyDate = chat.find("input[name='regDate']");
+							
+							console.log(modifyReplyer)
+					
+							console.log("완료버튼이 눌리나");
+							var rno = chat.data("rno"); //추가 
+							
+							var originalReplyer = modifyReplyer.val();
+							var content={
+								rno: chat.data("rno"),
+								//regDate : modifyReplyDate.val(),
+								content: modifyReply.val(),
+								userid: originalReplyer}
+							console.log("Rno : " +rno);
+							console.log("Replyer : " +userid);
+							console.log("Content : " +content);
+							/* if(!userid){
+								alert("로그인후 수정이 가능합니다");
+								modal.modal("hide");
+								return ;
+							}
+							console.log("OriginalReplyer : " + originalReplyer); //댓글의 원래 작성자 
+							if(userid!= originalReplyer){
+								alert("자신이 작성한 댓글만  수정이 가능합니다");
+								modal.modal("hide");
+								return ;
+							} */
+							
+							replyService.update(content, function (result) {
+								alert(result);
+								showList(pageNum);//전체 데이터 가져오는 함수 호출 시 페이지 번호 전달하여 가져옴
+							});
+							
+							flag = true;
+					};
+				
+				//댓글 페이지
+				replyPageFooter.on("click", "li a", function (e) {//li 태그로 만든 페이지 번호를 누르면
+					e.preventDefault();
+					console.log("페이지가 눌렸어요");
+					var targetPageNum = $(this).attr("href");
+					//this는 누른 페이지 li 태그이고 이 때의 li 태그의 href 속성을 얻어옴 href = "3(페이지)"
+					console.log("targetPageNum: " + targetPageNum);
+					pageNum = targetPageNum;
+					showList(pageNum);
+				});
+				
+			}); //document ready 의 끝
+</script>
 </html>

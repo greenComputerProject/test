@@ -20,7 +20,7 @@ public class SecurityMemberServiceImpl implements SecurityMemberService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@Autowired
+	@Autowired(required = false)
 	private HttpSession session;
 	
 	@Override

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapeer 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.mapper.FileUploadMapper">
+	<insert id="insert">
+		insert into tbl_fileupload(uuid ,uploadPath, fileName, nno)
+			values(#{uuid}, #{uploadPath}, #{fileName}, #{nno})
+	</insert>
+	<delete id="delete">
+		delete from tbl_fileupload where uuid = #{uuid}
+	</delete>
+	<select id="findByBno" resultType="com.green.domain.FileUploadVO">
+		select uuid,uploadPath,fileName,nno from tbl_fileupload where nno = #{nno}
+	</select>
+	<delete id="deleteAll">
+		delete from tbl_fileupload where nno = #{nno}
+	</delete>
+</mapper>

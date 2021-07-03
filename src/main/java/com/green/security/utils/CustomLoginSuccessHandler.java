@@ -21,7 +21,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 	@Autowired
 	private SecurityMemberMapper mapper;
 	
-	@Autowired
+	@Autowired(required = false)
 	private HttpSession session;
 	
 	@Override

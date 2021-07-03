@@ -296,7 +296,12 @@
 		    <version>2.5.0</version>
 		</dependency>
 <!-- 2021-06-18 추가된 부분 끝-->
-		
+				<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-tx</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
 		
 	</dependencies>
 

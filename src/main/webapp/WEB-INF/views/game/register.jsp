@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +16,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="/resources/css/layout/footer.css">
     <link rel="stylesheet" href="/resources/css/game/register.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
     <!-- navbar start -->
@@ -80,6 +85,7 @@
             <div id="titleGameGenre" class="select"><span>장르</span></div>
             <div id="titleGameCompany" class="form-input"><span>제작사</span></div>
             <div id="titleGameTag" class="select"><span>태그</span></div>
+            <div id="titleGameAgeLimit" class="form-input"><span>연령제한</span></div>
             <div id="titleGameSpec" class="textarea">
                 <div class="spec"><span>사양</span></div>
             </div>
@@ -88,7 +94,9 @@
             <div id="titleFormButton" class="form-input"></div>
         </div>
         <div class="input-form">
-        <form>
+        <form action="/game/register" role="form" method="post">
+        	<input type="hidden" name="cno" id="cno" value="${game.cno}">
+       		<input type="hidden" name="gno" id="gno" value="${game.gno}">
             <div id="formGameTitle" class="form-input">
                 <input type="text" name="title" id="title" placeholder="게임 타이틀을 입력하세요." required>
             </div>
@@ -99,17 +107,17 @@
                 <input type="text" name="price" id="price" placeholder="가격을 입력하세요." required>
             </div>
             <div id="formGameGenre" class="select">
-                <select name="genre" id="genre" required>
+                <select name="name" id="name" required>
                     <option value="">장르를 선택하세요.</option>
-                    <option value="fps">FPS</option>
-                    <option value="tps">TPS</option>
-                    <option value="rts">RTS</option>
-                    <option value="rpg">RPG</option>
-                    <option value="simulator">시뮬레이션</option>
-                    <option value="fight">격투</option>
-                    <option value="rhythm">리듬</option>
-                    <option value="startegy">전략</option>
-                    <option value="indie">인디</option>
+                    <option value="FPS">FPS</option>
+                    <option value="TPS">TPS</option>
+                    <option value="RTS">RTS</option>
+                    <option value="RPG">RPG</option>
+                    <option value="시뮬레이션">시뮬레이션</option>
+                    <option value="격투">격투</option>
+                    <option value="리듬">리듬</option>
+                    <option value="전략">전략</option>
+                    <option value="인디">인디</option>
                 </select>
             </div>
             <div id="formGameCompany" class="form-input">
@@ -119,20 +127,21 @@
                 <div class="company-input">
                 <label for="country">국가 선택</label>
                 <select name="country" id="country" required>
-                    <option value="usa">미국</option>
-                    <option value="england">영국</option>
-                    <option value="france">프랑스</option>
-                    <option value="germany">독일</option>
-                    <option value="china">중국</option>
-                    <option value="japan">일본</option>
-                    <option value="korea">한국</option>
-                    <option value="canada">캐나다</option>
-                    <option value="australia">호주</option>
+                	<option value="">국가를 선택하세요.</option>
+                    <option value="미국">미국</option>
+                    <option value="영국">영국</option>
+                    <option value="프랑스">프랑스</option>
+                    <option value="독일">독일</option>
+                    <option value="중국">중국</option>
+                    <option value="일본">일본</option>
+                    <option value="한국">한국</option>
+                    <option value="캐나다">캐나다</option>
+                    <option value="호주">호주</option>
                 </select>
             </div>
             </div>
             <div id="formGameTag" class="select">
-                <select onchange="clickOption(event)">
+                <select onchange="clickOption(event)" name = "" id = "">
                     <option value="">태그를 선택하세요.</option>
                     <option value="싱글플레이" onselect="clickOption(this)">싱글플레이</option>
                     <option value="멀티플레이" onselect="clickOption(this)">멀티플레이</option>
@@ -144,9 +153,11 @@
                 </select>
                
                 <button type="button" onclick="resetTag()">초기화</button>
-                <input type="text" name="tag" id="tag" value="" readonly required/>
+                <input type="text" name="name" id="name" value="" readonly required/>      
             </div>
-
+			<div id="formGameAgeLimit" class="form-input">
+                <input type="text" name="ageLimit" id="ageLimit" placeholder="게임 이용 연령대를 입력하세요." required>
+            </div>
             <div id="formGameSpec" class="textarea">
                     <div class="os">
                         <input type="text" name="os" id="os" placeholder="운영체제를 입력하세요."  required>
@@ -162,13 +173,13 @@
                     </div>
                     <div class="language">
                         <select name="language" id="language" required>
-                            <option>지원 언어를 선택하세요.</option>
-                            <option value="english">영어</option>
-                            <option value="french">프랑스어</option>
-                            <option value="german">독일어</option>
-                            <option value="chinese">중국어</option>
-                            <option value="japanese">일본어</option>
-                            <option value="korean">한국어</option>
+                            <option value="">지원 언어를 선택하세요.</option>
+                            <option value="영어">영어</option>
+                            <option value="프랑스어">프랑스어</option>
+                            <option value="독일어">독일어</option>
+                            <option value="중국어">중국어</option>
+                            <option value="일본어">일본어</option>
+                            <option value="한국어">한국어</option>
                         </select>
                     </div>
             </div>
@@ -181,7 +192,23 @@
         </form>
     </div>
     </div>
-
+    <script>
+    $("#country").on("change",function(){
+   		
+    	var a = $("#country").val();
+    	
+    	console.log(a);
+		
+	})
+	
+	$("#language").on("change",function(){
+   		
+    	var b = $("#language").val();
+    	
+    	console.log(b);
+		
+	})
+	</script>
     <!-- footer start -->
 <footer class="footer">
     <div class="footer-logo-box">
