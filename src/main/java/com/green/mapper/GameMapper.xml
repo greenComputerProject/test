@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<association property="tagvo" javaType="com.green.domain.TagVO">
 			<id property="tno" column="tno"/>
 			<result property="tno" column="tno"/>
-			<result property="name" column="tagName"/>
+			<result property="tagName" column="tagName"/>
 			<result property="gno" column="gno"/>
 		</association>
 		
@@ -90,11 +90,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id ="register">
-		insert into tbl_games(gno, title, content, price, ageLimit, cno) values(seq_games.nextval, #{title}, #{content}, #{price}, #{ageLimit}, seq_company.currval)
+		insert into tbl_games(gno, title, content, price, ageLimit, cno, regdate) values(seq_games.nextval, #{title}, #{content}, #{price}, #{ageLimit}, seq_company.currval, sysdate)
 	</insert>
 	
 	<update id="modify">
 			update tbl_games set title=#{title}, content=#{content}, price=#{price}, ageLimit = #{ageLimit} where gno = #{gno}
 	</update>
+	
+	<delete id="delete">
+		delete from tbl_games where gno = #{gno}
+	</delete>
 
 </mapper>

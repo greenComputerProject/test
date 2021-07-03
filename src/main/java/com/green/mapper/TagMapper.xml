@@ -5,10 +5,10 @@
     
 <mapper namespace="com.green.mapper.TagMapper">
 	<insert id ="register">
-		insert into tbl_tag(tno, name, gno) values(seq_tag.nextval, #{name}, seq_games.currval)
+		insert into tbl_tag(tno, tagName, gno) values(seq_tag.nextval, #{tagName}, seq_games.currval)
 	</insert>
 	
 	<update id="modify">
-			update tbl_tag set name=#{name} where gno = #{gno}
+			update tbl_tag set tagName=#{tagName} where gno = #{gno}
 	</update>
 </mapper>

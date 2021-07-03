@@ -18,5 +18,6 @@ public interface GameService {
 	public void modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec);
 	
 	public GameVO news(Long nno);
+	
 
 }

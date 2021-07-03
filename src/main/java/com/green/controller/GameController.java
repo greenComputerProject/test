@@ -34,7 +34,7 @@ public class GameController {
 		model.addAttribute("game", game);
 		
 		TagVO tag = game.getTagvo();
-		String[] tagList = tag.getName().split(",");
+		String[] tagList = tag.getTagName().split(",");
 		String a = "";
 		
 		model.addAttribute("game", game);
@@ -78,7 +78,7 @@ public class GameController {
 		GameVO game = service.read(title);
 		
 		TagVO tag = game.getTagvo();
-		String[] tagList = tag.getName().split(",");
+		String[] tagList = tag.getTagName().split(",");
 		String a = "";
 		
 		model.addAttribute("game", game);

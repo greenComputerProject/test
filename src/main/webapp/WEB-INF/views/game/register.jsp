@@ -107,7 +107,7 @@
                 <input type="text" name="price" id="price" placeholder="가격을 입력하세요." required>
             </div>
             <div id="formGameGenre" class="select">
-                <select name="name" id="name" required>
+                <select name="tagName" id="tagName" required>
                     <option value="">장르를 선택하세요.</option>
                     <option value="FPS">FPS</option>
                     <option value="TPS">TPS</option>
@@ -153,7 +153,7 @@
                 </select>
                
                 <button type="button" onclick="resetTag()">초기화</button>
-                <input type="text" name="name" id="name" value="" readonly required/>      
+                <input type="text" name="tagName" id="tagName" value="" readonly required/>      
             </div>
 			<div id="formGameAgeLimit" class="form-input">
                 <input type="text" name="ageLimit" id="ageLimit" placeholder="게임 이용 연령대를 입력하세요." required>
