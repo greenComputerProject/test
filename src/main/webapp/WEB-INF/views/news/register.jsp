@@ -81,7 +81,7 @@
             <div id="titleFormButton" class="form-input"></div>
         </div>
         <div class="input-form">
-        <form>
+        <form action="/news/register" role="form" method="post">
             <div id="formGameTitle" class="form-input">
                 <input type="text" name="title" id="title" placeholder="제목을 입력하세요." required>
             </div>
@@ -89,10 +89,11 @@
                 <textarea name="content" id="content"  placeholder="내용을 입력하세요." required></textarea>
             </div>
             <div id="formImage" class="form-input">
-                <input type="image" name="image" id="image" required>
+                <input type="file" name="uploadFile" id="uploadFile" accept="image/gif,image/jpeg,image/png" required>
             </div>
+            <input type="hidden" name ="userid" id="userid" value="2">
             <div id="formFormButton" class="form-input">
-                <button>등록</button>
+                <button type="submit">등록</button>
             </div>
         </form>
     </div>
@@ -187,6 +188,102 @@
 </footer>
 <!-- footer end -->
 <script type="text/javascript" src="/resources/js/layout/navbar-search.js"></script>
-        <script type="text/javascript" src="/resources/js/layout/footer.js"></script>
+<script type="text/javascript" src="/resources/js/layout/footer.js"></script>
+
+<!-- file upload -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+<script>
+	
+	
+	$(document).ready(function(){
+		var formObj = $("form[role='form']");
+		
+		//file type input 
+        $("input[type='file']").change(function(e){
+            var formData = new FormData();
+            var inputFile = $("input[name='uploadFile']");
+            var files = inputFile[0].files;
+            for(var i = 0; i < files.length; i++){
+                if(!fileCheck(files[i].name)){
+                    return false;
+                }
+                formData.append("uploadFile", files[i]);
+                console.log("확인 1)" + files[i]);
+            }
+            
+         
+            $.ajax({
+                    url: '/news/uploadAjaxAction',
+                    processData: false, 
+                    contentType: false,
+                    data: formData,
+                    type: 'POST',
+                    dataType:'json',
+                    success: function(result){
+                        console.log("result :  "+ result); 
+                        fileSubmit(result);
+                	},
+            		error: function(a){
+            			console.log(a);
+            		}
+            }); //$.ajax
+    	});  //change 이벤트
+    	
+    	//클릭했을때 업로드 된 파일 삭제
+    	$("input[type='file']").click(function(e){
+    		var fn = $("#fileName").val();
+    		var ui = $("#uuid").val();
+    		var up = $("#uploadPath").val();
+    		console.log(fn);
+    		console.log(ui);
+    		console.log(up);
+    		if(fn != null){
+    			console.log("null이 아닐 경우")
+    			 $.ajax({
+		            url: '/news/deleteFile',
+		            data: { fileName: fn, uuid: ui },
+		            dataType: 'text',
+		            type: 'POST',
+		            success: function (result) {
+		              console.log(result);
+		              	$("#fileName").remove();
+	    			 	$("#uuid").remove();
+		    			$("#uploadPath").remove();
+		            },
+		          }) //$.ajax
+    			
+    		}
+    	})
+    	
+    	
+      	//이미지 파일만 올리게 하는 함수 생성
+    	function fileCheck(obj){
+    		console.log(obj);
+    		pathpoint= obj.lastIndexOf('.');
+    		filepoint= obj.substring(pathpoint+1, obj.length);
+    		filetype= filepoint.toLowerCase();
+    		if(filetype=='jpg'||filetype=='png'||filetype=='jpeg'){
+    			//올릴수 있는 이미지 확장자 인 경우
+    			console.log("image file");
+    			return true;
+    		}else{
+    			alert("이미지 파일만 선택할 수 있습니다.");
+    			return false;
+    		}
+    	}
+    	function fileSubmit(result){
+    		var str = '';
+    		console.log("확인용 obj : " + result);
+    		$(result).each(function(i,obj){
+    			str += "<input type='hidden' id='fileName' name='getFile.fileName' value='" + obj.fileName + "'>"
+                str += "<input type='hidden' id='uuid' name='getFile.uuid' value='" + obj.uuid + "'>"
+                str += "<input type='hidden' id='uploadPath' name='getFile.uploadPath' value='" + obj.uploadPath + "'>"
+    		})
+    		
+            console.log("확인용 str : " + str);
+            formObj.append(str);
+    	}
+	})
+</script>
 </body>
 </html>

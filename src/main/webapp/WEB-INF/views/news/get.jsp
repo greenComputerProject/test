@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battlefield 2042 Gameplay 트레일러 및 디자인 디렉터 Daniel Berlin과의 Q&A</title>
+    <title><c:out value="${get.title}"/></title>
     <link rel="stylesheet" href="/resources/css/layout/navbar.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="/resources/css/layout/footer.css">
@@ -50,7 +51,7 @@
 <div class="navbar-search white">
     <ul class="navbar-search-links">
         <li><a href="#" id="not-selected" onclick="clickSearch(this)">< 새 소식으로 돌아가기</a></li>
-        <li> | Battlefield 2042 Gameplay 트레일러 및 디자인 디렉터 Daniel Berlin과의 Q&A</li>
+        <li> | <c:out value="${get.title}"/></li>
 
     </ul>
 </div>
@@ -59,15 +60,11 @@
     <!-- news get start -->
     <div class="news-get">
         <div class="news-get-image">
-            <img src="/resources/img/game/news-get-battlefild2042.jpg" alt="">
+            <img src="/resources${get.getFile.uploadPath}/${get.getFile.uuid}_${get.getFile.fileName}" alt="">
         </div>
         <div class="news-get-content">
             <p>
-                Battlefield 2042 Gameplay 트레일러 및 디자인 디렉터 Daniel Berlin과의 Q&A
-2021. 6. 18.
-기회를 놓치신 분들을 위해: 저희는 Battlefield 시리즈의 상징인 전면전으로의 복귀를 알리는 1인칭 슈팅 게임 Battlefield 2042 공개를 미리 볼 수 있는 기회를 가질 수 있었습니다. 
-
-또한, 이번 주에 출시된 Battlefield 2042 Gameplay 트레일러도 처음 볼 수 있었답니다! Reveal 트레일러가 엄청나게 흥분되게 하는 유형이었다고 생각하셨다면 다음과 같은 전 세계의 방대한 전쟁터에서 여러분을 기다리고 있는 완전 대혼란을 둘러보세요: 
+               "${get.content}"
             </p>
         </div>
     </div>
@@ -163,6 +160,6 @@
 
 
         <script type="text/javascript" src="/resources/js/layout/footer.js"></script>
-        <script type"text/javascript" src="/resources/js/layout/navbar-search.js"></script>
+        <script type="text/javascript" src="/resources/js/layout/navbar-search.js"></script>
 </body>
 </html>

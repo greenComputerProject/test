@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,119 +51,53 @@
     <!-- news get start -->
     <div class="news-list">
         <div class="news-title">
-            새 소식
-        </div>
-        <div class="news-new">
-            <div class="new-box">
-                <a href="#">
-                    <div class="new-image">
-                        <img src="/resources/img/game/news-battlefiled2042.webp" alt="">
-                    </div>
-                    <div class="new-date">
-                        4일 전
-                    </div>
-                    <div class="new-title">
-                        Battlefield 2042 Gameplay 트레일러 및 디자인 디렉터 Daniel Berlin과의 Q&A
-                    </div>
-                    <div class="new-details">
-                        <u>자세히 보기</u>
-                    </div>
-                </a>
-            </div>
-            <div class="new-box">
-                <a href="#">
-                <div class="new-image">
-                    <img src="/resources/img/game/news-fifa2021.webp" alt="">
-                </div>
-                <div class="new-date">
-                    4일 전
-                </div>
-                <div class="new-title">
-                    FM21 한정 기간 동안 50% 할인! 여름철 축구의 완벽한 동반자를 오늘 바로 확보하세요.
-                </div>
-                <div class="new-details">
-                    <u>자세히 보기</u>
-                </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="news-old">
-            <ul>
-                <li>
-                    <a href="#">
-                        <div class="old-image">
-                            <img src="/resources/img/game/news-old-hellisdaemon.jpg" alt="">
-                        </div>
-                        <div class="old-text">
-                            <div class="old-date">
-                                4일 전
-                            </div>
-                            <div class="old-title">
-                                악마, 말도 안 될 정도로 황당한 보스 싸움, 무게감 있는 신스웨이브 사운드트랙으로 꽉 찬 제멋대로 뻗어 나가는 수제작 세상을 탐험하세요. Hell is Other Demons는 6월 24일(미국 동부시간 기준)까지 무료입니다!
-                            </div>
-                            <div class="old-details">
-                                <u>자세히 보기</u>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="old-image">
-                            <img src="/resources/img/game/news-old-controll.jpg" alt="">
-                        </div>
-                        <div class="old-text">
-                            <div class="old-date">
-                                11일 전
-                            </div>
-                            <div class="old-title">
-                                에픽 메가 세일의 마지막 주에는 더 많은 대박 찬스와 할인이 제공됩니다
-                            </div>
-                            <div class="old-details">
-                                <u>자세히 보기</u>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="old-image">
-                            <img src="/resources/img/game/news-old-doctorwho.webp" alt="">
-                        </div>
-                        <div class="old-text">
-                            <div class="old-date">
-                                4일 전
-                            </div>
-                            <div class="old-title">
-                                천사들이 오고 있습니다... Epic Games Store를 향해서요. 절대로 놓쳐서는 안 될 호러 모험 Doctor Who: The Lonely Assassins를 지금 이용할 수 있습니다! 우는 천사들을 물리칠 수 있을까요?
-                            </div>
-                            <div class="old-details">
-                                <u>자세히 보기</u>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="old-image">
-                            <img src="/resources/img/game/news-old-humankind.webp" alt="">
-                        </div>
-                        <div class="old-text">
-                            <div class="old-date">
-                                4일 전
-                            </div>
-                            <div class="old-title">
-                                서두르세요! HUMANKIND™를 사전 구매하고 인류 역사 중 5개 시대를 플레이할 기회가 6월 21일(미국 동부시간 기준)에 종료됩니다.
-                            </div>
-                            <div class="old-details">
-                                <u>자세히 보기</u>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
+            새 소식 
+        </div><div class="news-new">
+        <c:forEach items="${news_list}" var="news" begin="0" end="1">
+		            <div class="new-box">
+		                <a href="/news/get?nno=${news.nno}">
+		                    <div class="new-image">
+		                        <img src="/resources${news.getFile.uploadPath}/${news.getFile.uuid}_${news.getFile.fileName}" alt="">
+		                    </div>
+		                    <div class="new-date"> 
+		                        <fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${news.regDate}" /> 
+		                    </div>
+		                    <div class="new-title">
+		                        <c:out value="${news.title}"/>
+		                    </div>
+		                    <div class="new-details">
+		                        <u>자세히 보기</u>
+		                        
+		                    </div>
+		                </a>
+		            </div>
+		</c:forEach>
+		</div>
+		<c:forEach items="${news_list}" var="news" begin="2" >
+		   
+				<div class="news-old">
+		            <ul>
+		                <li>
+		                    <a href="/news/get?nno=${news.nno}">
+		                        <div class="old-image">
+		                            <img src="/resources${news.getFile.uploadPath}/${news.getFile.uuid}_${news.getFile.fileName}" alt="">
+		                        </div>
+		                        <div class="old-text">
+		                            <div class="old-date">
+		                                <fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${news.regDate}" />
+		                            </div>
+		                            <div class="old-title">
+		                                <c:out value="${news.title}"/>
+		                            </div>
+		                            <div class="old-details">
+		                                <u>자세히 보기</u>
+		                            </div>
+		                        </div>
+		                    </a>
+		                </li>
+		            </ul>
+		        </div>
+		   </c:forEach>
     </div>
     <!-- new get end -->
 
@@ -253,6 +189,54 @@
     </div>
 </footer>
 <!-- footer end -->
-        <script type="text/javascript" src="/resources/js/layout/footer.js"></script>
+<script type="text/javascript" src="/resources/js/layout/footer.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+<script>
+$(document).ready(function(){
+	//시간 변경 함수
+	function displayedAt(createdAt) {
+		  const regDate = new Date(createdAt);
+		  const milliSeconds = new Date() - regDate
+		  const seconds = milliSeconds / 1000
+		  if (seconds < 60) return `방금 전`
+		  const minutes = seconds / 60
+		  if (minutes < 60) return `\${Math.floor(minutes)}분 전`
+		  const hours = minutes / 60
+		  if (hours < 24) return `\${Math.floor(hours)}시간 전`
+		  const days = hours / 24
+		  if (days < 7) return `\${Math.floor(days)}일 전`
+		  const weeks = days / 7
+		  if (weeks < 5) return `\${Math.floor(weeks)}주 전`
+		  const months = days / 30
+		  if (months < 12) return `\${Math.floor(months)}개월 전`
+		  const years = days / 365
+		  return `${Math.floor(years)}년 전`
+		}
+	//console.log(displayedAt('2021/07/01 16:30:09'));
+	//console.log(new Date());
+	const newDate = $(".new-date")
+	//const abc = $($(".new-date")[0]).text();
+	console.log(newDate);
+	newDate.each((i,item)=>{
+		const param = $(item).text();
+		//console.log(param)
+		const result = displayedAt(param);
+		$(item).text(result);
+	});
+	
+	const oldDate = $(".old-date")
+	oldDate.each((i,item)=>{
+		const param = $(item).text();
+		const result = displayedAt(param);
+		$(item).text(result);
+	});
+	
+})
+	
+	
+	
+	
+</script>
 </body>
 </html>

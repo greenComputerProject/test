@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapeer 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.mapper.ReplyMapper">
+	<insert id="insert">
+		insert into tbl_game_reviews(rno, content, userid, gno) <!-- 임시적으로 likes 제거 -->
+			values(seq_review.nextval, #{content}, #{userid}, #{gno})
+	</insert>
+	<select id="read" resultType="com.green.domain.ReplyVO">
+		select * from tbl_game_reviews where rno = #{rno}
+	</select>
+	<delete id="delete">
+		delete from tbl_game_reviews where rno = #{rno}
+	</delete>
+	
+	<update id="update">
+		update tbl_game_reviews set content= #{content} where rno = #{rno} <!-- 임시적으로 likes 제거 -->
+	</update>
+	
+	<select id="getListWithPaging" resultType="com.green.domain.ReplyVO">
+			<![CDATA[
+			select rno, gno ,content, userid, likes, regDate, updateDate
+				from 
+				( select 
+				  rownum rn, rno, gno , content, userid, likes, regDate, updateDate
+				   from tbl_game_reviews
+				   where gno = #{gno}
+				   and rno >0
+				   and rownum <= #{cri.pageNum} * #{cri.amount}
+				 ) where rn > (#{cri.pageNum}-1) * #{cri.amount}
+			]]>
+	</select> 
+	
+	<select id="getCountByBno" resultType="int">
+		<![CDATA[
+			select count(rno) from tbl_game_reviews where gno = #{gno}
+		]]>
+	</select>
+	<select id="getList" resultType="com.green.domain.ReplyVO">
+		select * from tbl_game_reviews where gno = #{gno}
+	</select>
+</mapper>
