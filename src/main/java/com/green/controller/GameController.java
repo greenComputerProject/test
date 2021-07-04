@@ -69,7 +69,7 @@ public class GameController {
 		System.out.println(spec.toString());
 		service.register(company, game, tag, spec);
 		
-		return "redirect:/game/list";
+		return "redirect:/browse";
 	}
 	
 	@GetMapping("/modify")
@@ -99,6 +99,6 @@ public class GameController {
 		System.out.println(tag.toString());
 		System.out.println(spec.toString());
 		service.modify(company, game, tag, spec);
-		return "redirect:/game/list";
+		return "redirect:/browse";
 	}
 }

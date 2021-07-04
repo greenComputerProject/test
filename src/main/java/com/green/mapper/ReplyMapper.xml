@@ -4,8 +4,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.green.mapper.ReplyMapper">
 	<insert id="insert">
-		insert into tbl_game_reviews(rno, content, userid, gno) <!-- 임시적으로 likes 제거 -->
-			values(seq_review.nextval, #{content}, #{userid}, #{gno})
+		insert into tbl_game_reviews(rno, content, userid, gno, regDate) <!-- 임시적으로 likes 제거 -->
+			values(seq_review.nextval, #{content}, #{userid}, #{gno}, sysdate)
 	</insert>
 	<select id="read" resultType="com.green.domain.ReplyVO">
 		select * from tbl_game_reviews where rno = #{rno}

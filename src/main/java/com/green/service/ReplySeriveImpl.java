@@ -1,6 +1,10 @@
 package com.green.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +18,11 @@ import com.green.domain.ReplyPageDTO;
 import com.green.domain.ReplyVO;
 
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
 
 @Service 
+@Log4j
 public class ReplySeriveImpl implements ReplyService{
 	
 	@Setter(onMethod_=@Autowired)
@@ -57,15 +63,37 @@ public class ReplySeriveImpl implements ReplyService{
 	public List<ReplyVO> getList(Criteria cri, Long gno) {
 		System.out.println("댓글 서비스  전체 목록 조회    게시글 번호  :" + gno + "criteria " + cri );
 		List<ReplyVO> list = mapper.getListWithPaging(cri, gno);
-		System.out.println("댓글 데이터 하나 : " + list.get(0));
+		
 		return list;
 	}
 
+	private ReplyVO changeDateFormat(ReplyVO replyVO) {
+		
+		Date formattedDate = null;
+		try {
+			formattedDate = new SimpleDateFormat("MMdd").parse(new SimpleDateFormat("MMdd").format(replyVO.getRegDate()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		replyVO.setRegDate(formattedDate);
+		return replyVO;
+	}
+
 	
-	  @Override public ReplyPageDTO getListWithPaging(Criteria cri, Long gno) {
+	  @Override 
+	  public ReplyPageDTO getListWithPaging(Criteria cri, Long gno) {
+		  
 	  System.out.println("댓글 서비스  페이지 단위로  목록 조회   :" + gno + "criteria " + cri );
-	  return new ReplyPageDTO(mapper.getCountByBno(gno),
-	  mapper.getListWithPaging(cri, gno)); }
+	  
+	  List<ReplyVO> list =  mapper.getListWithPaging(cri, gno);
+	  
+//	  list.stream().map(vo -> changeDateFormat(vo)).collect(Collectors.toList());
+	  
+	  list.forEach(i -> System.out.println(i));
+	  return new ReplyPageDTO(mapper.getCountByBno(gno),list); 
+	  }
 	 
 
 }

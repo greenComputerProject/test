@@ -142,20 +142,22 @@
             <div class="review-head">
                 <div>유저 리뷰</div>
             </div>
-            <li class="reviews-head">
+            <ul class="reviews-head">
+                <li>
                     <div class="writer">작성자</div>
                     <div class="content">내용</div>
                     <div class="regdate">등록일</div>
-                    <div class="likes">좋아요 수</div>
+                    <div class="likes"><i class="far fa-thumbs-up"></i></div>
                     <div class="buttons"></div>
                 </li>
+            </ul>
 
             <ul class= "chat"></ul><!-- 댓글의 리스트 처리 -->
                 
        		<div class="panel-footer"></div> <!-- 댓글의 페이지 처리 -->
         
 		
-            <li class="reviews-form">
+            <div class="reviews-form">
 	            <div class="review-apply">
 	                <div class="review-form-writer">
 	                	<!-- <input type="hidden" class="eot" id="rno" name ="rno"/> -->
@@ -168,7 +170,7 @@
 	                    <button id='addReplyBtn'>등록</button>
 	                </div>
 	            </div>
-             </li> 
+             </div> 
         </div>
 		
         <div class="spec">사양</div>
@@ -354,12 +356,34 @@
 
 <script>
 
+    
 
 			$(document).ready(function () { 
 				var gnoValue = '<c:out value="${game.gno}"/>';
 				console.log("게임번호는" + gnoValue);
 				var replyUL = $(".chat");// div 태그의  class이름이 chat인 DOM 찾고 
 				showList(1); //함수 호출 
+
+                const dateFormatter  = function(second){
+
+                    let secondPerYear = 3600 * 24 * 365;
+                    let secondPerMonth = 3600 * 24 * 30;
+                    let secondPerDay = 3600 * 24;
+                    let year;
+                    let month;
+                    let day;
+                    let _year = second % secondPerYear;
+                    let _month = second % secondPerMonth;
+                    let _day = second % secondPerDay;
+
+                    year = Math.floor(second / secondPerYear);
+                    month = Math.floor(_year / secondPerMonth);
+                    day = Math.floor(_month / secondPerDay);
+
+                    let format = year + "년" + month + "월" + day + "일";
+
+                    return format;
+                    }
 		
 				//페이지처리
 				function showList(page) {
