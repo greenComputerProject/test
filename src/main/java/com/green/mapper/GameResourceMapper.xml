@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapeer 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.mapper.GameResourceMapper">
+	
+	<insert id="register" parameterType= "com.green.domain.GameResourceVO">
+		
+		insert into tbl_games_resources(grno, logo, titlePicture, video, gno) 
+		values(seq_games_resources.nextval, #{logo}, #{titlePicture}, #{video}, #{gno})
+	</insert>
+	
+	<update id="modify" parameterType= "com.green.domain.GameResourceVO">
+		
+		update tbl_games_resources set logo = #{logo},
+		titlePicture =#{titlePicture}, video = #{video}
+		
+	</update>
+</mapper>
