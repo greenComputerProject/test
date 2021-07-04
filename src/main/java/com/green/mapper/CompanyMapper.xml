@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.mapper.CompanyMapper">
+
+	<insert id ="register">
+		<selectKey keyProperty="cno" resultType="Long" order="BEFORE">
+		select seq_company.nextval from dual
+		</selectKey>
+		insert into tbl_company(cno, company, country) values(#{cno}, #{company}, #{country})
+	</insert>
+
+	<update id="modify">
+			update tbl_company set company=#{company}, country = #{country}  where cno = #{cno}
+	</update>
+
+</mapper>

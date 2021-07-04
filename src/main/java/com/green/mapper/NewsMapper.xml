@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapeer 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.mapper.NewsMapper">
+
+	<resultMap type="com.green.domain.NewsVO" id="listNews">
+		<id property="nno" column="nno" />
+		<id property="title" column="title" />
+		<id property="content" column="content" />
+		<id property="regDate" column="regDate" />
+		<id property="updateDate" column="updateDate" />
+		<id property="userid" column="userid" />
+			<association property="getFile" javaType="com.green.domain.FileUploadVO">
+				<result property="uploadPath" column="uploadPath" />
+				<result property="fileName" column="fileName" />
+				<result property="uuid" column="uuid" />
+			</association>
+	</resultMap>
+
+	<select id="getList" resultMap="listNews">
+		select n.nno, n.title, n.content, n.regDate, n.updateDate, n.userid, f.uploadPath, f.fileName, f.uuid
+          from tbl_news n
+          inner join tbl_fileupload f on n.nno = f.nno
+          order by regDate desc
+	</select>
+	
+	<select id="getOne" resultMap="listNews" parameterType="long">
+		select n.nno, n.title, n.content, n.regDate, n.updateDate, n.userid, f.uploadPath, f.fileName, f.uuid
+          from tbl_news n
+          inner join tbl_fileupload f on n.nno = f.nno
+          	where n.nno=#{nno}
+	</select>
+	<insert id ="insert" parameterType="com.green.domain.NewsVO">
+		insert into tbl_news(nno , title, content, regDate, updatedate, userid)
+			values(TEST_SEQ.nextval, #{title}, #{content}, sysdate, sysdate, #{userid})
+	</insert>
+	<delete id="delete" parameterType="long">
+		delete from tbl_news where nno = #{nno}
+	</delete>
+	<update id="update">
+		update tbl_news set content=#{content}, title = #{title}, updatedate=sysdate  where nno = #{nno}
+	</update>
+	<insert id ="insertSelectKey">
+		<selectKey keyProperty="nno" order="BEFORE"
+			resultType="long">
+			select TEST_SEQ.nextval from dual			
+		</selectKey>
+		insert into tbl_news(nno , title, content, regDate, updatedate, userid)
+			values(#{nno}, #{title}, #{content}, sysdate, sysdate, #{userid})
+	</insert>
+</mapper>

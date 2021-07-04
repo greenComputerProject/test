@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+html, body {
+    height: 1300px;
+}
+
+
+
+.signup-form{
+    margin-top: 8%;
+    width: 30%;
+    height: 50%;
+    background-color: rgb(28, 28, 28);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 3%;
+
+}
+
+.signup-form div{
+    width: 80%;
+    height: 13%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.signup-form div.title{
+    border-bottom: 1px solid rgb(44, 44, 44);
+}
+
+.signup-form div.title h2{
+    letter-spacing: 1px;
+
+}
+
+.signup-form div.input-email{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-form div.input-email span{
+    display: none;
+    margin-top: 2%;
+    height: 5%;
+    font-size: 8px;
+    font-weight: lighter;
+    color: tomato;
+}
+
+.signup-form div * {
+    color: rgb(121, 121, 121);
+}
+
+.signup-form input{
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(12, 12, 12);
+    margin: 0;
+    height: 85%;
+    width: 80%;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+
+.signup-form button{
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(87, 87, 221);
+    color: white;
+    letter-spacing: 1px;
+    font-size: 12px;
+    width: 80%;
+    height: 80%;
+    -webkit-transition: background-color 0.3s;
+}
+
+.signup-form button:hover {
+    -webkit-transition: background-color 0.3s;
+    background-color: rgb(103, 103, 255);
+    border: 1px solid white;
+}
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.mapper.SpecMapper">
+	<insert id ="register">
+		insert into tbl_spec(sno, os, cpu, gpu, ram, language, gno) values(seq_spec.nextval, #{os}, #{cpu}, #{gpu}, #{ram}, #{language} ,seq_games.currval)
+	</insert>
+	
+	<update id="modify">
+		update tbl_spec set os=#{os}, cpu = #{cpu}, gpu = #{gpu}, ram = #{ram}, language = #{language}  where gno = #{gno}
+	</update>
+</mapper>

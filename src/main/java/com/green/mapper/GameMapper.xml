@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.mapper.GameMapper">
+
+	<resultMap type="com.green.domain.GameVO" id="gameMap">
+		
+		<id property="gno" column="gno"/>
+		<result property="gno" column="gno"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="price" column="price"/>
+		<result property="rating" column="rating"/>
+		<result property="quantity" column="quantity"/>
+		<result property="isOnSale" column="isOnSale"/>
+		<result property="regDate" column="regDate"/>
+		<result property="cno" column="cno"/>
+		<result property="ageLimit" column="ageLimit"/>
+
+		<association property="specvo" javaType="com.green.domain.SpecVO">
+			<id property="sno" column="sno"/>
+			<result property="sno" column="sno"/>
+			<result property="os" column="os"/>
+			<result property="cpu" column="cpu"/>
+			<result property="gpu" column="gpu"/>
+			<result property="ram" column="ram"/>
+			<result property="language" column="language"/>
+			<result property="gno" column="gno"/>
+		</association>
+		
+		<association property="companyvo" javaType="com.green.domain.CompanyVO">
+			<id property="cno" column="cno"/>
+			<result property="cno" column="cno"/>
+			<result property="company" column="company"/>
+			<result property="country" column="country"/>
+		</association>
+		
+		<association property="tagvo" javaType="com.green.domain.TagVO">
+			<id property="tno" column="tno"/>
+			<result property="tno" column="tno"/>
+			<result property="tagName" column="tagName"/>
+			<result property="gno" column="gno"/>
+		</association>
+		
+		<collection property="reviewList" resultMap="reviewMap" />
+		<collection property="warningList" resultMap="warningMap" />
+	</resultMap>
+	
+	<resultMap type="com.green.domain.ReplyVO" id="reviewMap">
+		<id property="rno" column="rno"/>
+		<result property="rno" column="rno"/>
+		<result property="gno" column="gno"/>
+		<result property="content" column="content"/>
+		<result property="likes" column="likes"/>
+		<result property="regDate" column="regDate"/>
+		<result property="updateDate" column="updateDate"/>
+		<result property="userid" column="userid"/>
+	</resultMap>
+	
+	
+	
+	<resultMap type="com.green.domain.WarningVO" id="warningMap">
+		<id property="wano" column="wano"/>
+		<result property="wano" column="wano"/>
+		<result property="warning" column="warning"/>
+		<result property="gno" column="gno"/>
+	</resultMap>
+	
+	<select id="read" resultMap="gameMap">
+		   select g.gno, g.cno, g.title, g.content ,g.price ,g.rating, g.isOnSale ,g.regDate, g.ageLimit, t.tagName, s.os, s.gpu, s.cpu, s.language, s.ram, c.company, c.country  from tbl_games g
+				left outer join tbl_tag t on g.gno = t.gno
+				left outer join tbl_spec s on g.gno = s.gno
+				left outer join tbl_company c on g.cno = c.cno
+				where g.title = #{title}
+	</select>
+	
+	<select id="game" resultType="com.green.domain.GameVO">
+		select *from tbl_games where gno = #{gno}
+	</select>
+	
+	<update id="updateReplyCnt">
+		update tbl_games set replycnt = replyCnt + #{amount} where gno = #{gno}
+	</update>
+	
+	<select id="getList" resultType="com.green.domain.GameVO">
+		select title from tbl_games
+	</select>
+	
+	<insert id ="register">
+		insert into tbl_games(gno, title, content, price, ageLimit, cno, regdate) values(seq_games.nextval, #{title}, #{content}, #{price}, #{ageLimit}, seq_company.currval, sysdate)
+	</insert>
+	
+	<update id="modify">
+			update tbl_games set title=#{title}, content=#{content}, price=#{price}, ageLimit = #{ageLimit} where gno = #{gno}
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_games where gno = #{gno}
+	</delete>
+
+</mapper>

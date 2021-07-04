@@ -1,0 +1,19 @@
+.order-form{
+    align-items: flex-end;
+}
+
+.library{
+    font-size: 24px;
+}
+
+.wishlist-game button{
+    background-color: rgb(44, 44, 44);
+    border: none;
+    
+    -webkit-transition: background-color 0.5s;
+}
+
+.wishlist-game button:hover{
+    -webkit-transition: background-color 0.5s;
+    background-color: rgb(120, 120, 204);
+}

@@ -1,0 +1,190 @@
+html, body{
+    padding: 0;
+    margin: 0;
+    background-color: rgb(17, 17, 17);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+body * {
+    list-style: none;
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(216, 216, 216);
+}
+
+/* navbar 시작 */
+
+.navbar a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 11px;
+}
+
+.navbar{
+
+    margin: 0;
+    padding: 0;
+    background-color: rgb(44, 44, 44);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 55px;
+    z-index: 11;
+}
+
+.navbar .logo{
+
+    width: 40px;
+}
+
+
+
+.navbar .navbar-menu-center{
+
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+.navbar .navbar-menu-center a{
+
+    text-align: center;
+    margin-right: 15px;
+    margin-left: 15px;
+    height: 55px;
+    box-sizing: border-box;
+    
+}
+.navbar-menu-center-menuLink{
+    border-bottom: 0;
+    -webkit-transition: border-bottom 0.3s;
+}
+
+.navbar-menu-center-menuLink.selected{
+    border-bottom: 0.5rem solid rgb(120, 120, 204);
+}
+
+.navbar .navbar-menu-center .navbar-menu-center-menuLink:hover{
+    -webkit-transition: border-bottom 0.3s;
+    border-bottom: 0.5rem solid rgb(120, 120, 204);
+    color: white;
+}
+.navbar-menu-center-menuLink:hover p{
+    color: white;
+}
+
+
+.navbar .navbar-menu-center .navbar-menu-center-logoLink:hover .logo{
+
+    -webkit-transition: filter 0.3s;
+    filter: contrast(0.7);
+}
+
+.navbar .navbar-menu-side{
+
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    height: 100;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.navbar .navbar-menu-side .downloadLink{
+    background-color: rgb(120, 120, 204);
+    margin: 0;
+    margin-left: 80px;
+    padding-right: 15px;
+    padding-left: 15px;
+    color: white;
+}
+
+.navbar .navbar-menu-side .downloadLink:hover{
+    background-color: rgb(134, 134, 204);
+}
+
+.navbar .navbar-menu-side a{
+    height: 45px;
+    margin-right: 15px;
+    margin-left: 15px;
+    height: 55px;
+    padding: 0
+    
+}
+
+
+.dropdown-button{
+    position: fixed;
+    right: 125px;
+
+}
+
+.dropdown-button:hover .dropdown-menu{
+    display: flex;
+}
+
+.dropdown-menu{
+    z-index: 11;
+    position: fixed;
+    right: 111px;
+    width: 7%;
+    height: 26%;
+    display: none;
+    background-color: rgb(44, 44, 44);
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu*{
+	z-index: 11;
+}
+
+.dropdown-menu ul{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu-link{
+    width: 100%;
+    padding: 0px;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu-link a{
+    font-size: 9px;
+    margin: 0;
+    padding: 0;
+    height: 90%;
+    width: 100%;
+}
+
+
+.dropdown-menu-link a:hover{
+    color: white;
+}
+
+/* navbar 끝 */
+
+
+

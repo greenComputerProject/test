@@ -1,0 +1,53 @@
+
+.mobile {
+    display: none;
+}
+
+@media  screen and (max-width: 768px) {
+
+    
+    html, body{
+        width: 100%;
+        height: 100%;
+        background-color: rgb(44, 44, 44);
+    }
+
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+
+    body>*:not(.mobile){
+        display: none;
+        width: 0%;
+        height: 0%;
+    }
+
+    .mobile{
+        padding-top: 10%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 50%;
+    }
+
+    .mobile>*{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 40%;
+    }
+
+    .mobile.text{
+        align-items: flex-start;
+        
+    }
+
+    .mobile.icon i{
+        display: flex;
+        align-items: center;
+    }
+}

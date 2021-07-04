@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.mapper.LikeMapper">
+	<select id="read" parameterType="map" resultType="com.green.domain.LikeVO">
+		select * from n_like where nno = #{nno} and userid = #{userid}
+	</select>
+	<insert id="insert" parameterType="map">
+		insert into n_like(hno, nno, userid) values(seq_n_like.nextval, #{nno}, #{userid})
+	</insert>
+	<delete id="delete" parameterType="map">
+		delete from n_like where nno = #{nno} and userid = #{userid}
+	</delete>
+	<select id="like_count" resultType="int">
+		select count(*) from n_like where nno = #{nno}
+	</select>
+</mapper>

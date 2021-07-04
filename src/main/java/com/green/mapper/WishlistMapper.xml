@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.green.mapper.WishlistMapper">
+
+	<resultMap type="com.green.domain.WishlistListVO" id="wishlistListMap">
+		<id column="wno" property="wno"/>
+		<result column="title" property="title"/>
+		<result column="price" property="price"/>
+		<result column="titlePicture" property="titlePicture"/>
+		<result column="company" property="company"/>
+	</resultMap>
+
+	<insert id="insert" parameterType = "com.green.domain.WishlistVO">
+		<selectKey resultType="Long" keyProperty="wno" order="BEFORE">
+			select seq_wish.nextval from dual 
+		</selectKey>
+		
+		insert into tbl_wishlist(wno, gno, userid) values(#{wno}, #{gno}, #{userid})
+	</insert>
+	
+	<select id="getList" resultMap="wishlistListMap" parameterType="String">
+		select w.wno, w.userid, w.gno, a.title, a.price, a.company, r.titlePicture from tbl_wishlist w
+		    left outer join 
+	        (select g.gno, g.title, g.price, c.company from
+	        tbl_games g left outer join tbl_company c on g.cno = c.cno) a on a.gno = w.gno
+		    left outer join tbl_games_resources r on w.gno = r.gno 
+		where w.userid = #{userid}
+	</select>
+
+	<delete id="delete" parameterType = "Long">
+		delete from tbl_wishlist where wno = #{wno}
+	</delete>
+	
+	<select id="count" resultType = "Integer" parameterType = "String" >
+		select count(*) from tbl_wishlist where userid = #{userid} group by userid
+	</select>
+	
+	<select id="checkIfExists" resultType="Integer">
+		select count(*) from tbl_wishlist where userid = #{userid} and gno = #{gno}
+	</select>
+
+	<delete id="deleteWishlist">
+		delete from tbl_wishlist where userid = #{userid} and gno = #{gno}
+	</delete>
+</mapper>
