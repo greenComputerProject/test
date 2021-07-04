@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +36,8 @@ import org.springframework.security.oauth2.client.web.AuthorizationRequestReposi
 import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import com.green.oauth2.service.CustomOAuth2UserService;
 import com.green.oauth2.service.CustomOidcUserService;
@@ -50,7 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Setter(onMethod_=@Autowired)
 	private Environment env;
 	
-	
+	@Autowired
+	private DataSource dataSource;
 	
 	private static List<String> clients = Arrays.asList("google", "facebook");
 	//application.properties 의 값을 가져오기 위해
@@ -99,6 +104,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.userInfoEndpoint()
 			.userService(userService())
 			.oidcUserService(oidcUserService());
+		
+		http.rememberMe().userDetailsService(userDetailsService())
+		.tokenRepository(persistentTokenRepository());
 		
 		http
 		.logout()
@@ -226,5 +234,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public AuthenticationSuccessHandler authenticationSuccessHandler() {
 		return new CustomLoginSuccessHandler();
+	}
+	
+	@Bean
+	public PersistentTokenRepository persistentTokenRepository() {
+		JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+		jdbcTokenRepository.setDataSource(dataSource);
+		return jdbcTokenRepository;
 	}
 }
