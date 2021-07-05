@@ -44,12 +44,12 @@ let changeNavbarSearchModify = function() {
     console.log(searchForm);
 }
 //navbar-search 화면 변경
-let currUrl = window.location.href;
+let registerCurrUrl = window.location.href;
 
-if(currUrl.includes('register')){
+if(registerCurrUrl.includes('register')){
     changeNavbarSearchRegister();
 }
 
-if(currUrl.includes('modify')){
+if(registerCurrUrl.includes('modify')){
     changeNavbarSearchModify();
 }

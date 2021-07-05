@@ -19,7 +19,7 @@
 	<jsp:include page="/WEB-INF/views/layout/navbar.jsp"></jsp:include>
  	<jsp:include page="/WEB-INF/views/layout/navbar-search.jsp"></jsp:include>
 
-    <div class="game-register">
+    <div class="game-register" style="height: 2000px;">	
         <div class="input-title">
             <div id="titleGameTitle" class="form-input"><span>타이틀</span></div>
             <div id="titleGameContent" class="textarea"><span>소개</span></div>
@@ -31,7 +31,7 @@
             <div id="titleGameSpec" class="textarea">
                 <div class="spec"><span>사양</span></div>
             </div>
-            <div id="titleImage" class="form-input"><span>이미지</span></div>
+            <div id="titleImage" class="textarea"><span>이미지</span></div>
 
             <div id="titleFormButton" class="form-input"><span></span></div>
             
@@ -105,8 +105,14 @@
                 <input type="text" name="tag" id="tag" value="" readonly required/>
             </div>
 			<div id="formGameAgeLimit" class="form-input">
-                <input type="text" name="ageLimit" id="ageLimit" placeholder="게임 이용 연령대를 입력하세요." required>
-            </div>
+                <select name="ageLimit" id="ageLimit" placeHolder="게임 이용 연령대를 선택하세요.">
+                 <option value="전체이용가">전체이용가</option>
+                 <option value="12세 이상">12세 이상</option>
+                 <option value="15세 이상">15세 이상</option>
+                 <option value="19세 이상">19세 이상</option>
+                </select>
+                
+         </div>
             <div id="formGameSpec" class="textarea">
                     <div class="os">
                         <input type="text" name="os" id="os" value="${game.specvo.os}"  required>
@@ -134,20 +140,20 @@
                     </div>
             </div>
 			<div id="formImage" class="textarea">
-                <input type="text" name="logo" placeholder="게임 로고 url을 입력하세요 (필수)" required>
-                <input type="text" name="video" placeholder="게임 영상 url을 입력하세요 (필수)" required>
-                <input type="text" name="titlePicture" placeholder="게임 메인   이미지 url을 입력하세요 (필수)" required>
-                <!-- <input type="text" name="pictureList[0].contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
-                <input type="text" name="pictureList[1].contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
-                <input type="text" name="pictureList[2].contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
-                <input type="text" name="pictureList[3].contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" > -->
-                <input type="text" name="contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
-                <input type="text" name="contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
-                <input type="text" name="contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
-                <input type="text" name="contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
-            </div>
-            <div id="formImage" class="form-input">
-                <input type="image" name="image" id="image" required>
+                <input type="text" name="logo" placeholder="${game.resourcevo.logo}" required>
+                <input type="text" name="video" placeholder="${game.resourcevo.video}" required>
+                <input type="text" name="titlePicture" placeholder="${game.resourcevo.titlePicture}" required>
+                <c:forEach var="picture" items="${game.pictureList}" varStatus="status">
+                	<c:if test="${picture != null}">
+	                	<input type="text" name="contentPicture" placeholder="${picture.titlePicture}" >
+	                </c:if>
+	                <c:if test="${picture.titlePicture == null}">
+	                	 <c:forEach items="i" begin="0" end="${3 - status.current}">
+	                	 	<input type="text" name="contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
+	                	 </c:forEach>
+	                </c:if>
+                
+                </c:forEach>
             </div>
             <div id="formFormButton" class="form-input">
                 <button class="modify">수정</button>

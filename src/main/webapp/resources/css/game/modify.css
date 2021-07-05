@@ -1,9 +1,18 @@
+html, body{
+    height: 2800px;
+}
+
+.game-register{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    top: 5%;
+    width: 75%;
+    height: 70%;  
+    
+}
+
 #formFormButton button {
     padding: 0;
     margin: 0;
-}
-
-.input-form form{
-	
-	
 }
