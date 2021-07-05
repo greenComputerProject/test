@@ -104,7 +104,8 @@
 	            <div class="review-apply">
 	                <div class="review-form-writer">
 	                	<!-- <input type="hidden" class="eot" id="rno" name ="rno"/> -->
-	                    <input class="eot" type="text" id="userid" name ="userid" value="${user.name}" readonly> 
+	                    <input class="eot" type="text" id="name" name ="name" value="${user.name}" readonly> 
+	                    <input type="hidden" id="userid" value="${user.userid}">
 	                </div>
 	                <div class="review-form-content">
 	                    <input class="eot" id='content' name = "content" placeholder="리뷰를 입력하세요." required>
@@ -310,6 +311,8 @@
 				<sec:authorize access ="isAuthenticated()">
 					userid ='<sec:authentication property ="principal.username"/>';
 				</sec:authorize>
+				
+				console.log("userid ======> " + userid);
 				
 				var csrfHeaderName = "${_csrf.headerName}";
 			    var csrfTokenValue = "${_csrf.token}";   
