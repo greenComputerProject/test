@@ -183,6 +183,9 @@
                         </select>
                     </div>
             </div>
+            <!-- 2021-07-04 바뀜 -->
+            
+            <!-- 2021-07-04 바뀜 -->
             <div id="formImage" class="form-input">
                 <input type="image" name="image" id="image" required>
             </div>

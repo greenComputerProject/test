@@ -1,8 +1,11 @@
 package com.green.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.green.domain.CompanyVO;
 import com.green.domain.Criteria;
+import com.green.domain.GamePictureVO;
+import com.green.domain.GameResourceVO;
 import com.green.domain.GameVO;
 import com.green.domain.SpecVO;
 import com.green.domain.TagVO;
@@ -61,13 +66,13 @@ public class GameController {
 	}
 	
 	@PostMapping("/register")
-	public String registerpost(CompanyVO company, GameVO game, TagVO tag, SpecVO spec) {
+	public String registerpost(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> pictureList) {
 		System.out.println("게임 컨트롤러에서 게임 register post");
 		System.out.println(company.toString());
 		System.out.println(game.toString());
 		System.out.println(tag.toString());
 		System.out.println(spec.toString());
-		service.register(company, game, tag, spec);
+		service.register(company, game, tag, spec, resource, pictureList);
 		
 		return "redirect:/browse";
 	}
@@ -92,13 +97,9 @@ public class GameController {
 		
 	}
 	@PostMapping("/modify")
-	public String modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, RedirectAttributes rttr) {
+	public String modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> pictureList, RedirectAttributes rttr) {
 		System.out.println("게임 컨트롤러에서 게임 modify post");
-		System.out.println(company.toString());
-		System.out.println(game.toString());
-		System.out.println(tag.toString());
-		System.out.println(spec.toString());
-		service.modify(company, game, tag, spec);
+		service.modify(company, game, tag, spec, resource, pictureList);
 		return "redirect:/browse";
 	}
 }

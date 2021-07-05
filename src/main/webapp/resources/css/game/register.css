@@ -1,5 +1,5 @@
 html, body{
-    height: 1800px;
+    height: 2400px;
 }
 
 .game-register{
@@ -8,7 +8,7 @@ html, body{
     justify-content: space-between;
     top: 10%;
     width: 75%;
-    height: 55%;  
+    height: 60%;  
     
 }
 .game-register *{

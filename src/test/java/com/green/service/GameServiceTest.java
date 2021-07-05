@@ -1,5 +1,8 @@
 package com.green.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Test;
@@ -9,6 +12,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.green.domain.CompanyVO;
+import com.green.domain.GamePictureVO;
+import com.green.domain.GameResourceVO;
 import com.green.domain.GameVO;
 import com.green.domain.SpecVO;
 import com.green.domain.TagVO;
@@ -32,10 +37,20 @@ public class GameServiceTest {
 	
 	@Test
 	public void 게임_등록() {
+		
+		//given
+		
 		CompanyVO companyvo = new CompanyVO();
 		GameVO gamevo = new GameVO();
 		TagVO tagvo = new TagVO();
 		SpecVO specvo = new SpecVO();
+		GameResourceVO resourcevo = new GameResourceVO();
+		GamePictureVO picturevo = new GamePictureVO();
+		
+		List<GamePictureVO> pictureList = new ArrayList<GamePictureVO>();
+		pictureList.add(picturevo);
+		
+		//when
 		
 		companyvo.setCompany("epic");
 		companyvo.setCountry("usa");
@@ -49,8 +64,14 @@ public class GameServiceTest {
 		specvo.setLanguage("eng");
 		specvo.setOs("os");
 		specvo.setRam("ram");
+		resourcevo.setLogo("logo");
+		resourcevo.setTitlePicture("titlePicture");
+		resourcevo.setVideo("video");
+		picturevo.setContentPicture("contentPicture");
 		
-		service.register(companyvo, gamevo, tagvo, specvo);
+		//then
+		
+		service.register(companyvo, gamevo, tagvo, specvo, resourcevo, pictureList);
 		
 		
 	}

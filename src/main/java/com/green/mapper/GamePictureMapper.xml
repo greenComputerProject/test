@@ -13,6 +13,7 @@
 	<update id="modify" parameterType= "com.green.domain.GamePictureVO">
 		
 		update tbl_games_pictures set contentPicture = #{contentPicture}
+		where gno = #{gno}
 		
 	</update>
 </mapper>
