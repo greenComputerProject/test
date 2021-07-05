@@ -20,10 +20,13 @@ public class GameVO {
 	private SpecVO specvo;
 	private CompanyVO companyvo;
 	private TagVO tagvo;
+	private GameResourceVO resourcevo;
 	
 	private List<WarningVO> warningList;
 	
 	private List<ReplyVO> reviewList;
+	
+	private List<GamePictureVO> pictureList;
 	
 
 }

@@ -45,8 +45,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result property="gno" column="gno"/>
 		</association>
 		
+		<association javaType="com.green.domain.GameResourceVO" property="resourcevo">
+			<id property="grno" column="grno"/>
+			<result property="grno" column="grno"/>
+			<result property="logo" column="logo"/>
+			<result property="titlePicture" column="titlePicture"/>
+			<result property="video" column="video"/>
+			<result property="gno" column="gno"/>
+		</association>
+		
 		<collection property="reviewList" resultMap="reviewMap" />
 		<collection property="warningList" resultMap="warningMap" />
+		<collection property="pictureList" resultMap="pictureMap"></collection>
 	</resultMap>
 	
 	<resultMap type="com.green.domain.ReplyVO" id="reviewMap">
@@ -69,11 +79,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="gno" column="gno"/>
 	</resultMap>
 	
+	
+	
+	<resultMap type="com.green.domain.GamePictureVO" id="pictureMap">
+		<id property="gpno" column="gpno"/>
+		<result property="" column="gpno"/>
+		<result property="contentPicture" column="contentPicture"/>
+		<result property="grno" column="grno"/>
+	</resultMap>
+	
 	<select id="read" resultMap="gameMap">
-		   select g.gno, g.cno, g.title, g.content ,g.price ,g.rating, g.isOnSale ,g.regDate, g.ageLimit, t.tagName, s.os, s.gpu, s.cpu, s.language, s.ram, c.company, c.country  from tbl_games g
+		   	select g.gno, g.cno, g.title, g.content ,g.price ,g.rating, g.isOnSale ,g.regDate, g.ageLimit, t.tagName, s.os, s.gpu, s.cpu, s.language, s.ram, c.company, c.country 
+		   , gp.logo, gp.titlePicture, gp.video, gp.contentPicture
+		    from tbl_games g
 				left outer join tbl_tag t on g.gno = t.gno
 				left outer join tbl_spec s on g.gno = s.gno
 				left outer join tbl_company c on g.cno = c.cno
+				left outer join (
+					select r.gno, r.logo, r.titlePicture, r.video, p.contentPicture, p.grno 
+					from tbl_games_resources r
+					left outer join tbl_games_pictures p on r.grno = p.grno
+				) gp on gp.gno = g.gno
 				where g.title = #{title}
 	</select>
 	

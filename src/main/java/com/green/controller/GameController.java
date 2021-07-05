@@ -99,7 +99,7 @@ public class GameController {
 		
 	}
 	@PostMapping("/modify")
-	public String modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> pictureList, RedirectAttributes rttr) {
+	public String modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, ArrayList<GamePictureVO> pictureList, RedirectAttributes rttr) {
 		System.out.println("게임 컨트롤러에서 게임 modify post");
 		service.modify(company, game, tag, spec, resource, pictureList);
 		return "redirect:/browse";
