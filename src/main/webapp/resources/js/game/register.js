@@ -53,3 +53,27 @@ if(registerCurrUrl.includes('register')){
 if(registerCurrUrl.includes('modify')){
     changeNavbarSearchModify();
 }
+
+let checkExistsGame = function(input){
+    
+    let title = input.value;
+
+    $.ajax({
+        type : 'GET',
+        url: '/game/isExists/' + title,
+        dataType: 'json',
+        success: function(data){
+            let isExists = document.querySelector(".existWarning");
+            if(data == true){
+                isExists.style.display = "block";
+            } else {
+            	isExists.style.display = "none";
+            }
+        }, error: function(error){
+            return;
+        }
+
+    })
+}
+
+

@@ -227,3 +227,8 @@ div[id=formImage]{
 div[id=formImage] input{
 }
 
+.existWarning{
+    color: tomato;
+    font-size: 10px;
+    display: none;
+}

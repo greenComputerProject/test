@@ -91,4 +91,10 @@ public class GameServiceTest {
 		mapper.delete(gno);
 	}
 	
+	@Test
+	public void 중복확인() {
+	
+		log.info(service.isExists(""));
+	}
+	
 }

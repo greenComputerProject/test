@@ -100,4 +100,16 @@ public class GameServiceImpl implements GameService{
 		
 	}
 
+	@Override
+	public boolean isExists(String title) {
+		// TODO Auto-generated method stub
+		return mapper.count(title) == 0 ? false : true;
+	}
+
+	@Override
+	public boolean isExistsCompany(String company) {
+		// TODO Auto-generated method stub
+		return cmapper.count(company) == 0 ? false: true;
+	}
+
 }

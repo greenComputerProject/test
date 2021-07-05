@@ -17,13 +17,10 @@ public class ReplyMapperTest {
 
 	@Autowired
 	private ReplyMapper mapper;
-	
-	@Autowired
-	private SecurityMemberMapper memberMapper;
+
 	
 	@Test
 	public void 리뷰_불러오기(){
-		mapper.getList(1L).forEach(i -> log.info(i.toString()));
-		memberMapper.getOne("thd@naver.com");
+		mapper.getList(17L).forEach(i -> log.info(i.toString()));
 	}
 }

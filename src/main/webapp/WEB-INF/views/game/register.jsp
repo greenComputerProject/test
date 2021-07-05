@@ -40,7 +40,8 @@
         	<input type="hidden" name="cno" id="cno" value="${game.cno}">
        		<input type="hidden" name="gno" id="gno" value="${game.gno}">
             <div id="formGameTitle" class="form-input">
-                <input type="text" name="title" id="title" placeholder="게임 타이틀을 입력하세요." required>
+                <input type="text" name="title" id="title" placeholder="게임 타이틀을 입력하세요." onblur="checkExistsGame(this)" required>
+                <span class="existWarning">이미 존재하는 게임입니다.</span>
             </div>
             <div id="formGameContent" class="textarea">
                 <textarea name="content" id="content"  placeholder="게임 소개를 입력하세요." required></textarea>
@@ -80,7 +81,9 @@
                     <option value="캐나다">캐나다</option>
                     <option value="호주">호주</option>
                 </select>
-            </div>
+                
+                </div>
+                
             </div>
             <div id="formGameTag" class="select">
                 <select onchange="clickOption(event)" name = "" id = "">

@@ -42,7 +42,8 @@
        		<input type="hidden" name="gno" id="gno" value="${game.gno}">
 
             <div id="formGameTitle" class="form-input">
-                <input type="text" name="title" id="title" value="${game.title}" required>
+                <input type="text" name="title" id="title" value="${game.title}" onblur="checkExistsGameModify(this)" required>
+                <span class="existWarning">이미 존재하는 게임입니다.</span>
             </div>
             <div id="formGameContent" class="textarea">
                 <textarea name="content" id="content" value="" required>${game.content}</textarea>
@@ -51,7 +52,7 @@
                 <input type="text" name="price" id="price" value="${game.price}" required>
             </div>
             <div id="formGameGenre" class="select">
-                <select name="name" id="name" required>
+                <select name="tagName" id="tagName" required>
                     <option value=""> ${tag0} </option>
                		<option value="">-----------</option>
                     <option value="FPS">FPS</option>
@@ -105,7 +106,7 @@
                 <input type="text" name="tag" id="tag" value="" readonly required/>
             </div>
 			<div id="formGameAgeLimit" class="form-input">
-                <select name="ageLimit" id="ageLimit" placeHolder="게임 이용 연령대를 선택하세요.">
+                <select name="ageLimit" id="ageLimit">
                  <option value="전체이용가">전체이용가</option>
                  <option value="12세 이상">12세 이상</option>
                  <option value="15세 이상">15세 이상</option>
@@ -140,20 +141,14 @@
                     </div>
             </div>
 			<div id="formImage" class="textarea">
-                <input type="text" name="logo" placeholder="${game.resourcevo.logo}" required>
-                <input type="text" name="video" placeholder="${game.resourcevo.video}" required>
-                <input type="text" name="titlePicture" placeholder="${game.resourcevo.titlePicture}" required>
-                <c:forEach var="picture" items="${game.pictureList}" varStatus="status">
-                	<c:if test="${picture != null}">
-	                	<input type="text" name="contentPicture" placeholder="${picture.titlePicture}" >
-	                </c:if>
-	                <c:if test="${picture.titlePicture == null}">
-	                	 <c:forEach items="i" begin="0" end="${3 - status.current}">
-	                	 	<input type="text" name="contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
-	                	 </c:forEach>
-	                </c:if>
+                <input type="text" name="logo" value="${game.resourcevo.logo}" required>
+                <input type="text" name="video" value="${game.resourcevo.video}" required>
+                <input type="text" name="titlePicture" value="${game.resourcevo.titlePicture}" required>
+                <input type="text" name="contentPicture" value= "${game.pictureList[0].contentPicture}">
+                <input type="text" name="contentPicture" value= "${game.pictureList[1].contentPicture}">
+                <input type="text" name="contentPicture" value= "${game.pictureList[2].contentPicture}">
+                <input type="text" name="contentPicture" value= "${game.pictureList[3].contentPicture}">
                 
-                </c:forEach>
             </div>
             <div id="formFormButton" class="form-input">
                 <button class="modify">수정</button>
@@ -164,11 +159,31 @@
     </div>
     
 <script>
-	$("document").ready(function(){
-		console.log("사랑");
-		var a = "${game.companyvo}"
-		console.log(a);
-	})
+	let checkExistsGameModify = function(input){
+    
+    let title = input.value;
+	let responsedTitle = '${game.title}';
+    if(title == responsedTitle){
+        return;
+    }
+
+    $.ajax({
+        type : 'GET',
+        url: '/game/isExists/' + title,
+        dataType: 'json',
+        success: function(data){
+            let isExists = document.querySelector(".existWarning");
+            if(data == true){
+                isExists.style.display = "block";
+            } else {
+            	isExists.style.display = "none";
+            }
+        }, error: function(error){
+            return;
+        }
+
+    })
+}
 	
 </script>
 
