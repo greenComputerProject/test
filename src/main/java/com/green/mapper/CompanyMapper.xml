@@ -14,5 +14,9 @@
 	<update id="modify">
 			update tbl_company set company=#{company}, country = #{country}  where cno = #{cno}
 	</update>
+	
+	<select id="count" resultType="Integer" parameterType="String">
+		select count(*) from tbl_company where company = #{company}
+	</select>
 
 </mapper>

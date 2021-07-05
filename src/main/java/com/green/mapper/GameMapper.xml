@@ -100,5 +100,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete">
 		delete from tbl_games where gno = #{gno}
 	</delete>
+	
+	<select id="count" resultType="Integer" parameterType="String">
+		select count(*) from tbl_games where title = #{title}
+	</select>
 
 </mapper>

@@ -17,9 +17,9 @@ public interface GameService {
 	
 	//public List<GameVO> getList(Criteria cri);
 	
-	public void register(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> picture);
+	public boolean register(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> picture);
 	
-	public void modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> picture);
+	public boolean modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> picture);
 	
 	public GameVO news(Long nno);
 	

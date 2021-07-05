@@ -89,7 +89,7 @@
             <div id="titleGameSpec" class="textarea">
                 <div class="spec"><span>사양</span></div>
             </div>
-            <div id="titleImage" class="form-input"><span>이미지</span></div>
+            <div id="titleImage" class="textarea"><span>이미지</span></div>
 
             <div id="titleFormButton" class="form-input"></div>
         </div>
@@ -156,7 +156,13 @@
                 <input type="text" name="tagName" id="tagName" value="" readonly required/>      
             </div>
 			<div id="formGameAgeLimit" class="form-input">
-                <input type="text" name="ageLimit" id="ageLimit" placeholder="게임 이용 연령대를 입력하세요." required>
+               	<select name="ageLimit" id="ageLimit" placeHolder="게임 이용 연령대를 선택하세요.">
+                    <option value="전체이용가">전체이용가</option>
+                    <option value="12세 이상">12세 이상</option>
+                    <option value="15세 이상">15세 이상</option>
+                    <option value="19세 이상">19세 이상</option>
+               	</select>
+               	
             </div>
             <div id="formGameSpec" class="textarea">
                     <div class="os">
@@ -184,11 +190,21 @@
                     </div>
             </div>
             <!-- 2021-07-04 바뀜 -->
-            
-            <!-- 2021-07-04 바뀜 -->
-            <div id="formImage" class="form-input">
-                <input type="image" name="image" id="image" required>
+            <div id="formImage" class="textarea">
+                <input type="text" name="logo" placeholder="게임 로고 url을 입력하세요 (필수)" required>
+                <input type="text" name="video" placeholder="게임 영상 url을 입력하세요 (필수)" required>
+                <input type="text" name="titlePicture" placeholder="게임 메인 이미지 url을 입력하세요 (필수)" required>
+                <!-- <input type="text" name="pictureList[0].contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
+                <input type="text" name="pictureList[1].contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
+                <input type="text" name="pictureList[2].contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
+                <input type="text" name="pictureList[3].contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" > -->
+                <input type="text" name="contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
+                <input type="text" name="contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
+                <input type="text" name="contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
+                <input type="text" name="contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
             </div>
+            <!-- 2021-07-04 바뀜 -->
+            
             <div id="formFormButton" class="form-input">
                 <button>등록</button>
             </div>

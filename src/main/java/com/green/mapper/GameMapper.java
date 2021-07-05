@@ -17,7 +17,7 @@ public interface GameMapper {
 	
 	public GameVO news(Long nno);
 	
-	public void register(GameVO game);
+	public int register(GameVO game);
 	
 	public int modify(GameVO game);
 	
@@ -30,4 +30,6 @@ public interface GameMapper {
 	public int getTotalCount(Criteria cri);
 	
 	public void updateReplyCnt(@Param("gno")Long gno, @Param("amount")int amount);
+	
+	public Integer count(String title);
 }

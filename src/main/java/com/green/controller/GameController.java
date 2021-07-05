@@ -1,5 +1,6 @@
 package com.green.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,8 @@ public class GameController {
 	}
 	
 	@PostMapping("/register")
-	public String registerpost(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> pictureList) {
+	public String registerpost(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, ArrayList<GamePictureVO> pictureList) {
+		
 		System.out.println("게임 컨트롤러에서 게임 register post");
 		System.out.println(company.toString());
 		System.out.println(game.toString());

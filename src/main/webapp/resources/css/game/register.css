@@ -1,14 +1,14 @@
 html, body{
-    height: 2400px;
+    height: 2800px;
 }
 
 .game-register{
     position: relative;
     display: flex;
     justify-content: space-between;
-    top: 10%;
+    top: 5%;
     width: 75%;
-    height: 60%;  
+    height: 70%;  
     
 }
 .game-register *{
@@ -80,18 +80,17 @@ textarea{
 }
 
 .form-input{
-    height: 7%;
+    height: 4%;
 }
 
-.form-input:focus{
-}
+
 
 .form-input>*{
     margin-top: 15px;
 }
 
 .textarea{
-    height: 22%;
+    height: 18%;
 }
 
 .textarea>*{
@@ -99,7 +98,7 @@ textarea{
 }
 
 .select{
-    height: 7%;
+    height: 4%;
 }
 
 .select>*{
@@ -219,3 +218,12 @@ div[id=formFormButton] button:hover{
     -webkit-transition: background-color 0.3s;
     background-color: rgb(78, 78, 78);
 }
+
+div[id=formImage]{
+	display: flex;
+	flex-direction: column;
+}
+
+div[id=formImage] input{
+}
+

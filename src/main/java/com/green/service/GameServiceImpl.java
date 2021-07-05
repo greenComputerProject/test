@@ -64,8 +64,12 @@ public class GameServiceImpl implements GameService{
 	 */
 
 	@Override
-	public void register(CompanyVO company, GameVO game, TagVO tag,  SpecVO spec, GameResourceVO resource, List<GamePictureVO> pictureList) {
+	public boolean register(CompanyVO company, GameVO game, TagVO tag,  SpecVO spec, GameResourceVO resource, List<GamePictureVO> pictureList) {
 		log.info("서비스에서 게임 데이터 추가");
+		
+		if(cmapper.count(company.getCompany()) != 0 || mapper.count(game.getTitle()) != 0) {
+			return false;
+		}
 		
 		cmapper.register(company);
 		mapper.register(game);
@@ -73,10 +77,17 @@ public class GameServiceImpl implements GameService{
 		tmapper.register(tag);
 		rmapper.register(resource);
 		pictureList.forEach(i -> pmapper.register(i));
+		
+		return true;
 	}
 
 	@Override
-	public void modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> pictureList) {
+	public boolean modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> pictureList) {
+		
+		if(cmapper.count(company.getCompany()) == 0 || mapper.count(game.getTitle()) == 0) {
+			return false;
+		}
+		
 		log.info("서비스에서 게임 데이터 수정");
 		cmapper.modify(company);
 		mapper.modify(game);
@@ -84,6 +95,8 @@ public class GameServiceImpl implements GameService{
 		tmapper.modify(tag);
 		rmapper.modify(resource);
 		pictureList.forEach(i -> pmapper.modify(i));
+		
+		return true;
 		
 	}
 
