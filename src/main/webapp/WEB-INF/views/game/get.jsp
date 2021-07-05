@@ -27,7 +27,7 @@
             ${game.title}
         </div>
         <div class="game-slide">
-            <div class="slide-image active"><img src="/resources/img/game/genshin-slide-image-1.jpg" alt=""></div>
+            <div class="slide-image active"><iframe width="100%" height="60%" src="https://www.youtube.com/embed/aB0TlsnkY6E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
             <div class="slide-image"><img src="/resources/img/game/genshin-slide-image-2.jpg" alt=""></div>
             <div class="slide-image"><img src="/resources/img/game/genshin-slide-image-3.jpg" alt=""></div>
             <div class="slide-image"><img src="/resources/img/game/genshin-slide-image-4.jpg" alt=""></div>
