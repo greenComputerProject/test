@@ -27,21 +27,13 @@
             ${game.title}
         </div>
         <div class="game-slide">
-            <div class="slide-image active"><iframe width="100%" height="60%" src="https://www.youtube.com/embed/aB0TlsnkY6E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-            <div class="slide-image"><img src="/resources/img/game/genshin-slide-image-2.jpg" alt=""></div>
-            <div class="slide-image"><img src="/resources/img/game/genshin-slide-image-3.jpg" alt=""></div>
-            <div class="slide-image"><img src="/resources/img/game/genshin-slide-image-4.jpg" alt=""></div>
-            <div class="slide-image"><img src="/resources/img/game/genshin-slide-image-5.jpg" alt=""></div>
+            <div class="slide-image active"><iframe width="100%" height="435vw" src="https://www.youtube.com/embed/${game.resourcevo.video}?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            <c:forEach var="picture" items="${game.pictureList}">
+            	<div class="slide-image"><img src="${picture.contentPicture}" alt=""></div>
+            </c:forEach>
         </div>
         <div class="game-slide-dots">
             <ul>
-                <!-- <li id="prev-dot" class="side-dot" ><div>&#10094;</div></li>
-                <li id="1" class="dot selected"></li>
-                <li id="2" class="dot"></li>
-                <li id="3" class="dot"></li>
-                <li id="4" class="dot"></li>
-                <li id="5" class="dot"></li>
-                <li id="next-dot" class="side-dot"><div>&#10095;</div></li> -->
             </ul>
         </div>
         <div class="game-text">
@@ -160,7 +152,7 @@
     </div>
     <div class="game-aside">
         <div class="game-aside-image">
-            <img src="/resources/img/game/genshin-get-logo.webp" alt="">
+            <img src="${game.resourcevo.logo}" alt="">
         </div>
         <div class="game-aside-price">가격 | ${game.price}₩</div>
         <div class="game-aside-download">

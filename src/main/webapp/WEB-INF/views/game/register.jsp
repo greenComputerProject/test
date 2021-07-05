@@ -137,7 +137,7 @@
             <!-- 2021-07-04 바뀜 -->
             <div id="formImage" class="textarea">
                 <input type="text" name="logo" placeholder="게임 로고 url을 입력하세요 (필수)" required>
-                <input type="text" name="video" placeholder="게임 영상 url을 입력하세요 (필수)" required>
+                <input type="text" name="video" placeholder="유튜브 영상 아이디를 입력하세요 (필수)" required>
                 <input type="text" name="titlePicture" placeholder="게임 메인   이미지 url을 입력하세요 (필수)" required>
                 <input type="text" name="contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
                 <input type="text" name="contentPicture" placeholder="게임 서브 이미지 url을 입력하세요 (선택)" >
