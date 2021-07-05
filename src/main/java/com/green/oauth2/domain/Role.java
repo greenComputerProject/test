@@ -2,7 +2,7 @@ package com.green.oauth2.domain;
 
 public enum Role {
 	MEMBER("ROLE_MEMBER","일반사용자")
-	, ROLE_ADMIN("ROLE_ADMIN","운영자");
+	, ADMIN("ROLE_ADMIN","운영자");
 	
 	private final String key;
 	private final String value;

@@ -49,36 +49,33 @@ let wishlistCount = function(){
 	});
 }
 
-
-
 let checkUser = function(){
-	$.ajax({
+		$.ajax({
+			type: 'GET',
+		url: '/user',
+		dataType: 'json',
 		type: 'GET',
-	url: '/user',
-	dataType: 'json',
-	type: 'GET',
-	url: '/user',
-	dataType: 'json',
-	success : function(result){
-		userName.innerHTML = result.name;
-		menuHtml = '<li class="dropdown-menu-link"><a href="/library">라이브러리</a></li>'
-		+ '<li class="dropdown-menu-link"><a href="/wishlist">위시리스트</a></li>'
-		+ '<li class="dropdown-menu-link"><a href="/user/info">내 정보</a></li>'
-		+ '<li class="dropdown-menu-link"><a href="/logout">로그아웃</a></li>';
-		dropMenu.innerHTML = menuHtml;
-		wishlistCount();
-	},
-	error : function(error){
-		userName.innerHTML = '로그인';
-		menuHtml = '<li class="dropdown-menu-link" ><a href="' + "/user/login" + '">로그인</a></li>'
-		+'<li class="dropdown-menu-link" ><a href="' + authorizationRequestBaseUri + '/google' + '">구글</a></li>'
-		+ '<li class="dropdown-menu-link"><a href="' + authorizationRequestBaseUri + '/facebook' + '">페이스북</a></li>'
-		+ '<li class="dropdown-menu-link" ><a href="' + "/user/signup" + '">회원가입</a></li>';
-		let dropMenuDiv = document.querySelectorAll(".dropdown-menu")[0];
-		//dropMenuDiv.setAttribute("style", "height: 15%;");
-		dropMenu.innerHTML = menuHtml;
+		url: '/user',
+		dataType: 'json',
+		success : function(result){
+			userName.innerHTML = result.name;
+			menuHtml = '<li class="dropdown-menu-link"><a href="/library">라이브러리</a></li>'
+			+ '<li class="dropdown-menu-link"><a href="/wishlist">위시리스트</a></li>'
+			+ '<li class="dropdown-menu-link"><a href="/user/info">내 정보</a></li>'
+			+ '<li class="dropdown-menu-link"><a href="/logout">로그아웃</a></li>';
+			dropMenu.innerHTML = menuHtml;
+			wishlistCount();
+		},
+		error : function(error){
+			userName.innerHTML = '<li class="dropdown-menu-link" ><a href="' + "/user/login" + '">로그인</a></li>';
+			menuHtml = '<li class="dropdown-menu-link" ><a href="' + "/user/signup" + '">회원가입</a></li>';
+			let dropMenuDiv = document.querySelectorAll(".dropdown-menu")[0];
+			dropMenuDiv.setAttribute("style", "height: 10%;");
+			dropMenu.innerHTML = menuHtml;
+		}
+		});
 	}
-	});
-}
+	
+	checkUser();
 
-checkUser();
+
