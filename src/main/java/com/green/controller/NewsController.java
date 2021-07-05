@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.green.service.NewsService;
 import com.green.domain.FileUploadVO;
 import com.green.domain.NewsVO;
+import com.green.oauth2.domain.SessionUser;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -58,6 +59,7 @@ public class NewsController {
 	
 	@GetMapping("/get")
 	public void getOne(@RequestParam("nno") Long nno ,Model model) {
+		SessionUser user = (SessionUser)session.getAttribute("user");
 		log.info("getOne : " + service.getOne(nno));
 		model.addAttribute("get", service.getOne(nno));
 	}

@@ -33,7 +33,7 @@
 	</select>
 	<insert id ="insert" parameterType="com.green.domain.NewsVO">
 		insert into tbl_news(nno , title, content, regDate, updatedate, userid)
-			values(TEST_SEQ.nextval, #{title}, #{content}, sysdate, sysdate, #{userid})
+			values(seq_news.nextval, #{title}, #{content}, sysdate, sysdate, #{userid})
 	</insert>
 	<delete id="delete" parameterType="long">
 		delete from tbl_news where nno = #{nno}
@@ -44,7 +44,7 @@
 	<insert id ="insertSelectKey">
 		<selectKey keyProperty="nno" order="BEFORE"
 			resultType="long">
-			select TEST_SEQ.nextval from dual			
+			select seq_news.nextval from dual			
 		</selectKey>
 		insert into tbl_news(nno , title, content, regDate, updatedate, userid)
 			values(#{nno}, #{title}, #{content}, sysdate, sysdate, #{userid})

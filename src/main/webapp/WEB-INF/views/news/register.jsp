@@ -89,13 +89,13 @@
                 <textarea name="content" id="content"  placeholder="내용을 입력하세요." required></textarea>
             </div>
             <div id="formImage" class="form-input">
-                <input type="file" name="uploadFile" id="uploadFile" accept="image/gif,image/jpeg,image/png" required>
+                <input type="file" name="uploadFile" id="uploadFile" accept="image/jpeg,image/png" required>
                 <div class="uploadFile">
                 	<ul>
                 	</ul>
                 </div>
             </div> 
-            <input type="hidden" name ="userid" id="userid" value="21">
+            <input type="hidden" name ="userid" id="userid" value="${user.userid}">
             <div id="formFormButton" class="form-input">
                 <button type="submit">등록</button>
             </div>
