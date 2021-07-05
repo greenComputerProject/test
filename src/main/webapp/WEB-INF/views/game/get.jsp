@@ -11,71 +11,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genshin Impact | 무료 다운로드 및 플레이</title>
-    <link rel="stylesheet" href="/resources/css/layout/navbar.css">
-    <link rel="stylesheet" href="/resources/css/layout/navbar-search.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="/resources/css/layout/footer.css">
+
     <link rel="stylesheet" href="/resources/css/game/get.css">
     <link rel="stylesheet" href="/resources/css/layout/order-form.css">
 </head>
 <body>
-    <!-- navbar start -->
-    <div class="navbar">
-        <ul class="navbar-menu-center">
-            <li><a href="#" class="navbar-menu-center-logoLink"><p><img class="logo" src="/resources/img/layout/epic logo.png" alt=""></p></a></li>
-            <li><a href="#" class="navbar-menu-center-menuLink"><p>스토어</p></a></li>
-            <li><a href="#" class="navbar-menu-center-menuLink"><p>새 소식</p></a></li>
-            <li><a href="#" class="navbar-menu-center-menuLink"><p>자주 묻는 질문</p></a></li>
-            <li><a href="#" class="navbar-menu-center-menuLink"><p>지원센터</p></a></li>
-            <li><a href="#" class="navbar-menu-center-menuLink"><p>언리얼 엔진</p></a></li>
-        </ul>
-    
-        <ul class="navbar-menu-side">
-            <li class="languageButton"><a href=""><p><i class="fas fa-globe fa-lg"></i></p></a></li>
-            <li class="dropdown-button">
-                <a href="">
-                    <img class="userLogo" src="" alt="">
-                    <p>사용자</p>
-                </a>
-                <div class="dropdown-menu">
-                    <ul>
-                        <li class="dropdown-menu-link"><a href="#">계정</a></li>
-                        <li class="dropdown-menu-link"><a href="#">코드 사용</a></li>
-                        <li class="dropdown-menu-link"><a href="#">상품권</a></li>
-                        <li class="dropdown-menu-link"><a href="#">위시리스트</a></li>
-                        <li class="dropdown-menu-link"><a href="#">로그아웃</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li><a class="downloadLink" href=""><p>에픽게임즈 받기</p></a></li>
-        </ul>
-</div>
-
-<div class="navbar-search">
-    <ul class="navbar-search-links">
-        <li><a href="#" id="not-selected" onclick="clickSearch(this)">< 검색으로 돌아가기</a></li>
-        <li>| ${game.title}</li>
-    </ul>
-
-    <div class="navbar-search-wishlist-and-form">
-        <ul class="navbar-search-wishlist">
-            <li><a href="#">위시리스트</a></li>
-            <li><p>0</p></li>
-        </ul>
-
-        <div class="navbar-search-form">
-            <form action="">
-                <div class="input">
-                    <input type="text" placeholder="검색" autofocus>
-                </div>
-                <div class="button">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-    <!-- navbar end -->
+   <jsp:include page="/WEB-INF/views/layout/navbar.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/views/layout/navbar-search.jsp"></jsp:include>
    <!-- game get start -->
 <div class="game">
     <div class="game-content">
@@ -161,7 +104,7 @@
 	            <div class="review-apply">
 	                <div class="review-form-writer">
 	                	<!-- <input type="hidden" class="eot" id="rno" name ="rno"/> -->
-	                    <input class="eot" type="text" id="userid" name ="userid" value="유저1" readonly>
+	                    <input class="eot" type="text" id="userid" name ="userid" value="${user.name}" readonly> 
 	                </div>
 	                <div class="review-form-content">
 	                    <input class="eot" id='content' name = "content" placeholder="리뷰를 입력하세요." required>
@@ -242,99 +185,8 @@
 </div>
 
    <!-- game get end -->
-    <!-- footer start -->
-<footer class="footer">
-    <div class="footer-logo-box">
-        <div class="logo-images">
-            <a href="#"><i class="fab fa-facebook-square fa-2x"></i></a>
-            <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
-            <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
-        </div>
-        <div class="go-to-top">
-            <a href="#" onclick="scrollToTop()"><i class="far fa-arrow-alt-circle-up fa-3x"></i></a>
-        </div>
-    </div>
-    <div class="footer-table-box">
-        <div class="tables-box">
-            <table>
-                <tr class="table-head">
-                    <td>리소스</td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>크리에이터 후원</span></a></td>
-                    <td><a href="#"><span>스토어 문의</span></a></td>
-                    <td><a href="#"><span>채용안내</span></a></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>에픽게임즈 소개</span></a></td>
-                    <td><a href="#"><span>한국법인 소개</span></a></td>
-                    <td><a href="#"><span>에픽 뉴스룸</span></a></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>팬 아트 정책</span></a></td>
-                    <td><a href="#"><span>사용자 경험 조사</span></a></td>
-                    <td><a href="#"><span>스토어 EULA</span></a></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>에픽 온라인 서비스</span></a></td>
-                    <td><a href="#"><span>커뮤니티 규칙</span></a></td>
-                    <td><a href="#"><span>본인인증</span></a></td>
-                </tr>
-            </table>
-            <table>
-                <tr class="table-head">
-                    <td>에픽게임즈 제작</td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>배틀 브레이커스</span></a></td>
-                    <td><a href="#"><span>포트나이트</span></a></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>인피니티 블레이드</span></a></td>
-                    <td><a href="#"><span>로보 리콜</span></a></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>섀도우 컴플렉스</span></a></td>
-                    <td><a href="#"><span>스파이징크스</span></a></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>언리얼 토너먼트</span></a></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-        <div class="table-box-text">
-            <p>스토어 환불 정책이 2021년 6월 10일부로 업데이트 되었습니다. 새로운 변경사항에 대해 확인하시는 것을 권장합니다.</p>
-        </div>
-    </div>
-    <div class="hr">
-        <hr>
-    </div>
-    <div class="footer-copyright-box">
-        <p>© 2021, Epic Games, Inc. All Rights Reserved. Epic, Epic Games, Epic Games 로고, Fortnite, Fortnite 로고, Unreal, Unreal Engine, Unreal Engine 로고, Unreal Tournament, Unreal Tournament 로고의 모든 저작권은 Epic Games, Inc.에 있으며, 이는 미국 및 그 외 국가에 모두 해당됩니다. 기타 브랜드 또는 제품 이름은 해당 소유자의 상표입니다. 미국 외 거래는 Epic Games International, S.à r.l.을 통해 이뤄집니다.  </p>
-    </div>
-    <div class="footer-support-box">
-        <div class="support-box-links">
-            <a href="#">이용약관</a>
-            <a href="#">개인정보처리방침</a>
-            <a href="#">스토어 환불 정책</a>
-        </div>
-        <div class="support-box-logos">
-            <a href="#"><img src="/resources/img/game/logo.png" alt=""></a>
-            <a href="#"><img src="/resources/img/game/unreal-engine-555438.png" alt=""></a>
-        </div>
-    </div>
-</footer>
-   
-
-<!-- footer end -->
-<script type="text/javascript" src="/resources/js/layout/navbar-search.js"></script>
+  <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 <script type="text/javascript" src="/resources/js/game/get.js"></script>
-<script type="text/javascript" src="/resources/js/layout/footer.js"></script>
 <script type="text/javascript" src="/resources/js/layout/order-form.js"></script>
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 
@@ -403,7 +255,7 @@
 						};
 						 for(var i =0, len = list.length || 0; i<len; i++){
 							str += " <li data-rno='" + list[i].rno+"'>"
-							str += " <div class='writer' id = 'id'>"+ list[i].userid + "</div>"
+							str += " <div class='writer' id = 'id' name = 'originid' >"+ list[i].userid + "</div>"
 							str += " <div class='content'id = 'con'>"+ list[i].content + "</div>"
 							str += " <div class='regDate'>"+ list[i].regDate + "</div>"
 							str += " <div class='likes'>"+ list[i].likes + "</div>"
@@ -453,18 +305,7 @@
 					replyPageFooter.html(str);
 				}
 
-
-				var modal = $(".modal");
-				var modalInputReply = modal.find("input[name='content']");
-				var modalInputReplyer = modal.find("input[name='userid']");
-				var modalInputReplyDate = modal.find("input[name='regDate']");
-
-				var modalModBtn = $("#modalModBtn");
-				var modalRemoveBtn = $("#modalRemoveBtn");
-				var modalRegisterBtn = $("#modalRegisterBtn");
-				var modalCloseBtn = $("#modalCloseBtn");
-				
-			
+					
 				var replyer = null;
 				<sec:authorize access ="isAuthenticated()">
 					userid ='<sec:authentication property ="principal.username"/>';
@@ -478,8 +319,9 @@
 				var eu = $("#userid");
 				var en = $("#rno");
 				
-				var reviewReplyer = eot.find("input[name='userid']");
+				var replyDate = eot.find("div[name='regDate']").text();
 				
+				//댓글 등록
 				$("#addReplyBtn").on("click",function(e){
 					var content={
 							content: ec.val(),
@@ -497,26 +339,24 @@
 				
 				//댓글 삭제
 				$(".chat").on("click", ".delete-button", function (e) {
-					//var rno = modal.data("rno");
 					var rno = $(this).closest("li").data("rno");
-					console.log("Rno : " +rno);
-					console.log("Replyer : " +userid);
+					var userid = eu.val();
+					var reviewReplyer = $(this).closest("li").find("div[name='originid']").text();	
+					var originalReplyer = reviewReplyer;
 					
-					/* if(!userid){
-						alert("로그인후 삭제가 가능합니다");
-						modal.modal("hide");
+					console.log("댓글번호 : " +rno);
+					console.log("로그인한아이디 : " +userid);
+					console.log("댓글 작성자는? "+ originalReplyer);//댓글의 원래 작성자 
+					
+					if(!userid){
+						alert("로그인 후 삭제가 가능합니다");
 						return ;
-					}*/
-					
-					var originalReplyer = reviewReplyer.val();
-					console.log("작성자는? "+ originalReplyer);
-					/*
-					console.log("OriginalReplyer : " + originalReplyer); //댓글의 원래 작성자 
+					}
 					if(userid!= originalReplyer){
-						alert("자신이 작성한 댓글만  삭제가 가능합니다");
-						modal.modal("hide");
+						alert("자신이 작성한 댓글이 아닙니다.");
 						return ;
-					} */
+					} 
+					
 					replyService.remove(rno, originalReplyer , function (result) {
 						alert(result);
 						showList(pageNum);
@@ -527,7 +367,8 @@
 				var inputCo = "";
                 var flag = true;
 				var chat = $(".chat");
-				//부모(.chat/ul) 아래의 수정버튼(modify-button)을 누르면 
+				
+				//댓글 수정
 				 $(".chat").on("click", "button", function (e) {
 					 
 					 var thisClass =  this.getAttribute("class");
@@ -537,10 +378,25 @@
 
                     if(flag){
                     	
-    			 		
-                    	
 					 	if(thisClass == "modify-button"){
-						
+					 		var userid = eu.val();
+					 		var modifyReplyer = $(this).closest("li").find("div[name='originid']").text();	
+	    					var originalReplyer = modifyReplyer;
+	    					
+	    					if(!userid){
+	    						alert("로그인 후 수정이 가능합니다.");
+	    						return ;
+	    					}
+	    					console.log("로그인한 아이디: " + userid);
+	    					console.log("댓글의 작성자 : " + originalReplyer); //댓글의 원래 작성자 
+	    					
+	    					if(userid!= originalReplyer){
+	    						alert("자신이 작성한 댓글만 수정이 가능합니다.");
+	    						return ;
+	    					}  	
+					 		
+					 		
+					 		
 						inputCo = $(this).closest("li").find("#con").text();
 						console.log(inputCo);
 						con[1].innerHTML = "<input type='text' name = 'content' value='"+con[1].innerText+"' id='modifyReply' size='40' />";
@@ -557,8 +413,7 @@
 					 	
 					 	replyService.read(rno, function (content) {
 							console.log("두 번째 파라미터(콜백함수)에 들어오나? " + rno)
-							
-							//modifyReplyDate.val(replyService.displayTime(content.regDate)).attr("readonly", "readonly");
+							//replyDate.val(replyService.displayTime(content.regDate)).attr("readonly", "readonly");
 							chat.data("rno", content.rno);
 						}); 
                          
@@ -568,7 +423,7 @@
 						 //inputCo에 원래 content값을 저장
 						$("#modifyReply").remove(); //input태그의 modifyReply삭제
 						con[1].innerText = inputCo; //다시 div에 inputCo(content값)을 저장
-						console.log("im ")
+						console.log("취소버튼누름");
 						but[0].setAttribute("class", 'like-button');
 						but[0].setAttribute("onclick", "null")
 						but[0].innerHTML = "좋아요";
@@ -582,7 +437,7 @@
 						 
 				}); 
 				
-					window.clickModReview = function(){//수정 버튼을 누르면   | 주석처리된 내용  $(".chat") 으로 옮겨야됨(유저아이디 확인)
+					window.clickModReview = function(){//완료 버튼을 누르면
 							var modifyReply = chat.find("input[name='content']");
 							var modifyReplyer = chat.find("input[name='userid']");
 							var modifyReplyDate = chat.find("input[name='regDate']");
@@ -595,26 +450,16 @@
 							var originalReplyer = modifyReplyer.val();
 							var content={
 								rno: chat.data("rno"),
-								//regDate : modifyReplyDate.val(),
+								regDate : modifyReplyDate.val(),
 								content: modifyReply.val(),
 								userid: originalReplyer}
-							console.log("Rno : " +rno);
-							console.log("Replyer : " +userid);
-							console.log("Content : " +content);
-							/* if(!userid){
-								alert("로그인후 수정이 가능합니다");
-								modal.modal("hide");
-								return ;
-							}
-							console.log("OriginalReplyer : " + originalReplyer); //댓글의 원래 작성자 
-							if(userid!= originalReplyer){
-								alert("자신이 작성한 댓글만  수정이 가능합니다");
-								modal.modal("hide");
-								return ;
-							} */
-							
+							console.log("댓글번호 : " +rno);
+							console.log("작성자id : " +userid);
+							console.log("댓글내용 : " +content);
+							 							
 							replyService.update(content, function (result) {
 								alert(result);
+								//replyDate.val(replyService.displayTime(content.regDate));
 								showList(pageNum);//전체 데이터 가져오는 함수 호출 시 페이지 번호 전달하여 가져옴
 							});
 							

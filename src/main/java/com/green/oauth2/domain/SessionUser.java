@@ -11,8 +11,8 @@ import lombok.Getter;
 public class SessionUser implements Serializable{
 	
 	private String userid;
-	private String name;
 	private String email;
+	private String name;
 	private String picture;
 	
 	public SessionUser(OAuthUserVO user) {

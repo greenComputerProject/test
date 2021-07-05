@@ -15,7 +15,7 @@
 	</delete>
 	
 	<update id="update">
-		update tbl_game_reviews set content= #{content} where rno = #{rno} <!-- 임시적으로 likes 제거 -->
+		update tbl_game_reviews set content= #{content}, regDate = sysdate where rno = #{rno} <!-- 임시적으로 likes 제거 -->
 	</update>
 	
 	<select id="getListWithPaging" resultType="com.green.domain.ReplyVO">
