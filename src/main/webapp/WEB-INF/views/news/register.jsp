@@ -89,9 +89,13 @@
                 <textarea name="content" id="content"  placeholder="내용을 입력하세요." required></textarea>
             </div>
             <div id="formImage" class="form-input">
-                <input type="file" name="uploadFile" id="uploadFile" accept="image/gif,image/jpeg,image/png" required>
-            </div>
-            <input type="hidden" name ="userid" id="userid" value="2">
+                <input type="file" name="uploadFile" id="uploadFile" accept="image/jpeg,image/png" required>
+                <div class="uploadFile">
+                	<ul>
+                	</ul>
+                </div>
+            </div> 
+            <input type="hidden" name ="userid" id="userid" value="${user.userid}">
             <div id="formFormButton" class="form-input">
                 <button type="submit">등록</button>
             </div>
@@ -221,7 +225,7 @@
                     dataType:'json',
                     success: function(result){
                         console.log("result :  "+ result); 
-                        fileSubmit(result);
+                        showFile(result);
                 	},
             		error: function(a){
             			console.log(a);
@@ -230,30 +234,48 @@
     	});  //change 이벤트
     	
     	//클릭했을때 업로드 된 파일 삭제
-    	$("input[type='file']").click(function(e){
-    		var fn = $("#fileName").val();
-    		var ui = $("#uuid").val();
-    		var up = $("#uploadPath").val();
-    		console.log(fn);
-    		console.log(ui);
-    		console.log(up);
-    		if(fn != null){
-    			console.log("null이 아닐 경우")
-    			 $.ajax({
-		            url: '/news/deleteFile',
-		            data: { fileName: fn, uuid: ui },
-		            dataType: 'text',
-		            type: 'POST',
-		            success: function (result) {
-		              console.log(result);
-		              	$("#fileName").remove();
-	    			 	$("#uuid").remove();
-		    			$("#uploadPath").remove();
-		            },
-		          }) //$.ajax
+    	//$("input[type='file']").click(function(e){
+    		//var fn = $("#fileName").val();
+    		//var ui = $("#uuid").val();
+    		//var up = $("#uploadPath").val();
+    		//console.log(fn);
+    		//console.log(ui);
+    		//console.log(up);
+    		//if(fn != null){
+    			//console.log("null이 아닐 경우")
+    			 //$.ajax({
+		           // url: '/news/deleteFile',
+		            //data: { fileName: fn, uuid: ui },
+		           // dataType: 'text',
+		            //type: 'POST',
+		            //success: function (result) {
+		              //console.log(result);
+		              	//$("#fileName").remove();
+	    			 	//$("#uuid").remove();
+		    			//$("#uploadPath").remove();
+		            //},
+		          //}) //$.ajax
     			
-    		}
-    	})
+    		//}
+    	//})
+    	$(".uploadFile").on("click" ,"button",function(e){
+    		console.log("delete 파일 ");
+    		var targetFile = $(this).data('file'); 
+    		//var targetUuid = $(this).data('uuid'); 
+    		var targetLi = $(this).closest("li");
+    		var str = "";
+
+    		$.ajax({
+    			url:'/news/deleteFile',
+    			data:{fileName:targetFile},
+    			dataType:'text',
+    			type:'POST',
+    			success:function(result){
+    				alert(result);
+    				targetLi.remove();
+    			}
+    		});//$.ajax
+    	}); //click 이벤트
     	
     	
       	//이미지 파일만 올리게 하는 함수 생성
@@ -271,17 +293,60 @@
     			return false;
     		}
     	}
-    	function fileSubmit(result){
-    		var str = '';
-    		console.log("확인용 obj : " + result);
-    		$(result).each(function(i,obj){
-    			str += "<input type='hidden' id='fileName' name='getFile.fileName' value='" + obj.fileName + "'>"
-                str += "<input type='hidden' id='uuid' name='getFile.uuid' value='" + obj.uuid + "'>"
-                str += "<input type='hidden' id='uploadPath' name='getFile.uploadPath' value='" + obj.uploadPath + "'>"
-    		})
+    	
+    	$("button[type='submit']").on("click", function(e){
+    	    e.preventDefault();
+			console.log("submit ")
+    	    var str = "";
+    	    $(".uploadFile ul li").each(function(i, obj){
+				console.log("여기도 안찍히는 듯하고 2)");
+				var jobj = $(obj);
+				console.dir(jobj);
+				console.log("-------------------------");
+				console.log(jobj.data("filename"));
+				str += "<input type='hidden' name='getFile.fileName' value='"+jobj.data("filename")+"'>";
+				str += "<input type='hidden' name='getFile.uuid' value='"+jobj.data("uuid")+"'>";
+				str += "<input type='hidden' name='getFile.uploadPath' value='"+jobj.data("path")+"'>";
+				
+    	    });
+    	   	console.log("str : " , str);
+    	    e.preventDefault();
+    	    formObj.append(str).submit();
+    	    
+    	  });
+    	
+    	//function fileSubmit(result){
+    		//var str = '';
+    		//console.log("확인용 obj : " + result);
+    		//$(result).each(function(i,obj){
+    			//str += "<input type='hidden' id='fileName' name='getFile.fileName' value='" + obj.fileName + "'>"
+                //str += "<input type='hidden' id='uuid' name='getFile.uuid' value='" + obj.uuid + "'>"
+                //str += "<input type='hidden' id='uploadPath' name='getFile.uploadPath' value='" + obj.uploadPath + "'>"
+    		//})
     		
-            console.log("확인용 str : " + str);
-            formObj.append(str);
+            //console.log("확인용 str : " + str);
+            //formObj.append(str);
+    	//}
+    	
+    	function showFile(result){
+    		var uploadUl = $(".uploadFile ul");
+    		
+    		str = "";
+    		$(result).each(function(i,obj){
+	    		var fileCallPath =  encodeURIComponent(obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+	    		str += "<li data-path='"+obj.uploadPath+"'";
+				str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"'"
+				str += " ><div>";
+				str += "<span> "+ obj.fileName+"</span>";
+				str += "<button type='button' data-file=\'"+fileCallPath+"\' "
+				str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "<img src='/news/display?fileName="+fileCallPath+"'>";
+				str += "</div>";
+				str += "</li>";
+    		});
+    		
+    		console.log(str);
+			uploadUl.append(str);
     	}
 	})
 </script>

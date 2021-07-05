@@ -67,14 +67,10 @@
                "${get.content}"
             </p>
         </div>
-<<<<<<< HEAD
-    </div>
-=======
         <div id ="addButoon"></div>
     </div>
     
     
->>>>>>> 27d5cf6280c80f23e92b96acb53485b4c1aa1fc9
     <!-- news get end -->
     <!-- footer start -->
 <footer class="footer">
@@ -165,11 +161,6 @@
 </footer>
 <!-- footer end -->
 
-<<<<<<< HEAD
-
-        <script type="text/javascript" src="/resources/js/layout/footer.js"></script>
-        <script type="text/javascript" src="/resources/js/layout/navbar-search.js"></script>
-=======
 		
         <script type="text/javascript" src="/resources/js/layout/footer.js"></script>
         <script type="text/javascript" src="/resources/js/layout/navbar-search.js"></script>
@@ -177,19 +168,18 @@
         
         <script type="text/javascript">
         	$(document).ready(function(){
-        		var userid = ${user.userid}
-        		var getUserid = ${get.userid}
+        		
         		var nno = ${get.nno}
         		var formData = new FormData();
-        		if(userid == ${get.userid}){
+        		if(${user.userid} == ${get.userid}){
         			str = "<button id='modify'>수정</button>"
         			$("#addButoon").append(str);
         		}
+        		
         		$("#modify").click(function(){
         			self.location="modify?nno="+nno;
         		})
         	})
         </script>
->>>>>>> 27d5cf6280c80f23e92b96acb53485b4c1aa1fc9
 </body>
 </html>

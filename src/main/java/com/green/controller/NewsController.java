@@ -66,7 +66,6 @@ public class NewsController {
 	
 	@GetMapping("/register")
 	public void insertG(Model model) {
-		SessionUser user = (SessionUser)session.getAttribute("user");
 		log.info("insert page get");
 	}
 	
@@ -79,7 +78,6 @@ public class NewsController {
 	
 	@GetMapping("/modify")
 	public void updateG(@RequestParam("nno") Long nno, Model model) {
-		
 		log.info("update Get");
 		model.addAttribute("get", service.getOne(nno));
 	}
