@@ -19,6 +19,8 @@ public class ReplyVO {
     
     private String userid; //댓글작성자
     
+    private String name;
+    
     @JsonFormat(shape = Shape.STRING, pattern = "MM-dd")
     private Date regDate; //작성일
     

@@ -20,11 +20,12 @@
 	
 	<select id="getListWithPaging" resultType="com.green.domain.ReplyVO">
 			<![CDATA[
-			select rno, gno ,content, userid, likes, regDate, updateDate
+			select rno, gno ,content, userid, name, likes, regDate, updateDate
 				from 
-				( select 
-				  rownum rn, rno, gno , content, userid, likes, regDate, updateDate
-				   from tbl_game_reviews
+				(  select 
+				  rownum rn, rno, gno , content, r.userid, likes, regDate, updateDate, m.name
+				   from tbl_game_reviews r
+				   left outer join tbl_member m on r.userid = m.userid 
 				   where gno = #{gno}
 				   and rno >0
 				   and rownum <= #{cri.pageNum} * #{cri.amount}
@@ -38,6 +39,10 @@
 		]]>
 	</select>
 	<select id="getList" resultType="com.green.domain.ReplyVO">
-		select * from tbl_game_reviews where gno = #{gno}
+		select 
+				  rownum rn, rno, gno , content, r.userid, likes, regDate, updateDate, m.name
+				   from tbl_game_reviews r
+				   left outer join tbl_member m on r.userid = m.userid 
+				   where gno = #{gno}
 	</select>
 </mapper>

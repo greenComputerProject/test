@@ -39,7 +39,7 @@
                     <c:forEach items="${games}" var="game" >
                     
                     <li>
-                        <a href="#" class="gno${game.gno}">
+                        <a href="/game/get?title=${game.title}" class="gno${game.gno}">
                         <div class="gno" style="display: none;">${game.gno}</div>
                         <div class="image"><img src='<c:out value="${game.titlePicture}"></c:out>' alt=""></div>
                         

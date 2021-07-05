@@ -104,7 +104,7 @@
 	            <div class="review-apply">
 	                <div class="review-form-writer">
 	                	<!-- <input type="hidden" class="eot" id="rno" name ="rno"/> -->
-	                    <input class="eot" type="text" id="name" name ="name" value="${user.name}" readonly> 
+	                    <input class="eot" type="text" id="idname" name ="name" value="${user.name}" readonly> 
 	                    <input type="hidden" id="userid" value="${user.userid}">
 	                </div>
 	                <div class="review-form-content">
@@ -256,7 +256,8 @@
 						};
 						 for(var i =0, len = list.length || 0; i<len; i++){
 							str += " <li data-rno='" + list[i].rno+"'>"
-							str += " <div class='writer' id = 'id' name = 'originid' >"+ list[i].userid + "</div>"
+							str += '<input type= "hidden" id="uid" value = "'+ list[i].userid +'" readonly/>';
+							str += " <div class='writer' id = 'idname' name = 'originid' >"+ list[i].name + "</div>"
 							str += " <div class='content'id = 'con'>"+ list[i].content + "</div>"
 							str += " <div class='regDate'>"+ list[i].regDate + "</div>"
 							str += " <div class='likes'>"+ list[i].likes + "</div>"
@@ -322,6 +323,7 @@
 				var eu = $("#userid");
 				var en = $("#rno");
 				
+				
 				var replyDate = eot.find("div[name='regDate']").text();
 				
 				//댓글 등록
@@ -329,7 +331,6 @@
 					var content={
 							content: ec.val(),
 							userid: eu.val(),
-							//rno: en.val(),
 							gno:gnoValue	
 					};
 					console.log("댓글 등록이 잘들어오나");
@@ -344,7 +345,7 @@
 				$(".chat").on("click", ".delete-button", function (e) {
 					var rno = $(this).closest("li").data("rno");
 					var userid = eu.val();
-					var reviewReplyer = $(this).closest("li").find("div[name='originid']").text();	
+					var reviewReplyer = $(this).closest("li").find("input[id='uid']").val();	
 					var originalReplyer = reviewReplyer;
 					
 					console.log("댓글번호 : " +rno);
@@ -383,7 +384,7 @@
                     	
 					 	if(thisClass == "modify-button"){
 					 		var userid = eu.val();
-					 		var modifyReplyer = $(this).closest("li").find("div[name='originid']").text();	
+					 		var modifyReplyer = $(this).closest("li").find("input[id='uid']").val();	
 	    					var originalReplyer = modifyReplyer;
 	    					
 	    					if(!userid){
@@ -391,6 +392,7 @@
 	    						return ;
 	    					}
 	    					console.log("로그인한 아이디: " + userid);
+	    					console.log("모디파이리플라이어" + modifyReplyer);
 	    					console.log("댓글의 작성자 : " + originalReplyer); //댓글의 원래 작성자 
 	    					
 	    					if(userid!= originalReplyer){
