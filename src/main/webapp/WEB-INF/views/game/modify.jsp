@@ -186,8 +186,10 @@
     }
 
     let clickDeleteButton = function(){
-
-        $.ajax({
+    	
+    	
+    if(confirm("정말로 삭제하겠습니까?") === true){
+    	$.ajax({
             type: 'GET',
             url: '/game/delete/' + ${game.gno},
             dataType: 'json',
@@ -202,7 +204,18 @@
                 alert(error);
             }
         })
+    	
+    } else {
+    	return;
     }
+    	
+        
+    }
+
+    document.querySelector(".navbar-search-links a").addEventListener('onclick', function(e){
+        e.preventDefault();
+        window.history.back();
+    })
 	
 </script>
 

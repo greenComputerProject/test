@@ -18,25 +18,12 @@ let resetTag = function () {
     inputTag.setAttribute("value", "");
 }
 
-let changeNavbarSearchRegister = function() {
+let changeNavbarSearch = function(text) {
     let searchLinks = document.querySelectorAll(".navbar-search-links li");
 	console.log(searchLinks)
-    searchLinks[0].innerHTML = '<a href="/" id="not-selected" onclick="clickSearch(this)">< 메인으로 돌아가기</a>'
+    searchLinks[0].innerHTML = '<a href="javascript:history.back();" id="not-selected" >< 돌아가기</a>'
     searchLinks[1].innerHTML = "<span>"+ 
-        "| 게임 등록"
-    +"</span>"
-
-    let searchForm = document.querySelector(".navbar-search-wishlist-and-form");
-    searchForm.style.display = "none";
-    console.log(searchForm);
-}
-
-let changeNavbarSearchModify = function() {
-    let searchLinks = document.querySelectorAll(".navbar-search-links li");
-	console.log(searchLinks)
-    searchLinks[0].innerHTML = '<a href="/" id="not-selected" onclick="clickSearch(this)">< 메인으로 돌아가기</a>'
-    searchLinks[1].innerHTML = "<span>"+ 
-        "| 게임 수정"
+        "| 게임 " + text
     +"</span>"
 
     let searchForm = document.querySelector(".navbar-search-wishlist-and-form");
@@ -47,12 +34,14 @@ let changeNavbarSearchModify = function() {
 let registerCurrUrl = window.location.href;
 
 if(registerCurrUrl.includes('register')){
-    changeNavbarSearchRegister();
+    changeNavbarSearch('등록');
 }
 
 if(registerCurrUrl.includes('modify')){
-    changeNavbarSearchModify();
+    changeNavbarSearch('수정');
 }
+
+
 
 let checkExistsGame = function(input){
     

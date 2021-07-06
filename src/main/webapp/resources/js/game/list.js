@@ -68,6 +68,7 @@ let clickCategory = function(categoryTitle){
 
 let addWishlist = function(gno){
 
+    gno = gno.replace('gno', '');
     $.ajax({
         type: 'POST',
         url: '/wishlist/' + gno,
@@ -81,7 +82,7 @@ let addWishlist = function(gno){
 }
 
 let deleteWishlist = function(gno){
-
+    gno = gno.replace('gno', '');
     $.ajax({
         type: 'DELETE',
         url: '/wishlist/delete/' + gno,
@@ -93,11 +94,9 @@ let deleteWishlist = function(gno){
 }
 
 
-let gnoList = document.querySelectorAll(".gno");
+let gnoList = document.querySelectorAll(".games ul li i");
 
 let getWishlist = function(){
-
-    console.log("getWishlist")
 
     $.ajax({
         type: 'GET',
@@ -108,13 +107,13 @@ let getWishlist = function(){
             if( result != null){
                 for(i=0 ; i<result.length; i++){
                     for(j=0 ; j<gnoList.length ; j++){
-                        if(result[i].gno == gnoList[j].textContent){
-                            console.log( result[i].gno + " ?= " + gnoList[j].textContent)
+                        if(result[i].gno == gnoList[j].getAttribute('id').replace('gno', '')){
+                            let id = "gno" + result[i].gno
+                            console.log( id + " ?= " + gnoList[j].getAttribute("id"))
 
-                            let gno = result[i].gno
-                            let fontA = document.querySelectorAll(".gno" + gno + " i")[0]
+                            let fontA = document.querySelectorAll("#gno" + result[i].gno)[0]
                             
-                            fontA.setAttribute("class", "fas fa-check-circle")
+                            fontA.setAttribute("class", "fas fa-check-circle");
                             fontA.setAttribute("onclick", "deleteWishlist(this.id)");
                         } 
                     }

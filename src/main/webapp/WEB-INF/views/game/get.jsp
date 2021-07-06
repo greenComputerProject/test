@@ -31,7 +31,7 @@
             <div class="slide-image active"><iframe width="100%" height="435vw" src="https://www.youtube.com/embed/${game.resourcevo.video}?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
             </c:if>
             <c:forEach var="picture" items="${game.pictureList}">
-            	<div class="slide-image"><img src="${picture.contentPicture}" alt=""></div>
+            	<div class="slide-image"><img src="${picture}" alt=""></div>
             </c:forEach>
         </div>
         <div class="game-slide-dots">
@@ -161,12 +161,12 @@
             <button class="download-button" id="buy_module" >구매</button>
         </div>
         <div class="game-aside-wishlist">
-            <button class="wishlist-button">
+            <button class="wishlist-button" onclick="addWishlist(${game.gno})">
                 <i class="fas fa-plus-circle"></i>
                 위시리스트에 추가</button>
         </div>
         <div class="game-aside-rating">
-            <div class="my-rating">내가 준 별점 : <span>3</span></div>
+            <div class="my-rating"></div>
             <div class="avg-rating">평균 별점 : <span>4</span></div>
             <div class="stars">
                 <i id="1" class="fa fa-star fa-2x" onmouseover="hoverStar(this)" onclick="clickStar(this)"></i>
@@ -208,6 +208,53 @@
 
 
 <script>
+		let addWishlist = function(gno){
+			$.ajax({
+				type: 'POST',
+				url: '/wishlist/' + gno,
+				success: function(result){
+					alert('${game.title}' + '이 위시리스트에 등록됐습니다!');
+					location.reload();
+				}, 
+				error: function(error){
+					alert("위시리스트에 이미 게임이 등록돼있어요!");
+				}
+			})
+		}
+
+		let checkWishlist = function(){
+			let wishlistBox = document.querySelector('.game-aside-wishlist');
+			let myRating = document.querySelector('.my-rating');
+			let html = '';
+			$.ajax({
+				type: 'GET',
+				url: '/list/check/' + ${game.gno},
+				dataType: 'json',
+				success: function(result){	
+					
+					if( result == true ){
+						
+						html = '<button class="wishlist-button" style="background-color: rgb(121, 121, 121);">'
+							+ '위시리스트에 이미 등록됨</button>'
+					} else {
+						
+						html = '<button class="wishlist-button" onclick="addWishlist(${game.gno})">'
+							+ '위시리스트에 추가</button>'
+					}
+					
+					myRating.innerHMTL = '내가 준 별점 : <span>3</span>'
+					wishlistBox.innerHTML = html
+					
+				}, error: function(error){
+					html = '<button class="wishlist-button" style="background-color: rgb(121, 121, 121);">'
+								+ '위시리스트에 추가하려면 로그인하세요</button>'
+
+					wishlistBox.innerHTML = html
+				}
+			})
+		}
+
+		checkWishlist();
 
 		if('${user.userid}' == '${game.userid}'){
 			document.querySelector('.game-modify').style.display = 'flex';	
@@ -216,7 +263,7 @@
 		let changeNavbarSearch = function() {
 		    let searchLinks = document.querySelectorAll(".navbar-search-links li");
 			console.log(searchLinks)
-		    searchLinks[0].innerHTML = '<a href="/browse" id="not-selected" onclick="clickSearch(this)">< 목록으로 돌아가기</a>'
+		    searchLinks[0].innerHTML = '<a href="javascript:history.back();" id="not-selected" >< 돌아가기</a>'
 		    searchLinks[1].innerHTML = "<span>"+ 
 		        "| " + '${game.title}'
 		    +"</span>"
@@ -311,7 +358,7 @@
 					
 				var replyer = null;
 				<sec:authorize access ="isAuthenticated()">
-					userid ='<sec:authentication property ="principal.username"/>';
+					userid = '${user.name}';
 				</sec:authorize>
 				
 				console.log("userid ======> " + userid);
