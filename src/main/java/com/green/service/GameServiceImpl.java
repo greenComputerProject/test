@@ -122,5 +122,11 @@ public class GameServiceImpl implements GameService{
 		return mapper.count(title) == 0 ? false : true;
 	}
 
+	@Override
+	public boolean delete(Long gno) {
+		// TODO Auto-generated method stub
+		return mapper.delete(gno) == 1? true : false;
+	}
+
 
 }

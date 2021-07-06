@@ -80,6 +80,9 @@ public class GameController {
 	
 	@PostMapping("/register")
 	public String registerpost(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, ArrayList<GamePictureVO> pictureList) {
+		SessionUser sessionUser = (SessionUser)session.getAttribute("user");
+		String userid =  sessionUser.getUserid();
+		game.setUserid(userid);
 		
 		System.out.println("게임 컨트롤러에서 게임 register post");
 		System.out.println(company.toString());
@@ -125,9 +128,10 @@ public class GameController {
 		return service.isExists(title);
 	}
 	
-	private String getSessionUserid() {
-		SessionUser sessionUser = (SessionUser)session.getAttribute("user");
-		return sessionUser.getUserid();
+	@GetMapping("/delete/{gno}")
+	@ResponseBody
+	public Boolean delete(@PathVariable("gno") Long gno) {
+		
+		return service.delete(gno);
 	}
-	
 }

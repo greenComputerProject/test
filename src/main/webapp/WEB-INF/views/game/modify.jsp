@@ -152,7 +152,7 @@
             </div>
             <div id="formFormButton" class="form-input">
                 <button class="modify">수정</button>
-                <button class="delete">삭제</button>
+                <button type="button" class="delete" onclick="clickDeleteButton()">삭제</button>
             </div>
         </form>
     </div>
@@ -183,7 +183,26 @@
         }
 
     })
-}
+    }
+
+    let clickDeleteButton = function(){
+
+        $.ajax({
+            type: 'GET',
+            url: '/game/delete/' + ${game.gno},
+            dataType: 'json',
+            success: function(data){
+                if(data == true){
+                    alert('성공적으로 삭제됐습니다.');
+                    window.location.href = '/browse?pageNum=1&order=g.regDate&direction=desc'
+                } else {
+                    alert('삭제에 실패했습니다.');
+                }
+            }, error: function(error){
+                alert(error);
+            }
+        })
+    }
 	
 </script>
 

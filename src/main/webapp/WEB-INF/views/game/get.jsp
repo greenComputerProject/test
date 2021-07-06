@@ -27,7 +27,9 @@
             ${game.title}
         </div>
         <div class="game-slide">
+        	<c:if test="${game.resourcevo.video != null}">
             <div class="slide-image active"><iframe width="100%" height="435vw" src="https://www.youtube.com/embed/${game.resourcevo.video}?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            </c:if>
             <c:forEach var="picture" items="${game.pictureList}">
             	<div class="slide-image"><img src="${picture.contentPicture}" alt=""></div>
             </c:forEach>
@@ -173,6 +175,10 @@
                 <i id="1111" class="fa fa-star fa-2x" onmouseover="hoverStar(this)" onclick="clickStar(this)"></i>
                 <i id="11111" class="fa fa-star fa-2x" onmouseover="hoverStar(this)" onclick="clickStar(this)"></i>
             </div>
+        </div>
+        
+        <div class="game-button">
+        	<a href="/game/modify?title=${game.title}" class="game-modify">게임 수정</a>
         </div>
     </div>
 </div>

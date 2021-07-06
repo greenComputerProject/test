@@ -24,4 +24,6 @@ public interface GameService {
 	public GameVO news(Long nno);
 	
 	public boolean isExists(String title);
+	
+	public boolean delete(Long gno);
 }
