@@ -158,7 +158,7 @@
         </div>
         <div class="game-aside-price">가격 | ${game.price}₩</div>
         <div class="game-aside-download">
-            <button class="download-button" onclick="showPopup()">구매</button>
+            <button class="download-button" id="buy_module" >구매</button>
         </div>
         <div class="game-aside-wishlist">
             <button class="wishlist-button">
@@ -193,20 +193,21 @@
 
 
     
-    
+<!-- 댓글 관련 스크립트 -->    
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 
-
+<!-- 결제창 관련 스크립트 -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 
 </body>
 
 
 <script>
-
 
 		if('${user.userid}' == '${game.userid}'){
 			document.querySelector('.game-modify').style.display = 'flex';	
@@ -442,33 +443,33 @@
 						 
 				}); 
 				
-					window.clickModReview = function(){//완료 버튼을 누르면
-							var modifyReply = chat.find("input[name='content']");
-							var modifyReplyer = chat.find("input[name='userid']");
-							var modifyReplyDate = chat.find("input[name='regDate']");
-							
-							console.log(modifyReplyer)
-					
-							console.log("완료버튼이 눌리나");
-							var rno = chat.data("rno"); //추가 
-							
-							var originalReplyer = modifyReplyer.val();
-							var content={
-								rno: chat.data("rno"),
-								regDate : modifyReplyDate.val(),
-								content: modifyReply.val(),
-								userid: originalReplyer}
-							console.log("댓글번호 : " +rno);
-							console.log("작성자id : " +userid);
-							console.log("댓글내용 : " +content);
-							 							
-							replyService.update(content, function (result) {
-								alert(result);
-								//replyDate.val(replyService.displayTime(content.regDate));
-								showList(pageNum);//전체 데이터 가져오는 함수 호출 시 페이지 번호 전달하여 가져옴
-							});
-							
-							flag = true;
+				window.clickModReview = function(){//완료 버튼을 누르면
+						var modifyReply = chat.find("input[name='content']");
+						var modifyReplyer = chat.find("input[name='userid']");
+						var modifyReplyDate = chat.find("input[name='regDate']");
+						
+						console.log(modifyReplyer)
+				
+						console.log("완료버튼이 눌리나");
+						var rno = chat.data("rno"); //추가 
+						
+						var originalReplyer = modifyReplyer.val();
+						var content={
+							rno: chat.data("rno"),
+							regDate : modifyReplyDate.val(),
+							content: modifyReply.val(),
+							userid: originalReplyer}
+						console.log("댓글번호 : " +rno);
+						console.log("작성자id : " +userid);
+						console.log("댓글내용 : " +content);
+						 							
+						replyService.update(content, function (result) {
+							alert(result);
+							//replyDate.val(replyService.displayTime(content.regDate));
+							showList(pageNum);//전체 데이터 가져오는 함수 호출 시 페이지 번호 전달하여 가져옴
+						});
+						
+						flag = true;
 					};
 				
 				//댓글 페이지
@@ -481,6 +482,60 @@
 					pageNum = targetPageNum;
 					showList(pageNum);
 				});
+				
+				
+				$("#buy_module").on("click", function () {
+					 if(!'${user.userid}'){
+						alert("로그인 후 구매가 가능합니다.");
+						return ;
+					}  
+						var IMP = window.IMP; // 생략가능
+						IMP.init('iamport');
+						IMP.request_pay({
+							pg: 'inicis', 
+							/*
+								'kakao':카카오페이,
+								html5_inicis':이니시스(웹표준결제)
+								'nice':나이스페이
+								'jtnet':제이티넷
+								'uplus':LG유플러스
+								'danal':다날
+								'payco':페이코
+								'syrup':시럽페이
+								'paypal':페이팔
+							*/
+							pay_method: 'card',
+							/*
+								'samsung':삼성페이,
+								'card':신용카드,
+								'trans':실시간계좌이체,
+								'vbank':가상계좌,
+								'phone':휴대폰소액결제
+							*/
+							merchant_uid: 'merchant_' + new Date().getTime(),
+							
+							name: '${game.title}',
+							//결제창에서 보여질 이름
+							amount: '${game.price}',
+							//가격
+							buyer_email: '${user.email}',
+							buyer_name: '${user.name}',
+							
+						}, function (rsp) {
+							console.log(rsp);
+							if (rsp.success) {
+								var msg = '${game.price}원이 결제되었습니다.'
+							} 
+							else {
+								var msg = '결제에 실패하였습니다.';
+								msg += '에러내용 : ' + rsp.error_msg;
+							}
+							alert(msg);
+						});
+						
+				});
+					
+				
 				
 			}); //document ready 의 끝
 </script>
