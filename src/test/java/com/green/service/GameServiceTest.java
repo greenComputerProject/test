@@ -81,7 +81,7 @@ public class GameServiceTest {
 	@Test
 	public void 게임_조회() {
 		
-		log.info(service.read(title).toString());
+		log.info(service.read("Horizon Zero Dawn™ 컴플리트 에디션").toString());
 		
 	}
 	

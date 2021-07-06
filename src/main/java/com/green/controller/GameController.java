@@ -1,13 +1,14 @@
 package com.green.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -76,7 +77,18 @@ public class GameController {
 	}
 	
 	@PostMapping("/register")
-	public String registerpost(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, ArrayList<GamePictureVO> pictureList) {
+	//ArrayList 로 여러 파라미터를 받지 못해서 배열로 선언하엿더니 받아짐
+	public String registerpost(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, String[] contentPicture) {
+		
+		List<GamePictureVO> pictureList = new ArrayList<GamePictureVO>();
+		GamePictureVO picture = null;
+		for(String pic : contentPicture) {
+			if(pic != null && !pic.equals("")) {
+			picture = new GamePictureVO();
+			picture.setContentPicture(pic);
+			pictureList.add(picture);
+			}
+		}
 		SessionUser sessionUser = (SessionUser)session.getAttribute("user");
 		String userid =  sessionUser.getUserid();
 		game.setUserid(userid);
