@@ -120,7 +120,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id ="register">
 		insert into tbl_games(gno, title, content, price, ageLimit, cno, regdate, userid) values(seq_games.nextval, #{title}, #{content}, #{price}, #{ageLimit},
 		<choose>
-			<when test="#{cno} != null">
+			<when test="cno != null">
 				#{cno}	
 			</when>
 			<otherwise>

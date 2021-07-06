@@ -154,3 +154,15 @@ let getSessionUser = function(){
 }
 
 getSessionUser();
+
+let redirectBrowse = function(){
+
+    console.log("redirectBrowse ==> " + window.location.href);
+
+    if(window.location.href == 'http://localhost:8080/browse'){
+
+        window.location.href = 'http://localhost:8080/browse?pageNum=1&order=g.regDate&direction=desc';
+    }
+}
+
+redirectBrowse();

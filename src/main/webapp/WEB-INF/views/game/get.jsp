@@ -178,7 +178,7 @@
         </div>
         
         <div class="game-button">
-        	<a href="/game/modify?title=${game.title}" class="game-modify">게임 수정</a>
+        	<a href="/game/modify?title=${game.title}" class="game-modify" style="display: none;"><span>게임 수정</span></a>
         </div>
     </div>
 </div>
@@ -206,6 +206,26 @@
 
 
 <script>
+
+
+		if('${user.userid}' == '${game.userid}'){
+			document.querySelector('.game-modify').style.display = 'flex';	
+		}
+		
+		let changeNavbarSearch = function() {
+		    let searchLinks = document.querySelectorAll(".navbar-search-links li");
+			console.log(searchLinks)
+		    searchLinks[0].innerHTML = '<a href="/browse" id="not-selected" onclick="clickSearch(this)">< 목록으로 돌아가기</a>'
+		    searchLinks[1].innerHTML = "<span>"+ 
+		        "| " + '${game.title}'
+		    +"</span>"
+
+		    let searchForm = document.querySelector(".navbar-search-wishlist-and-form");
+		    searchForm.style.display = "none";
+		    console.log(searchForm);
+		}
+		//navbar-search 화면 변경
+		changeNavbarSearch();
 
     
 

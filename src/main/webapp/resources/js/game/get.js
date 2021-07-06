@@ -147,3 +147,4 @@ let clickStar = function(star) {
             border: "1px solid blue"
         }], 30000);
 };
+

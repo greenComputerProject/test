@@ -75,6 +75,7 @@ public class GameServiceImpl implements GameService{
 		
 		Long cno = cmapper.getCno(company.getCompany());
 		
+		log.info("cno ->" + cno);
 		if(cno == null) {
 			
 			cmapper.register(company);

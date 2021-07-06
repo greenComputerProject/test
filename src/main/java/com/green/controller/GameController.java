@@ -1,12 +1,10 @@
 package com.green.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,7 +42,7 @@ public class GameController {
 	
 	
 	@GetMapping("/get")
-	public void get(@RequestParam("title") String title, Model model, @ModelAttribute("cri") Criteria cri) {
+	public void get(@RequestParam("title") String title, Model model, @ModelAttribute Criteria cri) {
 		GameVO game = service.read(title);
 		
 		System.out.println("게임 컨트롤러에서 게임 조회 타이틀 :  " + title);

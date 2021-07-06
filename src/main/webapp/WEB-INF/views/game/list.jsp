@@ -78,6 +78,7 @@
                 </ul>
             </div>
         </div>
+        
         <div class="filter">
             <div class="head">
                 <div class="head-text">필터 [<span class="number">1</span>]</div>

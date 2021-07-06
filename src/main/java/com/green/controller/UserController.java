@@ -37,7 +37,8 @@ public class UserController {
 	@GetMapping
 	@ResponseBody
 	public SessionUser getSessionUser() {
-		log.info(session.getAttribute("user"));
+		SessionUser user = (SessionUser)session.getAttribute("user");
+		log.info("session user ------------> " + user.getName());
 		return (SessionUser)session.getAttribute("user");
 	}
 	

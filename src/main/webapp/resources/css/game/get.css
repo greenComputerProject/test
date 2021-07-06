@@ -628,5 +628,36 @@ html, body{
     font-size: 14px;
 }
 
+.game-button{
+	
+	width: 100%;
+	height:3%;
+}
+
+.game-modify{
+	background-color: rgb(120, 120, 204);
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    -webkit-transition: background-color 0.3s;
+}
+
+.game-modify:hover {
+    -webkit-transition: background-color 0.3s;
+	background-color: rgb(150, 150, 199);
+    
+}
+
+.game-modify span{
+	font-size: 11px;
+	display: flex;
+	justify-content:center;
+	align-items: center;
+}
+
 
 
