@@ -131,4 +131,5 @@ public class GameController {
 		
 		return service.delete(gno);
 	}
+	
 }
