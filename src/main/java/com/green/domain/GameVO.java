@@ -16,6 +16,7 @@ public class GameVO {
 	private Date regDate;
 	private Long cno;
 	private String ageLimit;
+	private String userid;
 	
 	private SpecVO specvo;
 	private CompanyVO companyvo;

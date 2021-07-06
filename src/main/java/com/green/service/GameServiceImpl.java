@@ -67,11 +67,22 @@ public class GameServiceImpl implements GameService{
 	public boolean register(CompanyVO company, GameVO game, TagVO tag,  SpecVO spec, GameResourceVO resource, List<GamePictureVO> pictureList) {
 		log.info("서비스에서 게임 데이터 추가");
 		
-		if(cmapper.count(company.getCompany()) != 0 || mapper.count(game.getTitle()) != 0) {
+		
+		
+		if(mapper.count(game.getTitle()) != 0) {
 			return false;
 		}
 		
-		cmapper.register(company);
+		Long cno = cmapper.getCno(company.getCompany());
+		
+		if(cno == null) {
+			
+			cmapper.register(company);
+		} else {
+			game.setCno(cno);
+		}
+		
+		
 		mapper.register(game);
 		smapper.register(spec);
 		tmapper.register(tag);
@@ -84,12 +95,17 @@ public class GameServiceImpl implements GameService{
 	@Override
 	public boolean modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> pictureList) {
 		
-		if(cmapper.count(company.getCompany()) == 0 || mapper.count(game.getTitle()) == 0) {
-			return false;
+		Long cno = cmapper.getCno(company.getCompany());
+		
+		if(cno == null) {
+			
+			cmapper.modify(company);
+		} else {
+			game.setCno(cno);
 		}
 		
 		log.info("서비스에서 게임 데이터 수정");
-		cmapper.modify(company);
+		
 		mapper.modify(game);
 		smapper.modify(spec);
 		tmapper.modify(tag);
@@ -106,10 +122,5 @@ public class GameServiceImpl implements GameService{
 		return mapper.count(title) == 0 ? false : true;
 	}
 
-	@Override
-	public boolean isExistsCompany(String company) {
-		// TODO Auto-generated method stub
-		return cmapper.count(company) == 0 ? false: true;
-	}
 
 }

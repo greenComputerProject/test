@@ -3,6 +3,8 @@ package com.green.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,7 @@ import com.green.domain.GameResourceVO;
 import com.green.domain.GameVO;
 import com.green.domain.SpecVO;
 import com.green.domain.TagVO;
+import com.green.oauth2.domain.SessionUser;
 import com.green.service.GameService;
 
 import lombok.Setter;
@@ -36,6 +39,9 @@ import lombok.extern.log4j.Log4j;
 public class GameController {
 	@Setter(onMethod_=@Autowired)
 	private GameService service;
+	
+	@Setter(onMethod_=@Autowired)
+	private HttpSession session;
 	
 	
 	@GetMapping("/get")
@@ -117,6 +123,11 @@ public class GameController {
 		log.info("title ======> " + title);
 		log.info(service.isExists(title));
 		return service.isExists(title);
+	}
+	
+	private String getSessionUserid() {
+		SessionUser sessionUser = (SessionUser)session.getAttribute("user");
+		return sessionUser.getUserid();
 	}
 	
 }

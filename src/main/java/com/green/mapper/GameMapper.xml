@@ -19,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="regDate" column="regDate"/>
 		<result property="cno" column="cno"/>
 		<result property="ageLimit" column="ageLimit"/>
+		<result property="userid" column="userid"/>
 
 		<association property="specvo" javaType="com.green.domain.SpecVO">
 			<id property="sno" column="sno"/>
@@ -89,12 +90,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<select id="read" resultMap="gameMap">
-		   	select g.gno, g.cno, g.title, g.content ,g.price ,g.rating, g.isOnSale ,g.regDate, g.ageLimit, t.tagName, s.os, s.gpu, s.cpu, s.language, s.ram, c.company, c.country 
+		   	select g.gno, m.userid, g.cno, g.title, g.content ,g.price ,g.rating, g.isOnSale ,g.regDate, g.ageLimit, t.tagName, s.os, s.gpu, s.cpu, s.language, s.ram, c.company, c.country 
 		   , gp.logo, gp.titlePicture, gp.video, gp.contentPicture
 		    from tbl_games g
 				left outer join tbl_tag t on g.gno = t.gno
 				left outer join tbl_spec s on g.gno = s.gno
 				left outer join tbl_company c on g.cno = c.cno
+				left outer join tbl_member m on g.userid = m.userid
 				left outer join (
 					select r.gno, r.logo, r.titlePicture, r.video, p.contentPicture, p.grno 
 					from tbl_games_resources r
@@ -116,11 +118,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id ="register">
-		insert into tbl_games(gno, title, content, price, ageLimit, cno, regdate) values(seq_games.nextval, #{title}, #{content}, #{price}, #{ageLimit}, seq_company.currval, sysdate)
+		insert into tbl_games(gno, title, content, price, ageLimit, cno, regdate, userid) values(seq_games.nextval, #{title}, #{content}, #{price}, #{ageLimit},
+		<choose>
+			<when test="#{cno} != null">
+				#{cno}	
+			</when>
+			<otherwise>
+				seq_company.currval	
+			</otherwise>
+		</choose>
+		 , sysdate, #{userid})
 	</insert>
 	
 	<update id="modify">
-			update tbl_games set title=#{title}, content=#{content}, price=#{price}, ageLimit = #{ageLimit} where gno = #{gno}
+			update tbl_games set title=#{title}, content=#{content}, price=#{price}, ageLimit = #{ageLimit} 
+			
+			<if test="cno != null">
+				, cno = #{cno}
+			</if>
+		
+			 where gno = #{gno}
 	</update>
 	
 	<delete id="delete">

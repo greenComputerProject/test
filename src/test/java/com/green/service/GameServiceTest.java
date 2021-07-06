@@ -54,6 +54,7 @@ public class GameServiceTest {
 		
 		companyvo.setCompany("epic");
 		companyvo.setCountry("usa");
+		gamevo.setUserid("32");
 		gamevo.setTitle(title);
 		gamevo.setAgeLimit("19");
 		gamevo.setPrice(1231232L);
@@ -76,10 +77,11 @@ public class GameServiceTest {
 		
 	}
 
+
 	@Test
 	public void 게임_조회() {
 		
-		log.info(service.read("Horizon Zero Dawn").toString());
+		log.info(service.read(title).toString());
 		
 	}
 	
