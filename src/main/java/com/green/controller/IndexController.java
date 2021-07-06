@@ -1,6 +1,7 @@
 package com.green.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -72,17 +73,19 @@ public class IndexController {
 		
 		List<GameListVO> games = gameListService.getList(cri, sort);
 		
+		
 		int totalCount = gameListService.getCount(cri, sort);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(cri);
 		pageMaker.setTotalCount(totalCount);
 		
-		model.addAttribute("games", games);
+		model.addAttribute("games", games.stream().filter(game -> game.getTitle() != null && !game.getTitle().equals("")) .collect(Collectors.toList()));
 		model.addAttribute("pageMaker", pageMaker);
 		System.out.println(games.size());
 		return "/game/list";
 	}
+	
 	
 	
 	@GetMapping("/login")

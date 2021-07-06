@@ -1,6 +1,8 @@
 package com.green.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,10 @@ import com.green.utils.Criteria;
 import com.green.utils.GameListFunctional;
 import com.green.utils.SortFilterSearch;
 
+import lombok.extern.log4j.Log4j;
+
 @Service
+@Log4j
 public class GameListServiceImpl implements GameListService {
 	
 	@Autowired
@@ -25,7 +30,7 @@ public class GameListServiceImpl implements GameListService {
 		
 		func = (x, y) -> {return mapper.getList(x, y);};
 		
-		return (List<GameListVO>) checkCondition(func, cri, sort);
+		return (ArrayList<GameListVO>)checkCondition(func, cri, sort);
 	}
 
 	@Override
@@ -42,7 +47,7 @@ public class GameListServiceImpl implements GameListService {
 		return (Integer) checkCondition(func, cri, sort);
 	}
 	
-	public Object checkCondition(GameListFunctional func, Criteria cri, SortFilterSearch sort){
+	private Object checkCondition(GameListFunctional func, Criteria cri, SortFilterSearch sort){
 		
 		if(cri != null && sort != null) return func.method(cri, sort);
 		else if(cri != null && sort == null) return func.method(cri, null);
