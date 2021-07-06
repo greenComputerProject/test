@@ -23,7 +23,7 @@
         <ul class="navbar-menu-center">
             <li><a href="/" class="navbar-menu-center-logoLink"><p><img class="logo" src="/resources/img/layout/epic logo.png" alt=""></p></a></li>
             <li><a href="/browse" class="navbar-menu-center-menuLink selected"><p>스토어</p></a></li>
-            <li><a href="/news" class="navbar-menu-center-menuLink"><p>새 소식</p></a></li>
+            <li><a href="/news/list" class="navbar-menu-center-menuLink"><p>새 소식</p></a></li>
             <li><a href="#" class="navbar-menu-center-menuLink"><p>자주 묻는 질문</p></a></li>
             <li><a href="#" class="navbar-menu-center-menuLink"><p>지원센터</p></a></li>
             <li><a href="#" class="navbar-menu-center-menuLink"><p>언리얼 엔진</p></a></li>

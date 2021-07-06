@@ -10,6 +10,7 @@ if(currUrl.includes("browse")){
 }
 
 
+
 console.log("ready!");
 
 let userName  = document.querySelectorAll(".dropdown-button a p")[0];
@@ -19,11 +20,6 @@ let authorizationRequestBaseUri = "/oauth2/authorization";
 let listStart = '<li class="dropdown-menu-link">';
 let listEnd = "</li>";
 let menuHtml = "";
-
-$.ajax({
-	
-
-})
 
 let wishlistBox = document.querySelectorAll(".navbar-search-wishlist")[0];
 let html = "";
