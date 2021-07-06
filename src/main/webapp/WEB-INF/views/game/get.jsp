@@ -235,26 +235,6 @@
 				var replyUL = $(".chat");// div 태그의  class이름이 chat인 DOM 찾고 
 				showList(1); //함수 호출 
 
-                const dateFormatter  = function(second){
-
-                    let secondPerYear = 3600 * 24 * 365;
-                    let secondPerMonth = 3600 * 24 * 30;
-                    let secondPerDay = 3600 * 24;
-                    let year;
-                    let month;
-                    let day;
-                    let _year = second % secondPerYear;
-                    let _month = second % secondPerMonth;
-                    let _day = second % secondPerDay;
-
-                    year = Math.floor(second / secondPerYear);
-                    month = Math.floor(_year / secondPerMonth);
-                    day = Math.floor(_month / secondPerDay);
-
-                    let format = year + "년" + month + "월" + day + "일";
-
-                    return format;
-                    }
 		
 				//페이지처리
 				function showList(page) {
@@ -301,11 +281,13 @@
 
 					var prev = startNum != 1;
 					var next = false;
-
-					if (endNum * 10 >= replyCnt) {
-						endNum = Math.ceil(replyCnt / 10.0);
+					
+					var amountPerPage = 6;
+					
+					if (endNum * amountPerPage >= replyCnt) {
+						endNum = Math.ceil(replyCnt / 6.0);
 					}
-					if (endNum * 10 < replyCnt) {
+					if (endNum * amountPerPage < replyCnt) {
 						next = true;
 					}
 

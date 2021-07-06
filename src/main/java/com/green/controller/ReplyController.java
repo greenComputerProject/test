@@ -1,7 +1,5 @@
 package com.green.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,16 +19,11 @@ import com.green.domain.ReplyPageDTO;
 import com.green.domain.ReplyVO;
 import com.green.service.ReplyService;
 
-import lombok.Setter;
-
 @RequestMapping("/replies")
 @RestController
 public class ReplyController {
 	@Autowired
 	private ReplyService service;
-	
-	@Autowired
-	private HttpSession session;
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/new", consumes = "application/json",produces = {MediaType.TEXT_PLAIN_VALUE})
@@ -51,7 +44,7 @@ public class ReplyController {
 			})
 	public ResponseEntity<ReplyPageDTO>  getList(@PathVariable("page") int page, @PathVariable("gno") Long gno){
 		System.out.println("댓글 컨트롤러에서 전체 목록 조회 ...............");
-		Criteria cri = new Criteria(page,10);
+		Criteria cri = new Criteria(page,6);
 		System.out.println(cri);
 		//return new ResponseEntity<> (service.getList(cri, gno), HttpStatus.OK);
 		return new ResponseEntity<> (service.getListWithPaging(cri, gno), HttpStatus.OK);

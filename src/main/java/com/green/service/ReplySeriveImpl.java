@@ -89,9 +89,6 @@ public class ReplySeriveImpl implements ReplyService{
 	  
 	  List<ReplyVO> list =  mapper.getListWithPaging(cri, gno);
 	  
-//	  list.stream().map(vo -> changeDateFormat(vo)).collect(Collectors.toList());
-	  
-	  list.forEach(i -> System.out.println(i));
 	  return new ReplyPageDTO(mapper.getCountByBno(gno),list); 
 	  }
 	 

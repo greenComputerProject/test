@@ -93,7 +93,7 @@
     <!-- article start -->
     <div class="displayed-games">
     	<c:forEach items="${games}" var="game" begin="0" end="2">
-	    	<a href="#">
+	    	<a href="/game/get?title=${game.title}">
 	    	<div class="game-box">
 	            <div class="game-box-image">     
                     <img src="<c:out value="${game.titlePicture}"></c:out>" alt="">
@@ -140,7 +140,7 @@
         	
         		<c:forEach items="${wishlistGames }" var="wishGame" end="1">
         			<c:if test="${wishGame != null}">
-	        			<a href="#">
+	        			<a href="/game/get?title=${wishGame.title}">
 				            <div class="wishlist-game-box">
 				                <div class="wishlist-game-picture">
 				                    <img src="<c:out value='${wishGame.titlePicture }'></c:out>" alt="">
