@@ -1,5 +1,5 @@
 html, body{
-    background-color: white;
+    background-color: white !important;
     height: 1800px;
 }
 
@@ -9,17 +9,12 @@ html, body{
     justify-content: space-between;
     position: relative;
     top: 8%;
-    width: 75%;
-    height: 55%;
+    width: 69% !important;
+    height: 55% !important;
     align-items: center;
 }
 
-.news-get-image{
-    width: 100%;
-    height: 60%;
-}
-
-.news-get-image img{
+.news-get img{
     width: 100%;
 }
 
@@ -34,4 +29,32 @@ html, body{
     color: rgb(121, 121, 121);
     font-weight: bold;
     font-size: 16px;
+    text-align: center;
+    width: 100%;
+    display: block;
+    word-wrap: break-word;
+    
+}
+
+#addButoon {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 100%;
+	height: 5%;
+}
+
+button {
+	border: none;
+	border-radius: 5%;
+	background-color: rgb(120, 120, 204);
+	width:10%;
+	height:100%;
+	cursor: pointer;
+	-webkit-transition: background-color 0.3s
+}
+
+button:hover {
+	-webkit-transition: background-color 0.3s;
+	background-color: rgb(150, 150, 199);
 }

@@ -17,9 +17,7 @@
 
     <!-- news get start -->
     <div class="news-get">
-        <div class="news-get-image">
-            <img src="/resources${get.getFile.uploadPath}/${get.getFile.uuid}_${get.getFile.fileName}" alt="">
-        </div>
+        <img src="/resources${get.getFile.uploadPath}/${get.getFile.uuid}_${get.getFile.fileName}" alt="">
         <div class="news-get-content">
             <p>
                "${get.content}"
@@ -32,16 +30,17 @@
     <!-- news get end -->
 
 		
+        <script type="text/javascript" src="/resources/js/news/news-common.js"></script>
 		<jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
-        <script type="text/javascript" src="/resources/js/news/news-common.js"></script>
         
         <script type="text/javascript">
+
         	$(document).ready(function(){
         		
         		var nno = ${get.nno}
         		var formData = new FormData();
-        		if(${user.userid} == ${get.userid}){
+        		if('${user.userid}' == '${get.userid}'){
         			str = "<button id='modify'>수정</button>"
         			$("#addButoon").append(str);
         		}

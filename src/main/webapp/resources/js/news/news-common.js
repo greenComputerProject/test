@@ -23,7 +23,13 @@ if(newsCurrUrl.includes('modify')){
 if(newsCurrUrl.includes('list')){
     changeNavbarSearchNews('새 소식')
 }
-// if(newsCurrUrl.contains('get')){}
+if(newsCurrUrl.includes('get')){
+    
+	let navbarSearch = document.querySelector('.navbar-search');
+    console.log(navbarSearch);
+    navbarSearch.style.background = 'white';
+	changeNavbarSearchNews('새 소식');
+}
 
 let changeSelectedMenu = function(){
 

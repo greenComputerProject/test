@@ -6,7 +6,7 @@ html, body{
 
 .news-list{
     position: relative;
-    top: 6%;
+    top: 8%;
     width: 75%;
     height: 55%;
     display: flex;
@@ -15,6 +15,24 @@ html, body{
 
 .news-title{
     font-size: 24px;
+	display: flex;
+	justify-content: space-between; 	
+}
+
+.news-title a{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(120, 120, 204);
+	-webkit-transition: background-color 0.3s;
+	font-size: 12px;
+	border-radius: 2%;
+	width: 10%;
+}
+
+.news-title a:hover{
+	-webkit-transition: background-color 0.3s;
+	background-color : rgb(150, 150, 199);
 }
 
 .news-new{

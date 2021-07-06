@@ -59,7 +59,6 @@ public class NewsController {
 	
 	@GetMapping("/get")
 	public void getOne(@RequestParam("nno") Long nno ,Model model) {
-		SessionUser user = (SessionUser)session.getAttribute("user");
 		log.info("getOne : " + service.getOne(nno));
 		model.addAttribute("get", service.getOne(nno));
 	}

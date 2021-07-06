@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +24,10 @@
     <!-- news get start -->
     <div class="news-list">
         <div class="news-title">
-            새 소식 
+            <span>새 소식 </span>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+            	<a href="/news/register">새 소식 등록</a>
+            </sec:authorize>
         </div>
         <div class="news-new">
 	        <c:forEach items="${news_list}" var="news" begin="0" end="1">
