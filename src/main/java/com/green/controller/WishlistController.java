@@ -26,7 +26,6 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/wishlist")
 @Log4j
 public class WishlistController {
-
 	@Autowired
 	private WishlistServiceImpl service;
 	
@@ -103,5 +102,15 @@ public class WishlistController {
 		
 		if(user != null) return user.getUserid();
 		else return null;
+	}
+	
+	@GetMapping("/check/{gno}")
+	@ResponseBody
+	public Boolean check(@PathVariable("gno") Long gno) {
+		if(getSessionUserId() == null) {
+			return null;
+		}
+		log.info("checkWishlist => " + service.checkIfExists(getSessionUserId(), gno));
+		return service.checkIfExists(getSessionUserId(), gno);
 	}
 }

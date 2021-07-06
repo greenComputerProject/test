@@ -38,7 +38,9 @@ public class UserController {
 	@ResponseBody
 	public SessionUser getSessionUser() {
 		SessionUser user = (SessionUser)session.getAttribute("user");
-		log.info("session user ------------> " + user.getName());
+		if(user == null) {
+			return null;
+		}
 		return (SessionUser)session.getAttribute("user");
 	}
 	

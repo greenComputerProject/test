@@ -58,7 +58,7 @@
 		                   	<c:out value='${game.content}'></c:out>
 		                </div>
 		                <div class="button">
-		                    <a href="#">
+		                    <a href="/game/get?title=${game.title}">
 		                        자세히 보기</a>
 		                </div>
 		            </div>

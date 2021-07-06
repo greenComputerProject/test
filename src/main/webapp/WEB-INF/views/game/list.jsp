@@ -39,7 +39,7 @@
                     <c:forEach items="${games}" var="game" >
                     
                     <li>
-                        <a href="/game/get?title=${game.title}" class="gno${game.gno}">
+                        <a href="/game/get?title=${game.title}" >
                         <div class="gno" style="display: none;">${game.gno}</div>
                         <div class="image"><img src='<c:out value="${game.titlePicture}"></c:out>' alt=""></div>
                         
@@ -53,10 +53,10 @@
 		                        	<div class="price">무료</div>
 		                        </c:if>
 	                        	</div>
+						</a>
+	                        	<i class="fas fa-plus-circle" id="gno${game.gno}" onclick="addWishlist(${game.gno})" ></i>
 	
-	                        	<i class="fas fa-plus-circle" id="${game.gno}" onclick="addWishlist(${game.gno})" ></i>
-	
-	                        </a>
+	                        
 	                    </li>
                     
                     </c:forEach>
