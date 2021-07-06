@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.green.mapper.GameMapper;
+import com.green.mapper.LikeMapper;
 import com.green.mapper.ReplyMapper;
 import com.green.domain.Criteria;
+import com.green.domain.LikeVO;
 import com.green.domain.ReplyPageDTO;
 //import com.green.domain.ReplyPageDTO;
 import com.green.domain.ReplyVO;
@@ -30,6 +32,9 @@ public class ReplySeriveImpl implements ReplyService{
 	
 	@Setter(onMethod_=@Autowired)
 	private GameMapper gameMapper;
+	
+	@Setter(onMethod_=@Autowired)
+	private LikeMapper likeMapper;
 	
 	@Transactional
 	@Override
@@ -92,5 +97,27 @@ public class ReplySeriveImpl implements ReplyService{
 	  return new ReplyPageDTO(mapper.getCountByBno(gno),list); 
 	  }
 	 
+	  
+		//------------좋아요-----------//
+		@Override
+		public void like_insert(Long nno, String userid) {
+			likeMapper.insert(nno, userid);
+		}
+
+		@Override
+		public void like_delete(Long nno, String userid) {
+			likeMapper.delete(nno, userid);
+			
+		}
+
+		@Override
+		public LikeVO like_check(Long nno, String userid) {
+			return likeMapper.read(nno, userid);
+		}
+
+		@Override
+		public int like_count(Long nno) {
+			return likeMapper.like_count(nno);
+		}
 
 }
