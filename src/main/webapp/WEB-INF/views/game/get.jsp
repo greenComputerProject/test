@@ -530,7 +530,7 @@
 					showList(pageNum);
 				});
 				
-				
+				//결제 페이지
 				$("#buy_module").on("click", function () {
 					 if(!'${user.userid}'){
 						alert("로그인 후 구매가 가능합니다.");
