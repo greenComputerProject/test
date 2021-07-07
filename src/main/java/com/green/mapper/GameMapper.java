@@ -15,8 +15,6 @@ public interface GameMapper {
 	
 	public GameVO read(String title);
 	
-	public GameVO news(Long nno);
-	
 	public int register(GameVO game);
 	
 	public int modify(GameVO game);

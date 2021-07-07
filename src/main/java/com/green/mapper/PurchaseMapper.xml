@@ -18,7 +18,7 @@
 		</selectKey>
 		
 		insert into tbl_purchase_list(pno, orderid, purchasedate, gno, userid)
-		 values(seq_purchase.nextval, #{orderid}, sysdate, #{gno}, #{userid} )
+		 values(#{pno}, #{orderid}, sysdate, #{gno}, #{userid} )
 	</insert>
 	
 	<select id="getList" resultMap="purchaseListMap" parameterType="String">
