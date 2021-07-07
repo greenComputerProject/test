@@ -6,12 +6,17 @@
 	xmlns:task="http://www.springframework.org/schema/task"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jms="http://www.springframework.org/schema/jms"  
+	xmlns:p="http://www.springframework.org/schema/p"  
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/jms  
+		http://www.springframework.org/schema/jms/spring-jms-3.0.xsd
+		">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 히카리 CP 빈 등록 -->
@@ -53,6 +58,7 @@
 	<!-- 2021-06-18 변경된부분 -->
 	<mybatis-spring:scan base-package="com.green.oauth2.mapper"/>
 	<mybatis-spring:scan base-package="com.green.security.mapper"/> 
+	<mybatis-spring:scan base-package="com.green.jms.mapper"/> 
 	<!-- 2021-06-18 변경된부분 -->
 	<context:component-scan base-package="com.green.service"/>
 	<context:component-scan base-package="com.green.oauth2.service"/>
@@ -63,4 +69,7 @@
 	</bean>
 	<tx:annotation-driven/>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	
+	
 </beans>
