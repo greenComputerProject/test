@@ -23,10 +23,12 @@ import com.green.domain.Criteria;
 import com.green.domain.GamePictureVO;
 import com.green.domain.GameResourceVO;
 import com.green.domain.GameVO;
+import com.green.domain.PurchaseVO;
 import com.green.domain.SpecVO;
 import com.green.domain.TagVO;
 import com.green.oauth2.domain.SessionUser;
 import com.green.service.GameService;
+import com.green.service.PurchaseService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -38,6 +40,9 @@ public class GameController {
 	@Setter(onMethod_=@Autowired)
 	private GameService service;
 	
+	@Setter(onMethod_= @Autowired)
+	private PurchaseService purservice;
+	
 	@Setter(onMethod_=@Autowired)
 	private HttpSession session;
 	
@@ -45,7 +50,11 @@ public class GameController {
 	@GetMapping("/get")
 	public void get(@RequestParam("title") String title, Model model, @ModelAttribute Criteria cri) {
 		GameVO game = service.read(title);
+	
 		
+		SessionUser user= (SessionUser)session.getAttribute("user");
+		
+
 		System.out.println("게임 컨트롤러에서 게임 조회 타이틀 :  " + title);
 		model.addAttribute("game", game);
 		
@@ -60,6 +69,11 @@ public class GameController {
 			a += tagList[i]+" "; 
 		}
 		model.addAttribute("tag", a); //태그(태그)
+		if(user!=null) {
+			String userid = user.getUserid();
+			model.addAttribute("pur",purservice.isPurchased(userid, game.getGno()));
+		}
+		
 	}
 	
 	
@@ -93,11 +107,6 @@ public class GameController {
 		String userid =  sessionUser.getUserid();
 		game.setUserid(userid);
 		
-		System.out.println("게임 컨트롤러에서 게임 register post");
-		System.out.println(company.toString());
-		System.out.println(game.toString());
-		System.out.println(tag.toString());
-		System.out.println(spec.toString());
 		service.register(company, game, tag, spec, resource, pictureList);
 		
 		return "redirect:/browse";

@@ -61,10 +61,4 @@ public class PurchaseServiceImpl implements PurchaseService{
 		return mapper.getCount(userid, gno) == 0 ? false : true;
 	}
 
-	@Override
-	public int insert(PurchaseVO vo) { 
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

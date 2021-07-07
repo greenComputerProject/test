@@ -555,10 +555,18 @@
 				
 				//결제 페이지
 				$("#buy_module").on("click", function () {
+					
 					 if(!'${user.userid}'){
 						alert("로그인 후 구매가 가능합니다.");
 						return ;
-					}  
+					 } 
+					 
+					 if('${pur}' == "true"){
+						 alert("이미 구매한 게임 입니다.")
+						 return ;
+					 }
+					 
+					 
 						var IMP = window.IMP; // 생략가능
 						IMP.init('iamport');
 						IMP.request_pay({
@@ -595,16 +603,33 @@
 							console.log(rsp);
 							if (rsp.success) {
 								var msg = '${game.price}원이 결제되었습니다.'
+									console.log("gno : ",gnoValue)
+									console.log("user : ",userid)
+									$.ajax({
+										url: "/purchase/new",
+										method:"POST",
+					                    dataType: "JSON",
+										data:{
+											gno : gnoValue,
+											userid : '${user.userid}'
+											
+										},
+										success: function(){ 
+					                	}
+										
+									})
 							} 
 							else {
 								var msg = '결제에 실패하였습니다.';
-								msg += '에러내용 : ' + rsp.error_msg;
+								msg += ' 에러내용 : ' + rsp.error_msg;
+
 							}
 							alert(msg);
 						});
 						
 				});
 					
+				
 				
 				
 			}); //document ready 의 끝

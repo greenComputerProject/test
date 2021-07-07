@@ -7,8 +7,6 @@ import com.green.domain.PurchaseVO;
 
 public interface PurchaseService {
 	
-	public int insert(PurchaseVO vo);
-
 	public boolean purchase(String userid, Long gno);
 	
 	public List<PurchaseListVO> getList(String userid);
@@ -16,4 +14,5 @@ public interface PurchaseService {
 	public void refund(Long pno);
 	
 	public boolean isPurchased(String userid, Long gno);
+
 }

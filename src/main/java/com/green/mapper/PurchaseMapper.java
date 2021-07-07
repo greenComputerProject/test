@@ -15,6 +15,8 @@ public interface PurchaseMapper {
 	
 	public void delete(Long pno);
 	
+	public PurchaseVO read(Long pno);
+	
 	public Integer getCount(@Param("userid") String userid, @Param("gno") Long gno);
 	
 }
