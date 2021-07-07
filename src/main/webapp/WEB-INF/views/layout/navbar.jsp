@@ -56,12 +56,6 @@
     <div class="mobile text">
         <span >아직 모바일 환경은 지원하지 않아요!</span>
     </div>
-    <c:if test="${newMessage !=null }">
-    	${newMessage.content}
-    	${newMessage.from }
-    </c:if>
-    <c:if test="${newMessage == null}">
-    	메시지가 없어요 ${user.email}
-    </c:if>
+
 </body>
 </html>

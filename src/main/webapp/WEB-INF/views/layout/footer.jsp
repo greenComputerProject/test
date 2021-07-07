@@ -94,7 +94,6 @@
         </div>
     </div>
 </footer>
-
 <!-- footer end -->
 <script type="text/javascript" src="/resources/js/layout/navbar-search.js"></script>
 <script type="text/javascript" src="/resources/js/layout/footer.js"></script>

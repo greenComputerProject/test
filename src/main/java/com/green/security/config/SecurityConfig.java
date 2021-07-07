@@ -38,6 +38,8 @@ import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequ
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.RequestContextListener;
 
 import com.green.oauth2.service.CustomOAuth2UserService;
 import com.green.oauth2.service.CustomOidcUserService;
@@ -242,4 +244,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		jdbcTokenRepository.setDataSource(dataSource);
 		return jdbcTokenRepository;
 	}
+	
 }

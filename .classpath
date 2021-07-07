@@ -26,6 +26,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
 		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
@@ -55,15 +56,5 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="C:/lib/jstl-1.2.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-=======
-	<classpathentry kind="lib" path="C:/lib/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/lib/spring-security-taglibs-5.0.6.RELEASE.jar"/>
->>>>>>> d670e83aa851527b9c21104abcd1c423847932c9
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

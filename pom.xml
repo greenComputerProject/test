@@ -310,20 +310,6 @@
     <artifactId>jstl</artifactId>
     <version>1.2</version>
 </dependency>
-
-		<!-- jms -->
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jms -->
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-jms</artifactId>
-		    <version>${org.springframework-version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-spring -->
-		<dependency>
-		    <groupId>org.apache.activemq</groupId>
-		    <artifactId>activemq-spring</artifactId>
-		    <version>5.9.1</version>
-		</dependency>
 		
 		
 	</dependencies>
