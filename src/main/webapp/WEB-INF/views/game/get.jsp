@@ -228,7 +228,7 @@
 			let html = '';
 			$.ajax({
 				type: 'GET',
-				url: '/list/check/' + ${game.gno},
+				url: '/wishlist/check/' + ${game.gno},
 				dataType: 'json',
 				success: function(result){	
 					
@@ -241,8 +241,8 @@
 						html = '<button class="wishlist-button" onclick="addWishlist(${game.gno})">'
 							+ '위시리스트에 추가</button>'
 					}
-					
-					myRating.innerHMTL = '내가 준 별점 : <span>3</span>'
+					console.log(myRating)
+					myRating.innerHTML = '내가 준 별점 : <span>3</span>';
 					wishlistBox.innerHTML = html
 					
 				}, error: function(error){
