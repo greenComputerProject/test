@@ -1,0 +1,52 @@
+html, body{
+    height: 1600px;
+}
+
+.chat{
+    width: 50%;
+    height: 40%;
+    position: relative;
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1%;
+    
+    justify-content: center;
+}
+
+.ch-ul{
+    display: flex;
+    flex-direction: column;
+    height:95%;
+    background-color: white;
+}
+
+.ch-li{
+	color: rgb(121,121,121);
+	margin: 1%;
+}
+
+.ch-in{
+    display: flex;
+   	justify-content: space-between;
+    height: 5%;
+}
+
+.ch-in input{
+	width: 75%;
+	font-size: 14px;
+	border: none;
+}
+
+.ch-in button{
+	width: 25%;
+	font-size: 14px;
+	background-color: rgb(196,196,196);
+	color: rgb(121,121,121);
+	border: none;
+}
+
+.ch-in button:hover {
+	-webkit-transition: background-color 0.3s;
+	background-color: rgb(160,160,160);
+}
