@@ -1,16 +1,12 @@
 package com.green.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.jms.listener.adapter.MessageListenerAdapter;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.green.jms.domain.MessageDto;
@@ -28,9 +24,13 @@ public class MessageController {
 	@Autowired
 	private MessageService service;
 	
+	@Autowired
+	private MessageListenerAdapter	adapter;
+	
 	@PostMapping("/send")
 	public void send(@RequestBody MessageDto message) {
 		
+		log.info(adapter.getSubscriptionName());
 		service.send(message);
 	}
 }
