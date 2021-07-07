@@ -38,15 +38,22 @@
 		<property name="defaultListenerMethod" value="handleMessage"></property>
 		<property name="messageConverter" ref="messageConverter"></property>
 	</bean>
+	
+	<bean id="messageListener" class="com.green.jms.MessageListenerImpl"></bean>
 		
 	<!-- 
 		Message를 받으면 호출되는 id를 정의
 		큐에 메시지가 도착하면 purePojoPushNotification을 호출
 	 -->
-	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+<!-- 	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
 		<property name="connectionFactory" ref="jmsFactory"></property>
 		<property name="destination" ref="queueDestination"></property>
 		<property name="messageListener" ref="purePojoPushNotification"></property>
+	</bean> -->
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="jmsFactory"></property>
+		<property name="destination" ref="queueDestination"></property>
+		<property name="messageListener" ref="messageListener"></property>
 	</bean>
 	
 	<!-- Spring JMS Template -->

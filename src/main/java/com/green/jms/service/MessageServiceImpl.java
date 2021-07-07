@@ -19,5 +19,11 @@ public class MessageServiceImpl implements MessageService{
 	public void send(MessageDto message) {
 		
 		jmsTemplate.convertAndSend(message);
+	}
+
+	@Override
+	public void receive(MessageDto dto) {
+		
+		logger.debug("receive invoked");
 	};
 }
