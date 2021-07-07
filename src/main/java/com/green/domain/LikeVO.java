@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class LikeVO {
 
-	private Long lno;
+	private Long like_no ;
     private String userid;
-    private Long nno;
+    private Long rno ;
 }

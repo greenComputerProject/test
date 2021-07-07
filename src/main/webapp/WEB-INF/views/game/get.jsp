@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Impact | 무료 다운로드 및 플레이</title>
+    <title>${game.title} | 무료 다운로드 및 플레이</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
     <link rel="stylesheet" href="/resources/css/game/get.css">
@@ -301,18 +301,19 @@
 							return;
 						};
 						 for(var i =0, len = list.length || 0; i<len; i++){
-							str += " <li data-rno='" + list[i].rno+"'>"
+							str += "<li data-rno='" + list[i].rno+"'>"
 							str += '<input type= "hidden" id="uid" value = "'+ list[i].userid +'" readonly/>';
-							str += " <div class='writer' id = 'idname' name = 'originid' >"+ list[i].name + "</div>"
-							str += " <div class='content'id = 'con'>"+ list[i].content + "</div>"
-							str += " <div class='regDate'>"+ list[i].regDate + "</div>"
-							str += " <div class='likes'>"+ list[i].likes + "</div>"
-							str += " <div class='buttons'>"
-							str += "    <button class='like-button'>"+ "좋아요" + "</button>"
-							str += "    <button class='modify-button'>"+ "수정" + "</button>"
-							str += "    <button class='delete-button' id='reviewremove'>"+ "삭제" + "</button>"
-							str += " </div>" 
-							str += " </li>"					
+							str += "<div class='writer' id = 'idname' name = 'originid' >"+ list[i].name + "</div>"
+							str += "<div class='content' id = 'con'>"+ list[i].content + "</div>"
+							str += "<div class='regDate'>"+ list[i].regDate + "</div>"
+							str += "<div class='likes'>"+ list[i].likes + "</div>"
+							str += "<div class='buttons'>"
+							str += "<button class='like-button' id='like-button'>" 
+							str += "<i class='fa fa-heart' style='font-size:10px;color:red'></i> 좋아요" + "</button>"
+							str += "<button class='modify-button'>"+ "수정" + "</button>"
+							str += "<button class='delete-button' id='reviewremove'>"+ "삭제" + "</button>"
+							str += "</div>" 
+							str += "</li>"					
 						}; 					
 						replyUL.html(str);
 						showReplyPage(replyCnt);
@@ -373,6 +374,28 @@
 				
 				
 				var replyDate = eot.find("div[name='regDate']").text();
+				
+				//좋아요 버튼
+				$(".chat").on("click", ".like-button", function (e) {
+					console.log('라이크버튼');
+					var rno = $(this).closest("li").data("rno");
+					var userid = eu.val();
+					console.log("rno", rno);
+					console.log("userid", userid);
+					$.ajax({
+						url: "/replies/like_update",
+			            type: "POST",
+			            data: {
+			                rno: rno,
+			                userid: userid
+			            },
+			            //성공 했을시 추천수확인하는 함수 실행
+			            success: function () {
+					        console.log('좋아요 확인');
+					        showList(pageNum);
+			            },
+					})
+				})
 				
 				//댓글 등록
 				$("#addReplyBtn").on("click",function(e){
@@ -530,7 +553,7 @@
 					showList(pageNum);
 				});
 				
-				
+				//결제 페이지
 				$("#buy_module").on("click", function () {
 					 if(!'${user.userid}'){
 						alert("로그인 후 구매가 가능합니다.");

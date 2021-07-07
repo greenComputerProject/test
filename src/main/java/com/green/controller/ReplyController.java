@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.green.domain.Criteria;
+import com.green.domain.LikeVO;
 import com.green.domain.ReplyPageDTO;
 import com.green.domain.ReplyVO;
 import com.green.service.ReplyService;
@@ -85,5 +87,37 @@ public class ReplyController {
 				new ResponseEntity<> ("success", HttpStatus.OK)
 				:new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	
+	@RequestMapping(value="/like_update", method=RequestMethod.POST)
+    @ResponseBody
+	public void like_update(Long rno, String userid) {	//좋아요 버튼 업데이트
+		
+		System.out.println("like_update");
+		System.out.println("nno : " + rno + ", userid : " + userid);
+		LikeVO like = service.like_check(rno, userid);	//사용자가 눌럿었는지 확인용
+		System.out.println("like : " + like);
+		if(like != null) {	//데이터베이스에 있다면
+			service.like_delete(rno, userid);
+		}else {				//없다면
+			service.like_insert(rno, userid);
+		}
+	}
+	
+	
+	//사용할지 의문 reply쪽에 넣을수도?
+	@RequestMapping(value="/like_count", method=RequestMethod.POST)
+	@ResponseBody
+	public int like_count(Long rno) {	//좋아요 갯수확인
+		System.out.println("like_count");
+		int result =service.like_count(rno);	//해당게시물에 해당하는 좋아요수
+		System.out.println("result : "+ result);
+		return result;
+//				!=0? 
+//				new ResponseEntity<Integer>(result,HttpStatus.OK):
+//					new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
+					
+	}
+	
 	
 }

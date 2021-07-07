@@ -16,9 +16,4 @@ public interface NewsService {
 	
 	public FileUploadVO getFile(Long nno);
 	
-	public void like_insert(Long nno, String userid);	
-	public void like_delete(Long nno, String userid);	
-	public LikeVO like_check(Long nno, String userid);		
-	public int like_count(Long nno);	
-	
 }

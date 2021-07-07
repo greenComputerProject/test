@@ -83,32 +83,6 @@ public class NewsServiceImpl implements NewsService {
 		FileUploadVO fileList = filemapper.findByBno(nno);
 		return fileList;
 	}
-
-	
-	//------------좋아요-----------//
-	@Override
-	public void like_insert(Long nno, String userid) {
-		likemapper.insert(nno, userid);
-	}
-
-	@Override
-	public void like_delete(Long nno, String userid) {
-		likemapper.delete(nno, userid);
-		
-	}
-
-	@Override
-	public LikeVO like_check(Long nno, String userid) {
-		return likemapper.read(nno, userid);
-	}
-
-	@Override
-	public int like_count(Long nno) {
-		return likemapper.like_count(nno);
-	}
-
-	
-
 	
 }
 
