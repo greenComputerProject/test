@@ -31,7 +31,7 @@
             <div class="slide-image active"><iframe width="100%" height="435vw" src="https://www.youtube.com/embed/${game.resourcevo.video}?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
             </c:if>
             <c:forEach var="picture" items="${game.pictureList}">
-            	<div class="slide-image"><img src="${picture}" alt=""></div>
+            	<div class="slide-image"><img src="${picture.contentPicture}" alt=""></div>
             </c:forEach>
         </div>
         <div class="game-slide-dots">
