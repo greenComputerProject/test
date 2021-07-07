@@ -46,6 +46,16 @@
 				document.querySelector('.ch-ul').innerHTML = "";
 			}
 		}
+		
+		var button = document.querySelector(".ch-in button");
+
+		// Execute a function when the user releases a key on the keyboard
+		button.addEventListener("keyup", function(event) {
+		  // Number 13 is the "Enter" key on the keyboard
+		  if (event.keyCode === 13) {
+		    button.click();
+		  }
+		});
 
 		$("#button-send").on("click", function(e){
 			sendMessage();
@@ -73,7 +83,7 @@
 				console.log('arr[' + i + ']: ' + arr[i]);
 			}
 
-			var cur_session = '${userid}';
+			var cur_session = '${username}';
 			console.log('cur_session : ' + cur_session);
 
 			sessionId = arr[0];
@@ -85,7 +95,7 @@
 
 			} else {
 
-				var str = sessionId + " : " + message ;
+				var str = cur_session + " : " + message ;
 
 				$(".ch-ul").append('<div class="ch-li" id="msgArea">' + str + '</div>');
 			}
@@ -96,7 +106,7 @@
 
 		function onClose(evt){
 
-			var user = '${pr.username}';
+			var user = '${username}';
 			var str = user + " 님이 퇴장하셧습니다.";
 
 			$(".ch-ul").append('<div class="ch-li" id="msgArea">' + str + '</div>');
@@ -106,8 +116,8 @@
 
 		function onOpen(evt){
 
-			var user = '${pr.username}';
-			var str = user + " 님이 퇴장하셧습니다.";
+			var user = '${username}';
+			var str = user + " 님이 입장하셧습니다.";
 
 			$(".ch-ul").append('<div class="ch-li" id="msgArea">' + str + '</div>');
 			changeBackground();
