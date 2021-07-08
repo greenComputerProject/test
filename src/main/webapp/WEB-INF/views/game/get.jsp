@@ -306,7 +306,11 @@
 							str += "<div class='writer' id = 'idname' name = 'originid' >"+ list[i].name + "</div>"
 							str += "<div class='content' id = 'con'>"+ list[i].content + "</div>"
 							str += "<div class='regDate'>"+ list[i].regDate + "</div>"
-							str += "<div class='likes'>"+ list[i].likes + "</div>"
+							if(list[i].likes == null){
+								str += "<div class='likes'>"+ "0" + "</div>"
+							}else{
+								str += "<div class='likes'>"+ list[i].likes + "</div>"
+							}
 							str += "<div class='buttons'>"
 							str += "<button class='like-button' id='like-button'>" 
 							str += "<i class='fa fa-heart' style='font-size:10px;color:red'></i> 좋아요" + "</button>"
@@ -628,6 +632,34 @@
 						});
 						
 				});
+				
+				$(".stars i").on("click",function(){
+					var formData = new FormData();
+					var rating = $(".my-rating span").text();
+					var gno = ${game.gno}
+					var userid = ${user.userid}
+					console.log(rating,gno,userid);
+
+				    formData.append("gno",gno);
+				    formData.append("userid",userid);
+				    formData.append("rating", rating);
+					
+					$.ajax({
+				        url: '/game/rating',
+				        data: {
+				        	gno : gno,
+				        	userid : userid,
+				        	rating : rating
+				        },
+				        type: 'POST',
+				        success: function(result){
+				            console.log("result :  "+ result);
+				    	},
+						error: function(a){
+							console.log(a);
+						}
+				    }); //$.ajax
+				})
 					
 				
 				

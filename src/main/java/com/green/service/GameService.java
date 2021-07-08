@@ -8,6 +8,7 @@ import com.green.domain.CompanyVO;
 import com.green.domain.GamePictureVO;
 import com.green.domain.GameResourceVO;
 import com.green.domain.GameVO;
+import com.green.domain.RatingVO;
 import com.green.domain.SpecVO;
 import com.green.domain.TagVO;
 @Service
@@ -26,4 +27,10 @@ public interface GameService {
 	public boolean isExists(String title);
 	
 	public boolean delete(Long gno);
+	
+	
+	//평점
+	public void rating(RatingVO rating);				
+	public float rating_avg(Long gno);	
+	
 }

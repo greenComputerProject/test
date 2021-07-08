@@ -105,19 +105,4 @@ public class ReplyController {
 	}
 	
 	
-	//사용할지 의문 reply쪽에 넣을수도?
-	@RequestMapping(value="/like_count", method=RequestMethod.POST)
-	@ResponseBody
-	public int like_count(Long rno) {	//좋아요 갯수확인
-		System.out.println("like_count");
-		int result =service.like_count(rno);	//해당게시물에 해당하는 좋아요수
-		System.out.println("result : "+ result);
-		return result;
-//				!=0? 
-//				new ResponseEntity<Integer>(result,HttpStatus.OK):
-//					new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
-					
-	}
-	
-	
 }
