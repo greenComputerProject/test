@@ -306,7 +306,11 @@
 							str += "<div class='writer' id = 'idname' name = 'originid' >"+ list[i].name + "</div>"
 							str += "<div class='content' id = 'con'>"+ list[i].content + "</div>"
 							str += "<div class='regDate'>"+ list[i].regDate + "</div>"
-							str += "<div class='likes'>"+ list[i].likes + "</div>"
+							if(list[i].likes == null){
+								str += "<div class='likes'>"+ "0" + "</div>"
+							}else{
+								str += "<div class='likes'>"+ list[i].likes + "</div>"
+							}
 							str += "<div class='buttons'>"
 							str += "<button class='like-button' id='like-button'>" 
 							str += "<i class='fa fa-heart' style='font-size:10px;color:red'></i> 좋아요" + "</button>"
@@ -628,6 +632,55 @@
 						});
 						
 				});
+				var gno = ${game.gno}
+				$(".stars i").on("click",function(){
+					
+					if(!'${user.userid}'){
+						alert("로그인 후 평점을 입력할 수 있습니다.");
+						return ;
+					 } 
+					
+					console.log('star rating ajax call');
+					var rating = $(".my-rating span").text();
+					var userid = ${user.userid}
+					console.log(rating +  ", "  + gno + ", " + userid);
+					
+					var data = {
+							gno : gno,
+				        	userid : userid,
+				        	rating: rating
+					}
+
+					$.ajax({
+				        url: '/game/rating',
+				        type: 'POST',
+				        data: JSON.stringify(data),
+				        contentType: 'application/json; charset=utf-8',
+				        dataType: 'json',
+				        success: function(result){
+				            console.log("result :  "+ result);
+				    	},
+						error: function(a){
+							console.log(a);
+							rating_avg();
+						}
+				    }); //$.ajax
+				})
+				
+				function rating_avg (){
+					$.ajax({
+						url:'/game/rating_avg',
+						type:'POST',
+						data:{
+							gno : gno
+						},
+						dataType:'json',
+						success:function(result){
+							console.log(result);
+							$(".avg-rating span").text(result);
+						}
+					})
+				}
 					
 				
 				

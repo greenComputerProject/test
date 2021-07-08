@@ -10,12 +10,14 @@ import com.green.domain.CompanyVO;
 import com.green.domain.GamePictureVO;
 import com.green.domain.GameResourceVO;
 import com.green.domain.GameVO;
+import com.green.domain.RatingVO;
 import com.green.domain.SpecVO;
 import com.green.domain.TagVO;
 import com.green.mapper.CompanyMapper;
 import com.green.mapper.GameMapper;
 import com.green.mapper.GamePictureMapper;
 import com.green.mapper.GameResourceMapper;
+import com.green.mapper.RatingMapper;
 import com.green.mapper.SpecMapper;
 import com.green.mapper.TagMapper;
 
@@ -44,6 +46,9 @@ public class GameServiceImpl implements GameService{
 	
 	@Setter(onMethod_=@Autowired)
 	private GamePictureMapper pmapper;
+	
+	@Setter(onMethod_=@Autowired)
+	private RatingMapper ratingmapper;
 	
 		
 	@Override
@@ -127,6 +132,25 @@ public class GameServiceImpl implements GameService{
 	public boolean delete(Long gno) {
 		// TODO Auto-generated method stub
 		return mapper.delete(gno) == 1? true : false;
+	}
+
+	
+	//평점
+	@Override
+	public void rating(RatingVO rating) {
+		RatingVO result = ratingmapper.read(rating);
+		System.out.println(result);
+		if(result != null) {
+			ratingmapper.update(rating);
+		}else {
+			ratingmapper.insert(rating);
+		}
+	}
+
+	@Override
+	public float rating_avg(Long gno) {
+		float result = ratingmapper.rating_avg(gno);
+		return result;
 	}
 
 

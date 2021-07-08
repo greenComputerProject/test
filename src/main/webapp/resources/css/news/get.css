@@ -1,5 +1,5 @@
 html, body{
-    background-color: white !important;
+    background: linear-gradient(to right, rgb(230, 240, 240), rgb(250 , 240, 240)) !important;
     height: 1800px;
 }
 

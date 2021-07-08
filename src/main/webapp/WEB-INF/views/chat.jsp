@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>실시간 채팅</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.2/sockjs.min.js" integrity="sha512-2hPuJOZB0q6Eu4RlRRL2/8/MZ+IoSSxgDUu+eIUNzHOoHLUwf2xvrMFN4se9mu0qCgxIjHum6jdGk/uMiQoMpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -20,7 +20,7 @@
 		
 	</div>
 	<div class="ch-in">
-		<input id="msg" type="text" placeholder="메시지를 입력하세요.">
+		<input id="msg" type="text" placeholder="메시지를 입력하세요." autofocus>
 		<button id="button-send">전송</button>
 	</div>
 	
@@ -29,36 +29,39 @@
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 <script type="text/javascript" src="/resources/js/chat/chat.js"></script>
 	<script>
-	
 		
+		document.querySelector('.ch-in input').select();
+		
+		document.addEventListener('keypress', function(e){
+			if(e.key === 'Enter'){
+				document.querySelector('.ch-in button').click();
+				
+			}
+		})
 	
 		let changeBackground = function(){
-			
+	
 			var box = document.getElementById("box");
-			var r = parseInt(Math.random() * 50);
-			console.log(document.body);
-			document.body.style.backgroundColor = 'rgb( ' + (200 + r) + ', 240, 240)';
-			document.querySelector('.navbar-search').style.backgroundColor = 'rgb( ' + (200 + r) + ', 240, 240)';
+			var r = parseInt(Math.random() * 30);
+			var first = 'rgb( ' + (220 + r) + ', 240, 240)';
+			var middle = 'rgb( ' + (210 + r) + ', 250, 250)';
+			var last = 'rgb( ' + (220 + r) + ', 220, 220)';
+			var gradient = 'linear-gradient( to right , '+ first + " , " + middle +" , " + last +  ")"
+			console.log(document.body);	
+			document.body.style.background = gradient;
+			document.querySelector('.navbar-search').style.background = gradient; 
 		}
-		changeBackground();
+		changeBackground(); 
 		
 		let resetChat = function() {
 			let num = document.querySelectorAll('.ch-li').length;
 			
-			if(num >= 16){
-				document.querySelector('.ch-ul').innerHTML = "";
+			if(num >= 19){
+				document.querySelector('.ch-ul').removeChild(document.querySelectorAll('.ch-ul .ch-li')[0]);
 			}
 		}
 		
-		var button = document.querySelector(".ch-in button");
-
-		// Execute a function when the user releases a key on the keyboard
-		button.addEventListener("keyup", function(event) {
-		  // Number 13 is the "Enter" key on the keyboard
-		  if (event.keyCode === 13) {
-		    button.click();
-		  }
-		});
+		
 
 		$("#button-send").on("click", function(e){
 			sendMessage();

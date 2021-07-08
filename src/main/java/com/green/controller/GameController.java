@@ -7,13 +7,16 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,7 +26,9 @@ import com.green.domain.Criteria;
 import com.green.domain.GamePictureVO;
 import com.green.domain.GameResourceVO;
 import com.green.domain.GameVO;
+import com.green.domain.LikeVO;
 import com.green.domain.PurchaseVO;
+import com.green.domain.RatingVO;
 import com.green.domain.SpecVO;
 import com.green.domain.TagVO;
 import com.green.oauth2.domain.SessionUser;
@@ -153,4 +158,20 @@ public class GameController {
 		return service.delete(gno);
 	}
 	
+	@PostMapping(value="/rating", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+	public void rating(@RequestBody RatingVO rating) {
+		
+		log.info(rating.toString());
+		service.rating(rating);		
+	}
+	
+	@RequestMapping(value="/rating_avg" ,method=RequestMethod.POST)
+    @ResponseBody
+	public float rating_avg(Long gno) {
+		log.info("rating avg, gno : " + gno);
+		float result = service.rating_avg(gno);
+		log.info("avg result : " + result);
+		return result;
+	}
 }
