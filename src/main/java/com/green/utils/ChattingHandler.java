@@ -36,7 +36,11 @@ public class ChattingHandler extends TextWebSocketHandler{
 		log.info(session.getId() +  " : " + message);
 		
 		for(WebSocketSession s : sessionList) {
-			s.sendMessage(new TextMessage(session.getPrincipal().getName() + " : " + message.getPayload()));
+			if(session.getPrincipal() != null) {
+				s.sendMessage(new TextMessage(session.getPrincipal().getName() + " : " + message.getPayload()));
+			} else {
+				s.sendMessage(new TextMessage(session.getAttributes().toString() + " : " + message.getPayload()));
+			}
 		}
 		
 	}

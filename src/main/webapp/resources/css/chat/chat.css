@@ -24,6 +24,7 @@ html, body{
 .ch-li{
 	color: rgb(121,121,121);
 	margin: 1%;
+	font-size: 12px;
 }
 
 .ch-in{
@@ -36,6 +37,7 @@ html, body{
 	width: 75%;
 	font-size: 14px;
 	border: none;
+	color: rgb(121,121,121);
 }
 
 .ch-in button{

@@ -26,7 +26,7 @@
             <li><a href="/news/list" class="navbar-menu-center-menuLink"><p>새 소식</p></a></li>
             <li><a href="#" class="navbar-menu-center-menuLink"><p>자주 묻는 질문</p></a></li>
             <li><a href="#" class="navbar-menu-center-menuLink"><p>지원센터</p></a></li>
-            <li><a href="#" class="navbar-menu-center-menuLink"><p>언리얼 엔진</p></a></li>
+            <li><a href="#" class="navbar-menu-center-menuLink"><p>채팅<i class="far fa-comment"></i></p></a></li>
         </ul>
     
         <ul class="navbar-menu-side">
