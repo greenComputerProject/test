@@ -138,8 +138,11 @@ let clickStar = function(star) {
     drawStars(star);
     let starNumber = star.id.length;
     let myRating = document.querySelectorAll(".my-rating span")[0];
+    if(!myRating){
+    	return;
+    }
 
-     myRating.innerHTML = starNumber;
+    myRating.innerHTML = starNumber;
     myRating.animate(
         [{
             border: "2px solid rgb(120, 120, 204)"

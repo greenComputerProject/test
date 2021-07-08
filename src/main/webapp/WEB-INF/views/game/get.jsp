@@ -634,6 +634,12 @@
 				});
 				var gno = ${game.gno}
 				$(".stars i").on("click",function(){
+					
+					if(!'${user.userid}'){
+						alert("로그인 후 평점을 입력할 수 있습니다.");
+						return ;
+					 } 
+					
 					console.log('star rating ajax call');
 					var rating = $(".my-rating span").text();
 					var userid = ${user.userid}
