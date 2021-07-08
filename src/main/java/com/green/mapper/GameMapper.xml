@@ -13,8 +13,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="title" column="title"/>
 		<result property="content" column="content"/>
 		<result property="price" column="price"/>
-		<result property="rating" column="rating"/>
-		<result property="quantity" column="quantity"/>
 		<result property="isOnSale" column="isOnSale"/>
 		<result property="regDate" column="regDate"/>
 		<result property="cno" column="cno"/>
@@ -90,7 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<select id="read" resultMap="gameMap">
-		   	select g.gno, m.userid, g.cno, g.title, g.content ,g.price ,g.rating, g.isOnSale ,g.regDate, g.ageLimit, t.tagName, s.os, s.gpu, s.cpu, s.language, s.ram, c.company, c.country 
+		   	select g.gno, m.userid, g.cno, g.title, g.content ,g.price , g.isOnSale ,g.regDate, g.ageLimit, t.tagName, s.os, s.gpu, s.cpu, s.language, s.ram, c.company, c.country 
 		   , gp.logo, gp.titlePicture, gp.video, gp.contentPicture
 		    from tbl_games g
 				left outer join tbl_tag t on g.gno = t.gno
