@@ -20,7 +20,7 @@
 		
 	</div>
 	<div class="ch-in">
-		<input id="msg" type="text" placeholder="메시지를 입력하세요.">
+		<input id="msg" type="text" placeholder="메시지를 입력하세요." autofocus>
 		<button id="button-send">전송</button>
 	</div>
 	
@@ -29,36 +29,38 @@
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 <script type="text/javascript" src="/resources/js/chat/chat.js"></script>
 	<script>
-	
 		
+		document.querySelector('.ch-in input').select();
+		
+		document.addEventListener('keypress', function(e){
+			if(e.key === 'Enter'){
+				document.querySelector('.ch-in button').click();
+				
+			}
+		})
 	
 		let changeBackground = function(){
 			
 			var box = document.getElementById("box");
 			var r = parseInt(Math.random() * 50);
-			console.log(document.body);
-			document.body.style.backgroundColor = 'rgb( ' + (200 + r) + ', 240, 240)';
-			document.querySelector('.navbar-search').style.backgroundColor = 'rgb( ' + (200 + r) + ', 240, 240)';
+			var first = 'rgb( ' + (200 + r) + ', 240, 240)';
+			var last = 'rgb( ' + (200 + r) + ', 200, 200)';
+			var gradient = 'linear-gradient( to right , '+ first + " , " + last +  ")"
+			console.log(document.body);	
+			document.body.style.background = gradient;
+			document.querySelector('.navbar-search').style.background = gradient; 
 		}
 		changeBackground();
 		
 		let resetChat = function() {
 			let num = document.querySelectorAll('.ch-li').length;
 			
-			if(num >= 16){
-				document.querySelector('.ch-ul').innerHTML = "";
+			if(num >= 19){
+				document.querySelector('.ch-ul').removeChild(document.querySelectorAll('.ch-ul .ch-li')[0]);
 			}
 		}
 		
-		var button = document.querySelector(".ch-in button");
-
-		// Execute a function when the user releases a key on the keyboard
-		button.addEventListener("keyup", function(event) {
-		  // Number 13 is the "Enter" key on the keyboard
-		  if (event.keyCode === 13) {
-		    button.click();
-		  }
-		});
+		
 
 		$("#button-send").on("click", function(e){
 			sendMessage();

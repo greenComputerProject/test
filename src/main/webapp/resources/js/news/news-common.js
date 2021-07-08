@@ -27,7 +27,7 @@ if(newsCurrUrl.includes('get')){
     
 	let navbarSearch = document.querySelector('.navbar-search');
     console.log(navbarSearch);
-    navbarSearch.style.background = 'white';
+    navbarSearch.style.background =  'linear-gradient(to right, rgb(230, 240, 240), rgb(250 , 240, 240))';
 	changeNavbarSearchNews('새 소식');
 }
 
