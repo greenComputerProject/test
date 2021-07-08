@@ -22,11 +22,17 @@ public class ChatController {
 	private HttpSession session;
 	
 	@GetMapping
-	public void chat(Model model) {
+	public String chat(Model model) {
 		
 		SessionUser user = SessionUserGetter.getSessionUser(session);
-		log.info("chat / username " + user.getName());
+		if(user != null) {
+			model.addAttribute("username", user.getName());
+		} else {
+			String randomName = "유저" + (int)(Math.random() * 1000);
+			
+			model.addAttribute("username", randomName);
+		}
 		
-		model.addAttribute("username", user.getName());
+		return "chat";
 	}
 }

@@ -21,7 +21,11 @@ public class ChattingHandler extends TextWebSocketHandler{
 		log.info("afterConnectionEstablished");
 		sessionList.add(session);
 		
+		if(session.getPrincipal() != null) {
 		log.info(session.getPrincipal().getName() + "님이 입장하셧습니다");
+		} else {
+			log.info(session.getAttributes().toString() + " 님이 입장하셨습니다.");
+		}
 	}
 
 	@Override
@@ -43,7 +47,11 @@ public class ChattingHandler extends TextWebSocketHandler{
 		log.info("afterConnectionClosed");
 		sessionList.remove(session);
 		
-		log.info(session.getPrincipal().getName() + "님이 퇴장하셨습니다.");
+		if(session.getPrincipal() != null) {
+			log.info(session.getPrincipal().getName() + "님이 퇴장하셧습니다");
+			} else {
+				log.info(session.getAttributes().toString() + " 님이 퇴장하셨습니다.");
+			}
 	}
 	
 	
