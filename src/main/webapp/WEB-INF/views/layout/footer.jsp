@@ -13,7 +13,7 @@
         <div class="logo-images">
             <a href="#"><i class="fab fa-facebook-square fa-2x"></i></a>
             <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
-            <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+            <a href="https://github.com/greenComputerProject/test"><i class="fab fa-github fa-2x"></i></a>
         </div>
         <div class="go-to-top">
             <a href="#" onclick="scrollToTop()"><i class="far fa-arrow-alt-circle-up fa-3x"></i></a>

@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from tbl_rating where gno = #{gno} and userid = #{userid}
 	</select>
 	<insert id="insert" parameterType="com.green.domain.RatingVO">
-		insert into tbl_rating values(seq_rating.nextval, #{gno}, #{userid}, #{rating})
+		insert into tbl_rating(rating_no, userid, gno, rating) values(seq_rating.nextval, #{userid}, #{gno}, #{rating})
 	</insert>
 	<delete id="update" parameterType="com.green.domain.RatingVO">
 		update tbl_rating set rating=#{rating} where gno = #{gno} and userid = #{userid}

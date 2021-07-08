@@ -634,24 +634,24 @@
 				});
 				
 				$(".stars i").on("click",function(){
-					var formData = new FormData();
+					console.log('star rating ajax call');
 					var rating = $(".my-rating span").text();
 					var gno = ${game.gno}
 					var userid = ${user.userid}
-					console.log(rating,gno,userid);
-
-				    formData.append("gno",gno);
-				    formData.append("userid",userid);
-				    formData.append("rating", rating);
+					console.log(rating +  ", "  + gno + ", " + userid);
 					
+					var data = {
+							gno : gno,
+				        	userid : userid,
+				        	rating: rating
+					}
+
 					$.ajax({
 				        url: '/game/rating',
-				        data: {
-				        	gno : gno,
-				        	userid : userid,
-				        	rating : rating
-				        },
 				        type: 'POST',
+				        data: JSON.stringify(data),
+				        contentType: 'application/json; charset=utf-8',
+				        dataType: 'json',
 				        success: function(result){
 				            console.log("result :  "+ result);
 				    	},
