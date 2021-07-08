@@ -75,23 +75,5 @@ let checkUser = function(){
 	checkUser();
 
 
-	let checkMessage = function(){
-		$.ajax({
-			type: 'GET',
-			url: '/message/check',
-			dataType: 'json',
-			success : function(data){
-				if(data === true){
-					alert("새로운 메시지가 도착했습니다.")
-				} else {
-					alert('메시지가 없어요');
-				}
-			}, error: function(error){
-
-			}
-		})
-	}
-
-	checkMessage();
 
 

@@ -16,3 +16,14 @@ changeNavbarSearch();
 let navbarSearch = document.querySelector('.navbar-search');
     console.log(navbarSearch);
     navbarSearch.style.background = 'white';
+
+    let changeSelectedMenu = function(){
+
+        let selectedMenu = document.querySelector('.navbar-menu-center-menuLink.selected');
+        let newsMenu = document.querySelector('.navbar-menu-center a[href="/chat"]');
+    
+        selectedMenu.setAttribute('class', 'navbar-menu-center-menuLink');
+        newsMenu.setAttribute('class', 'navbar-menu-center-menuLink selected');
+    }
+    
+    changeSelectedMenu();
