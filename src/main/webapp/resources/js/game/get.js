@@ -146,5 +146,7 @@ let clickStar = function(star) {
         },{
             border: "1px solid blue"
         }], 30000);
+        
+   	console.log('잘 들어오나?')
 };
 
