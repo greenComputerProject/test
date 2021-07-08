@@ -165,4 +165,13 @@ public class GameController {
 		log.info(rating.toString());
 		service.rating(rating);		
 	}
+	
+	@RequestMapping(value="/rating_avg" ,method=RequestMethod.POST)
+    @ResponseBody
+	public float rating_avg(Long gno) {
+		log.info("rating avg, gno : " + gno);
+		float result = service.rating_avg(gno);
+		log.info("avg result : " + result);
+		return result;
+	}
 }

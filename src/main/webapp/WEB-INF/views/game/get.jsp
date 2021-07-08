@@ -632,11 +632,10 @@
 						});
 						
 				});
-				
+				var gno = ${game.gno}
 				$(".stars i").on("click",function(){
 					console.log('star rating ajax call');
 					var rating = $(".my-rating span").text();
-					var gno = ${game.gno}
 					var userid = ${user.userid}
 					console.log(rating +  ", "  + gno + ", " + userid);
 					
@@ -657,9 +656,25 @@
 				    	},
 						error: function(a){
 							console.log(a);
+							rating_avg();
 						}
 				    }); //$.ajax
 				})
+				
+				function rating_avg (){
+					$.ajax({
+						url:'/game/rating_avg',
+						type:'POST',
+						data:{
+							gno : gno
+						},
+						dataType:'json',
+						success:function(result){
+							console.log(result);
+							$(".avg-rating span").text(result);
+						}
+					})
+				}
 					
 				
 				

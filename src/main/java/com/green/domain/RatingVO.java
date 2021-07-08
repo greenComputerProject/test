@@ -17,5 +17,5 @@ public class RatingVO {
 	private Long rating_no;
 	private String userid;
 	private Long gno;
-	private Long rating;
+	private Float rating;
 }

@@ -149,7 +149,8 @@ public class GameServiceImpl implements GameService{
 
 	@Override
 	public float rating_avg(Long gno) {
-		return ratingmapper.rating_avg(gno);
+		float result = ratingmapper.rating_avg(gno);
+		return result;
 	}
 
 

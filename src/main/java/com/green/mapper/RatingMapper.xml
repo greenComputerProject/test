@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="update" parameterType="com.green.domain.RatingVO">
 		update tbl_rating set rating=#{rating} where gno = #{gno} and userid = #{userid}
 	</delete>
-	<select id="rating_avg" resultType="int">
+	<select id="rating_avg" resultType="float">
 		select avg(rating) from tbl_rating where gno = #{gno}
 	</select>
 </mapper>
