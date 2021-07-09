@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http	.csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/library", "/wishlist").hasRole("MEMBER")
+		.antMatchers("/game/register", "/game/modify**", "/news/register", "/news/modify**").hasRole("ADMIN")
 		//해당 경로에 대한 권한 설정
 		.antMatchers("/oauth_login", "/login/oauth2/code/**").permitAll()
 		//나머지 요청들의 권한 설정

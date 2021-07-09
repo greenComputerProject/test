@@ -76,7 +76,7 @@ html, body{
 }
 
 .new-box .new-details{
-    width: 14%;
+    width: 80px;
     padding: 1%;
     font-size: 14px;
     border-bottom: 1px solid rgb(121, 121, 121);
