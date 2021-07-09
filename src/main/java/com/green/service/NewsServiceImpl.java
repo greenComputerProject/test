@@ -13,6 +13,7 @@ import com.green.domain.NewsVO;
 import com.green.mapper.FileUploadMapper;
 import com.green.mapper.LikeMapper;
 import com.green.mapper.NewsMapper;
+import com.green.utils.Criteria;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -82,6 +83,17 @@ public class NewsServiceImpl implements NewsService {
 		System.out.println("서비스에서  첨부 파일은   게시글 번호 : " +nno);
 		FileUploadVO fileList = filemapper.findByBno(nno);
 		return fileList;
+	}
+
+	@Override
+	public List<NewsVO> getListPaging(Criteria cri) {
+		log.info("Paging : " + cri.toString());
+		return mapper.getListPaging(cri);
+	}
+
+	@Override
+	public int news_count() {
+		return mapper.news_count();
 	}
 	
 }

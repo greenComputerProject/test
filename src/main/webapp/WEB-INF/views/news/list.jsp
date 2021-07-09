@@ -75,6 +75,22 @@
 		            </ul>
 		        </div>
 		   </c:forEach>
+		   <div class="pull-right">
+				<ul class="pagination">
+					<c:if test="${pageMaker.prev}">
+						<li class ="paginate_button previous">
+							<a href= "${pageMaker.startPage-1}">이전</a></li>
+					</c:if>
+					<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+						<li class="paginate_button ${pageMaker.criteria.pageNum == num ? "active":""}">
+							<a href="list?page=${num+1}">${num+1}</a></li>
+					</c:forEach>
+					<c:if test="${pageMaker.next}">
+						<li class ="paginate_button next">
+							<a href= "${pageMaker.endPage+1}">다음</a></li>
+					</c:if>
+				</ul>	
+			</div> <!-- end pull-right -->
     </div>
     <!-- new get end -->
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>

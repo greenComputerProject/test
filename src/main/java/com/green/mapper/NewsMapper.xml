@@ -49,4 +49,19 @@
 		insert into tbl_news(nno , title, content, regDate, updatedate, userid)
 			values(#{nno}, #{title}, #{content}, sysdate, sysdate, #{userid})
 	</insert>
+	<select id="getListPaging" resultMap="listNews">
+		<![CDATA[
+		select a.* from (
+		    select rownum rn , t.* from (
+			    select /*+ INDEX_DEX(tbl_news pk_news) */
+			    n.nno, n.title, n.content, n.regDate, n.updateDate, n.userid, f.uploadPath, f.fileName, f.uuid
+			    from tbl_news n
+			    inner join tbl_fileupload f on n.nno = f.nno
+			    and n.nno>0
+			    order by n.regdate desc ) t where rownum <= #{pageNum} * #{amount}) a where rownum > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+	<select id="news_count" resultType="int" >
+		select count(*) from tbl_news
+	</select>
 </mapper>

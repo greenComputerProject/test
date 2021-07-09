@@ -45,4 +45,10 @@ public class PageMaker {
 		next = totalCount <= criteria.getAmount() * endPage ? false : true; 
 	}
 	
+	public PageMaker() {}
+	public PageMaker(int totalCount, Criteria criteria) {
+		this.totalCount = totalCount;
+		this.criteria = criteria;
+	}
+	
 }

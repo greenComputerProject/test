@@ -33,8 +33,8 @@ public class MailServiceTest {
 	public void sendmail() {
 		
 		maildto.setSenderName("보내는사랑");
-		maildto.setSenderMail("testoss0713@gmail.com");
-		maildto.setReceiveMail("seobno@naver.com");
+		//maildto.setSenderMail("testoss0713@gmail.com");
+		//maildto.setReceiveMail("seobno@naver.com");
 		maildto.setSubject("제목");
 		maildto.setMessage("내용");
 		

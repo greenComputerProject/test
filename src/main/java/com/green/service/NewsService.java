@@ -5,6 +5,7 @@ import java.util.List;
 import com.green.domain.FileUploadVO;
 import com.green.domain.LikeVO;
 import com.green.domain.NewsVO;
+import com.green.utils.Criteria;
 
 public interface NewsService {
 	
@@ -16,4 +17,6 @@ public interface NewsService {
 	
 	public FileUploadVO getFile(Long nno);
 	
+	public List<NewsVO> getListPaging(Criteria cri);
+	public int news_count();
 }

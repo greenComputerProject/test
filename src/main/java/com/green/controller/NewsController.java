@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.green.service.NewsService;
+import com.green.utils.Criteria;
+import com.green.utils.PageMaker;
 import com.green.domain.FileUploadVO;
 import com.green.domain.NewsVO;
 import com.green.oauth2.domain.SessionUser;
@@ -50,11 +52,17 @@ public class NewsController {
 	
 	
 	@GetMapping("/list")
-	public void getList(Model model) {
-		log.info("getList : " + service.getList());
-		List<NewsVO> list = service.getList();
-		list.forEach(i->i.getRegDate());
-		model.addAttribute("news_list", service.getList());
+	public void getList(@RequestParam("page") int page, Model model) {
+//		log.info("getList : " + service.getList());
+//		List<NewsVO> list = service.getList();
+//		list.forEach(i->i.getRegDate());
+//		model.addAttribute("news_list", service.getList());
+		Criteria cri = new Criteria(page, 6);
+		List<NewsVO> list = service.getListPaging(cri);
+		model.addAttribute("news_list", list);
+		int total = service.news_count();
+		PageMaker pageMaker = new PageMaker(total, cri);
+		model.addAttribute("pageMaker", pageMaker);
 	}
 	
 	@GetMapping("/get")
