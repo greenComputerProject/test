@@ -91,7 +91,13 @@
 
             <ul class= "chat"></ul><!-- 댓글의 리스트 처리 -->
                 
-       		<div class="panel-footer"></div> <!-- 댓글의 페이지 처리 -->
+       		<div class="panel-footer">
+       			<ul class='pagination pull-right'>
+					<li class='page-item'>
+						<a class='page-link' href='1'>1</a>
+					</li>
+				</ul>
+       		</div> <!-- 댓글의 페이지 처리 -->
         
 		
             <div class="reviews-form">

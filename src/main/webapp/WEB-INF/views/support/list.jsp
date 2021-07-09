@@ -24,7 +24,7 @@
   	<div class="support-list">
   		<div class="support-head">
   			<span>고객 문의</span>
-  			<a href="#"><button>글쓰기</button></a>
+  			<a href="/support/register"><button>글쓰기</button></a>
   		</div>
   		
   		<table class="support-table">

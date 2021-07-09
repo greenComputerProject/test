@@ -40,16 +40,19 @@
 		})
 	
 		let changeBackground = function(){
-	
+			
 			var box = document.getElementById("box");
-			var r = parseInt(Math.random() * 30);
-			var first = 'rgb( ' + (220 + r) + ', 240, 240)';
-			var middle = 'rgb( ' + (210 + r) + ', 250, 250)';
-			var last = 'rgb( ' + (220 + r) + ', 220, 220)';
+			var r = parseInt(Math.random() * 10);
+			var r1 = parseInt(Math.random() * 10);
+			var r2 = parseInt(Math.random() * 10);
+			var first = 'rgb( ' + (225 + r) + ', 240, 240)';
+			var middle = 'rgb( ' + (225 + r1) + ', 240, 240)';
+			var last = 'rgb( ' + (225 + r2) + ', 240, 240)';
 			var gradient = 'linear-gradient( to right , '+ first + " , " + middle +" , " + last +  ")"
 			console.log(document.body);	
 			document.body.style.background = gradient;
 			document.querySelector('.navbar-search').style.background = gradient; 
+			
 		}
 		changeBackground(); 
 		

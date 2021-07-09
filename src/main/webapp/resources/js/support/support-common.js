@@ -17,7 +17,7 @@ changeNavbarSearchSupport('고객 문의')
 let changeSelectedMenu = function(){
 
     let selectedMenu = document.querySelector('.navbar-menu-center-menuLink.selected');
-    let newsMenu = document.querySelector('.navbar-menu-center a[href="/support/list"]');
+    let newsMenu = document.querySelector('.navbar-menu-center a[href="/support"]');
 
     selectedMenu.setAttribute('class', 'navbar-menu-center-menuLink');
     newsMenu.setAttribute('class', 'navbar-menu-center-menuLink selected');

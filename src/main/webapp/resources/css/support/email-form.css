@@ -1,0 +1,112 @@
+html, body{
+    height: 1400px;
+}
+
+.support-form{
+	position:relative;
+	margin-top: 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    width: 50%;
+    height: 50%;
+}
+
+.support-form .head{
+    width: 100%;
+    height: 10%;
+    margin-left: 1%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.support-form .head span{
+	color: rgb(121,121,121);
+	font-size: 36px;
+	font-weight: lighter;
+}
+
+.support-form form{
+    width: 100%;
+    height:90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+.support-form input{
+	width: 99%;
+	height: 90%;
+	color: rgb(121,121,121);
+	font-weight: lighter;
+	font-size: 16px;
+	padding: 0 0 0 1%;
+}
+
+.support-form textarea{
+	width: 99%;
+	height: 90%;
+	color: rgb(121,121,121);
+	font-weight: lighter;
+	font-size: 16px;
+	padding: 3% 0 0 1%;
+}
+
+.support-form .username{
+    height: 15%;
+    width: 100%;
+}
+
+.support-form .email{
+    height: 15%;
+    width: 100%;
+}
+
+.support-form .content{
+    height: 65%;
+    width: 100%;
+}
+
+.support-form .buttons{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.support-form .buttons a{
+    width: 45%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    
+}
+
+.support-form .email-cancel{
+	background-color:  rgb(120, 120, 204);
+	-webkit-transition: background-color 0.3s;
+}
+.support-form .email-cancel:hover {
+	-webkit-transition: background-color 0.3s;
+	background-color:  rgb(150, 150, 214);
+	
+}
+
+.support-form .email-send{
+	background-color:  rgb(140, 140, 140);
+	-webkit-transition: background-color 0.3s;
+}
+.support-form .email-send:hover {
+	
+	background-color:  rgb(170, 170, 170);
+	-webkit-transition: background-color 0.3s;
+}

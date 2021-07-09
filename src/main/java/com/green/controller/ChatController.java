@@ -33,6 +33,6 @@ public class ChatController {
 			model.addAttribute("username", randomName);
 		}
 		
-		return "chat";
+		return "/chat/chat";
 	}
 }

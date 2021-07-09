@@ -184,7 +184,12 @@ tbody .title span{
 }
 
 .page ul li a{
-	color: black;
+	display: flex;
+	justify-content:center;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	color: rgb(121,121,121);
 	font-weight: lighter;
 }
 
