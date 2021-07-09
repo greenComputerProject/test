@@ -59,7 +59,7 @@
 		let resetChat = function() {
 			let num = document.querySelectorAll('.ch-li').length;
 			
-			if(num >= 19){
+			if(num >= 13){
 				document.querySelector('.ch-ul').removeChild(document.querySelectorAll('.ch-ul .ch-li')[0]);
 			}
 		}
