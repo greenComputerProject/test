@@ -318,6 +318,19 @@
 	    <version>${org.springframework-version}</version>
 	</dependency>
 	
+	<!-- 이메일 발송 관련 라이브러리 -->
+    <dependency> 
+	   <groupId>org.springframework</groupId> 
+	   <artifactId>spring-context-support</artifactId> 
+	   <version>${org.springframework-version}</version> 
+    </dependency>
+    
+	<dependency> 
+		<groupId>javax.mail</groupId> 
+		<artifactId>mail</artifactId> 
+		<version>1.4.7</version> 
+	</dependency>
+
 	</dependencies>
 
     <build>
