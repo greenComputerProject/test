@@ -51,14 +51,15 @@
 	</insert>
 	<select id="getListPaging" resultMap="listNews">
 		<![CDATA[
-		select a.* from (
-		    select rownum rn , t.* from (
+		select a.rn, a.nno, a.title, a.content, a.regDate, a.updateDate, a.userid, a.uploadPath, a.fileName , a.uuid from (
+		    select rownum rn , t.nno, t.title, t.content, t.regDate , t.updateDate, t.userid, t.uploadPath, t.fileName, t.uuid from (
 			    select /*+ INDEX_DEX(tbl_news pk_news) */
 			    n.nno, n.title, n.content, n.regDate, n.updateDate, n.userid, f.uploadPath, f.fileName, f.uuid
 			    from tbl_news n
 			    inner join tbl_fileupload f on n.nno = f.nno
 			    and n.nno>0
-			    order by n.regdate desc ) t where rownum <= #{pageNum} * #{amount}) a where rownum > (#{pageNum}-1) * #{amount}
+			    order by n.regdate desc ) t where rownum <= #{pageNum} * #{amount}) a 
+			    where rn > (#{pageNum} -1) * #{amount}
 		]]>
 	</select>
 	<select id="news_count" resultType="int" >

@@ -4,7 +4,7 @@ console.log("news-common --------> " +newsCurrUrl)
 let changeNavbarSearchNews = function(text) {
     let searchLinks = document.querySelectorAll(".navbar-search-links li");
 	console.log(searchLinks)
-    searchLinks[0].innerHTML = '<a href="javascript:history.back()" id="not-selected">< 돌아가기</a>'
+    searchLinks[0].innerHTML = '<a href="/" id="not-selected">< 메인으로 가기</a>'
     searchLinks[1].innerHTML = "<span>"+ 
         "| " + text
     +"</span"
@@ -34,7 +34,7 @@ if(newsCurrUrl.includes('get')){
 let changeSelectedMenu = function(){
 
     let selectedMenu = document.querySelector('.navbar-menu-center-menuLink.selected');
-    let newsMenu = document.querySelector('.navbar-menu-center a[href="/news/list"]');
+    let newsMenu = document.querySelector('.navbar-menu-center a[href="/news/list?page=1"]');
 
     selectedMenu.setAttribute('class', 'navbar-menu-center-menuLink');
     newsMenu.setAttribute('class', 'navbar-menu-center-menuLink selected');

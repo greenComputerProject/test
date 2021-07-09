@@ -17,7 +17,7 @@ public class ExceptionControllerAdvice {
 	}
 	
 	//500
-	@ExceptionHandler({Exception.class})
+	//@ExceptionHandler({Exception.class})
 	public String exception() {
 		return "redirect:/error/errpage?error=500";
 	}

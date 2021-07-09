@@ -52,11 +52,7 @@ public class NewsController {
 	
 	
 	@GetMapping("/list")
-	public void getList(@RequestParam("page") int page, Model model) {
-//		log.info("getList : " + service.getList());
-//		List<NewsVO> list = service.getList();
-//		list.forEach(i->i.getRegDate());
-//		model.addAttribute("news_list", service.getList());
+	public void getList(@RequestParam( value = "page") int page, Model model) {
 		Criteria cri = new Criteria(page, 6);
 		List<NewsVO> list = service.getListPaging(cri);
 		model.addAttribute("news_list", list);
