@@ -20,18 +20,18 @@
 	
 	<select id="getListWithPaging" resultType="com.green.domain.ReplyVO">
 			<![CDATA[
-			select rno, gno ,content, userid, name, likes, regDate
-				from 
-				(  select 
-				   rownum rn, r.rno, r.gno , r.content, r.userid, r.regDate, m.name, l.likes
-				   from tbl_game_reviews r
-				   left outer join tbl_member m on r.userid = m.userid
-				   left outer join (select count(*) as likes, rno from tbl_like group by rno) l
+			  select a.rn, a.rno, a.gno, a.content, a.userid, a.regDate, a.name, a.likes from 
+                (select rownum rn, t.rno, t.gno, t.content, t.userid, t.regDate, t.name, t.likes from 
+                    (select /*+ INDEX_DESC(tbl_game_reviews pk_game_reviews) */
+                   r.rno, r.gno , r.content, r.userid, r.regDate, m.name, l.likes
+                   from tbl_game_reviews r
+                   left outer join tbl_member m on r.userid = m.userid
+                   left outer join (select count(*) as likes, rno from tbl_like group by rno) l
                    on l.rno = r.rno
-				   where gno = #{gno}
-				   and r.rno >0
-				   and rownum <= #{cri.pageNum} * #{cri.amount}
-				 ) where rn > (#{cri.pageNum}-1) * #{cri.amount} order by regDate desc
+                   where gno = #{gno}
+                   and r.rno >0 order by regdate desc) t
+                    where rownum <= #{cri.pageNum} * #{cri.amount}) a
+                     where rn > (#{cri.pageNum} -1 )* #{cri.amount}
 			]]>
 	</select> 
 	
