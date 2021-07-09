@@ -31,7 +31,7 @@
 				   where gno = #{gno}
 				   and r.rno >0
 				   and rownum <= #{cri.pageNum} * #{cri.amount}
-				 ) where rn > (#{cri.pageNum}-1) * #{cri.amount}
+				 ) where rn > (#{cri.pageNum}-1) * #{cri.amount} order by regDate desc
 			]]>
 	</select> 
 	

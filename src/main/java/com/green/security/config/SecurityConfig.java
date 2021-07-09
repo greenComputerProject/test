@@ -73,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/oauth_login", "/login/oauth2/code/**").permitAll()
 		//나머지 요청들의 권한 설정
 		.anyRequest().permitAll();
-		
+			
 		http
 		.formLogin()
 		.loginPage("/user/login")

@@ -247,7 +247,6 @@
 						html = '<button class="wishlist-button" onclick="addWishlist(${game.gno})">'
 							+ '위시리스트에 추가</button>'
 					}
-					console.log(myRating)
 					myRating.innerHTML = '내가 준 별점 : <span>3</span>';
 					wishlistBox.innerHTML = html
 					
@@ -268,7 +267,6 @@
 		
 		let changeNavbarSearch = function() {
 		    let searchLinks = document.querySelectorAll(".navbar-search-links li");
-			console.log(searchLinks)
 		    searchLinks[0].innerHTML = '<a href="javascript:history.back();" id="not-selected" >< 돌아가기</a>'
 		    searchLinks[1].innerHTML = "<span>"+ 
 		        "| " + '${game.title}'
@@ -276,7 +274,6 @@
 
 		    let searchForm = document.querySelector(".navbar-search-wishlist-and-form");
 		    searchForm.style.display = "none";
-		    console.log(searchForm);
 		}
 		//navbar-search 화면 변경
 		changeNavbarSearch();
@@ -285,7 +282,7 @@
 
 			$(document).ready(function () { 
 				var gnoValue = '<c:out value="${game.gno}"/>';
-				console.log("게임번호는" + gnoValue);
+				
 				var replyUL = $(".chat");// div 태그의  class이름이 chat인 DOM 찾고 
 				showList(1); //함수 호출 
 
@@ -293,8 +290,6 @@
 				//페이지처리
 				function showList(page) {
 					replyService.getList({ gno: gnoValue, page: page || 1 }, function (replyCnt, list) {//댓글 전체 목록 조회
-						console.log("댓글 갯수 get.jsp에서 getList 호출함수내에서 댓글 갯수  " + replyCnt);
-						console.log("댓글 갯수 get.jsp에서 getList 호출함수내에서 댓글 목록  " + list);
 						//마지막 페이지일경우 (-1) 
 						if (page == -1) {
 							pageNum = Math.ceil(replyCnt / 10.0);
@@ -362,7 +357,6 @@
 						str += "<li class='page-item'><a class='page-link' href ='" + (endNum + 1) + "'>다음 페이지</a></li>";
 					}
 					str += "</ul></div>";
-					console.log(str);
 					replyPageFooter.html(str);
 				}
 
@@ -372,7 +366,6 @@
 					userid = '${user.name}';
 				</sec:authorize>
 				
-				console.log("userid ======> " + userid);
 				
 				var csrfHeaderName = "${_csrf.headerName}";
 			    var csrfTokenValue = "${_csrf.token}";   
@@ -414,7 +407,7 @@
 							userid: eu.val(),
 							gno:gnoValue	
 					};
-					console.log("댓글 등록이 잘들어오나");
+					
 					replyService.add(content,function(result){
 						alert(result);
 						eot.find("input").val("");
@@ -428,10 +421,6 @@
 					var userid = eu.val();
 					var reviewReplyer = $(this).closest("li").find("input[id='uid']").val();	
 					var originalReplyer = reviewReplyer;
-					
-					console.log("댓글번호 : " +rno);
-					console.log("로그인한아이디 : " +userid);
-					console.log("댓글 작성자는? "+ originalReplyer);//댓글의 원래 작성자 
 					
 					if(!userid){
 						alert("로그인 후 삭제가 가능합니다");
@@ -472,10 +461,6 @@
 	    						alert("로그인 후 수정이 가능합니다.");
 	    						return ;
 	    					}
-	    					console.log("로그인한 아이디: " + userid);
-	    					console.log("모디파이리플라이어" + modifyReplyer);
-	    					console.log("댓글의 작성자 : " + originalReplyer); //댓글의 원래 작성자 
-	    					
 	    					if(userid!= originalReplyer){
 	    						alert("자신이 작성한 댓글만 수정이 가능합니다.");
 	    						return ;
@@ -484,7 +469,6 @@
 					 		
 					 		
 						inputCo = $(this).closest("li").find("#con").text();
-						console.log(inputCo);
 						con[1].innerHTML = "<input type='text' name = 'content' value='"+con[1].innerText+"' id='modifyReply' size='40' />";
 						
 						but[0].setAttribute("class", 'modifyBtn');
@@ -498,7 +482,6 @@
 					 	}
 					 	
 					 	replyService.read(rno, function (content) {
-							console.log("두 번째 파라미터(콜백함수)에 들어오나? " + rno)
 							//replyDate.val(replyService.displayTime(content.regDate)).attr("readonly", "readonly");
 							chat.data("rno", content.rno);
 						}); 
@@ -509,7 +492,6 @@
 						 //inputCo에 원래 content값을 저장
 						$("#modifyReply").remove(); //input태그의 modifyReply삭제
 						con[1].innerText = inputCo; //다시 div에 inputCo(content값)을 저장
-						console.log("취소버튼누름");
 						but[0].setAttribute("class", 'like-button');
 						but[0].setAttribute("onclick", "null")
 						but[0].innerHTML = "좋아요";
@@ -527,10 +509,7 @@
 						var modifyReply = chat.find("input[name='content']");
 						var modifyReplyer = chat.find("input[name='userid']");
 						var modifyReplyDate = chat.find("input[name='regDate']");
-						
-						console.log(modifyReplyer)
 				
-						console.log("완료버튼이 눌리나");
 						var rno = chat.data("rno"); //추가 
 						
 						var originalReplyer = modifyReplyer.val();
@@ -539,9 +518,6 @@
 							regDate : modifyReplyDate.val(),
 							content: modifyReply.val(),
 							userid: originalReplyer}
-						console.log("댓글번호 : " +rno);
-						console.log("작성자id : " +userid);
-						console.log("댓글내용 : " +content);
 						 							
 						replyService.update(content, function (result) {
 							alert(result);
@@ -555,10 +531,8 @@
 				//댓글 페이지
 				replyPageFooter.on("click", "li a", function (e) {//li 태그로 만든 페이지 번호를 누르면
 					e.preventDefault();
-					console.log("페이지가 눌렸어요");
 					var targetPageNum = $(this).attr("href");
 					//this는 누른 페이지 li 태그이고 이 때의 li 태그의 href 속성을 얻어옴 href = "3(페이지)"
-					console.log("targetPageNum: " + targetPageNum);
 					pageNum = targetPageNum;
 					showList(pageNum);
 				});
@@ -610,11 +584,8 @@
 							buyer_name: '${user.name}',
 							
 						}, function (rsp) {
-							console.log(rsp);
 							if (rsp.success) {
 								var msg = '${game.price}원이 결제되었습니다.'
-									console.log("gno : ",gnoValue)
-									console.log("user : ",userid)
 									$.ajax({
 										url: "/purchase/new",
 										method:"POST",
@@ -646,10 +617,8 @@
 						return ;
 					 } 
 					
-					console.log('star rating ajax call');
 					var rating = $(".my-rating span").text();
 					var userid = ${user.userid}
-					console.log(rating +  ", "  + gno + ", " + userid);
 					
 					var data = {
 							gno : gno,
