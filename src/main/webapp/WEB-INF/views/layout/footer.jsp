@@ -19,63 +19,6 @@
             <a href="#" onclick="scrollToTop()"><i class="far fa-arrow-alt-circle-up fa-3x"></i></a>
         </div>
     </div>
-    <div class="footer-table-box">
-        <div class="tables-box">
-            <table>
-                <tr class="table-head">
-                    <td>리소스</td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>크리에이터 후원</span></a></td>
-                    <td><a href="#"><span>스토어 문의</span></a></td>
-                    <td><a href="#"><span>채용안내</span></a></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>에픽게임즈 소개</span></a></td>
-                    <td><a href="#"><span>한국법인 소개</span></a></td>
-                    <td><a href="#"><span>에픽 뉴스룸</span></a></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>팬 아트 정책</span></a></td>
-                    <td><a href="#"><span>사용자 경험 조사</span></a></td>
-                    <td><a href="#"><span>스토어 EULA</span></a></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>에픽 온라인 서비스</span></a></td>
-                    <td><a href="#"><span>커뮤니티 규칙</span></a></td>
-                    <td><a href="#"><span>본인인증</span></a></td>
-                </tr>
-            </table>
-            <table>
-                <tr class="table-head">
-                    <td>에픽게임즈 제작</td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>배틀 브레이커스</span></a></td>
-                    <td><a href="#"><span>포트나이트</span></a></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>인피니티 블레이드</span></a></td>
-                    <td><a href="#"><span>로보 리콜</span></a></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>섀도우 컴플렉스</span></a></td>
-                    <td><a href="#"><span>스파이징크스</span></a></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><a href="#"><span>언리얼 토너먼트</span></a></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-        <div class="table-box-text">
-            <p>스토어 환불 정책이 2021년 6월 10일부로 업데이트 되었습니다. 새로운 변경사항에 대해 확인하시는 것을 권장합니다.</p>
-        </div>
-    </div>
     <div class="hr">
         <hr>
     </div>

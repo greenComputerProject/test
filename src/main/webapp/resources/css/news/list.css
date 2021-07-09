@@ -1,5 +1,5 @@
 html, body{
-    height: 2000px;
+    height: 1800px;
 }
 
 
@@ -56,11 +56,12 @@ html, body{
 
 .new-box .new-image{
     width: 100%;
-    height: 60%;
+    height: 70%;
 }
 
 .new-image img{
     width: 100%;
+    height: 100%;
 }
 
 .new-box .new-date{
@@ -79,6 +80,12 @@ html, body{
     padding: 1%;
     font-size: 14px;
     border-bottom: 1px solid rgb(121, 121, 121);
+}
+
+.new-box .new-details u{
+	display: flex;
+	width: 100%;
+	height: 100%;
 }
 
 .news-old{
