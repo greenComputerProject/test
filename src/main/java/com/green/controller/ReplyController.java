@@ -36,7 +36,7 @@ public class ReplyController {
 		System.out.println("댓글 추가 갯수 : " +insertCount);
 		
 		return insertCount ==1 ?
-				new ResponseEntity<>("댓글이 등록되었습니다.", HttpStatus.OK)
+				new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);		
 	}
 	
@@ -68,7 +68,7 @@ public class ReplyController {
 			@PathVariable("rno") Long rno
 	) {
 		return service.delete(rno) == 1 
-				? new ResponseEntity<> ("댓글이 삭제되었습니다.", HttpStatus.OK)
+				? new ResponseEntity<> ("success.", HttpStatus.OK)
 				: new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
@@ -84,7 +84,7 @@ public class ReplyController {
 	) {
 		vo.setRno(rno);
 		return service.update(vo) ==1 ?
-				new ResponseEntity<> ("댓글이 수정되었습니다.", HttpStatus.OK)
+				new ResponseEntity<> ("success", HttpStatus.OK)
 				:new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
