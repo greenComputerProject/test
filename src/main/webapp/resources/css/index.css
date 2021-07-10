@@ -67,6 +67,11 @@ html, body {
     width: 40%;
 }
 
+.text-container *{
+	color : white;
+	font-weight: lighter;
+}
+
 .game-logo{
     position: relative;
 }

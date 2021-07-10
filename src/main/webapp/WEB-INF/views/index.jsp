@@ -92,7 +92,7 @@
     <!-- section end -->
     <!-- article start -->
     <div class="displayed-games">
-    	<c:forEach items="${games}" var="game" begin="0" end="2">
+    	<c:forEach items="${games}" var="game" begin="3" end="5">
 	    	<a href="/game/get?title=${game.title}">
 	    	<div class="game-box">
 	            <div class="game-box-image">     
@@ -103,7 +103,7 @@
 	                <div class="game-box-content"><c:out value="${game.content}"></c:out></div>
 	                <c:choose>
 	                	<c:when test="${game.price != 0 }">
-	                		<div class="game-box-price"> <c:out value="${game.price}"></c:out> </div>
+	                		<div class="game-box-price"> <c:out value="${game.price}원"></c:out> </div>
 	                	</c:when>
 	                	<c:otherwise>
 	                		<div class="game-box-price"> free</div>

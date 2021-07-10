@@ -50,31 +50,33 @@
 	            </div>
 			</c:forEach>
 		</div>
-		<c:forEach items="${news_list}" var="news" begin="2" >
+		
 		   
-				<div class="news-old">
-		            <ul>
-		                <li>
-		                    <a href="/news/get?nno=${news.nno}">
-		                        <div class="old-image">
-		                            <img src="/resources${news.getFile.uploadPath}/${news.getFile.uuid}_${news.getFile.fileName}" alt="">
-		                        </div>
-		                        <div class="old-text">
-		                            <div class="old-date">
-		                                <fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${news.regDate}" />
-		                            </div>
-		                            <div class="old-title">
-		                                <c:out value="${news.title}"/>
-		                            </div>
-		                            <div class="old-details">
-		                                <u>자세히 보기</u>
-		                            </div>
-		                        </div>
-		                    </a>
-		                </li>
-		            </ul>
-		        </div>
-		   </c:forEach>
+			<div class="news-old">
+	            <ul>
+	            <c:forEach items="${news_list}" var="news" begin="2" >
+	                <li>
+	                    <a href="/news/get?nno=${news.nno}">
+	                        <div class="old-image">
+	                            <img src="/resources${news.getFile.uploadPath}/${news.getFile.uuid}_${news.getFile.fileName}" alt="">
+	                        </div>
+	                        <div class="old-text">
+	                            <div class="old-date">
+	                                <fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${news.regDate}" />
+	                            </div>
+	                            <div class="old-title">
+	                                <c:out value="${news.title}"/>
+	                            </div>
+	                            <div class="old-details">
+	                                <u>자세히 보기</u>
+	                            </div>
+	                        </div>
+	                    </a>
+	                </li>
+	                </c:forEach>
+	            </ul>
+	        </div>
+		   
 		   <div class="pull-right">
 				<ul class="pagination">
 					<c:if test="${pageMaker.prev}">

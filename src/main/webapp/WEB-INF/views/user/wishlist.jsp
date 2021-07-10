@@ -41,13 +41,13 @@
         	
         		<li>
                 <div class="wishlist-game">
-                    <a href="#">
+                    <a href="/game/get?title=${game.title}">
                     <div class="image-and-title">
                         <div class="wishlist-image"><img src="<c:out value='${game.titlePicture}'></c:out>" alt=""></div>
                         <div class="wishlist-title"> <c:out value="${game.title}"></c:out> </div>
                     </div>
                     <div class="price-and-button">
-                        <div class="wishlist-price"> <c:out value="${game.price}"></c:out> </div>
+                        <div class="wishlist-price"> <c:out value="${game.price}원"></c:out> </div>
                         <div class="button"><i class="far fa-check-circle" onclick="deleteWishlist(<c:out value='${game.wno}'></c:out>)"></i></div>
                     </div>
                     </a>
