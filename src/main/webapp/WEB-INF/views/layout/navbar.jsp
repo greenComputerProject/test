@@ -23,7 +23,7 @@
         <ul class="navbar-menu-center">
             <li><a href="/" class="navbar-menu-center-logoLink"><p><img class="logo" src="/resources/img/layout/epic logo.png" alt=""></p></a></li>
             <li><a href="/browse" class="navbar-menu-center-menuLink selected"><p>스토어</p></a></li>
-            <li><a href="/news/list?page=1" class="navbar-menu-center-menuLink"><p>새 소식</p></a></li>
+            <li><a href="/news/list" class="navbar-menu-center-menuLink"><p>새 소식</p></a></li>
             <li><a href="/support" class="navbar-menu-center-menuLink"><p>문의</p></a></li>
             <li><a href="/chat" class="navbar-menu-center-menuLink"><p>채팅<i class="far fa-comment" style="margin-left: 3px;"></i></p></a></li>
         </ul>

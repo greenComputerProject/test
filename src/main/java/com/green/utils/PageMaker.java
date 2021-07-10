@@ -49,6 +49,7 @@ public class PageMaker {
 	public PageMaker(int totalCount, Criteria criteria) {
 		this.totalCount = totalCount;
 		this.criteria = criteria;
+		calcPage();
 	}
 	
 }

@@ -55,7 +55,8 @@ public class NewsController {
 	public void getList(Criteria cri, Model model) {
 		cri.setAmount(6);
 		List<NewsVO> list = service.getListPaging(cri);
-		model.addAttribute("news_list", list);
+		model.addAttribute("news_list", list); 
+		log.info("cri : " + cri.toString());
 		int total = service.news_count();
 		log.info("totoal : " + total);
 		PageMaker pageMaker = new PageMaker(total, cri);

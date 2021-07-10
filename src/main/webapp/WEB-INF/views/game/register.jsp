@@ -47,7 +47,7 @@
                 <textarea name="content" id="content"  placeholder="게임 소개를 입력하세요." required></textarea>
             </div>
             <div id="formGamePrice" class="form-input">
-                <input type="text" name="price" id="price" placeholder="가격을 입력하세요." required>
+                <input type="number" name="price" id="price" placeholder="가격을 입력하세요." required>
             </div>
             <div id="formGameGenre" class="select">
                 <select name="tagName" id="tagName" required>
