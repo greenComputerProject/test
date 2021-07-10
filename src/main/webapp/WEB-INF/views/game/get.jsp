@@ -402,6 +402,12 @@
 				
 				//댓글 등록
 				$("#addReplyBtn").on("click",function(e){
+					
+					if(ec.val()==""){
+						alert("내용을 입력해주세요.");
+						return ;
+					}
+					
 					var content={
 							content: ec.val(),
 							userid: eu.val(),
