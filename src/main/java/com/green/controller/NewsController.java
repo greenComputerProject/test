@@ -52,11 +52,12 @@ public class NewsController {
 	
 	
 	@GetMapping("/list")
-	public void getList(@RequestParam( value = "page") int page, Model model) {
-		Criteria cri = new Criteria(page, 6);
+	public void getList(Criteria cri, Model model) {
+		cri.setAmount(6);
 		List<NewsVO> list = service.getListPaging(cri);
 		model.addAttribute("news_list", list);
 		int total = service.news_count();
+		log.info("totoal : " + total);
 		PageMaker pageMaker = new PageMaker(total, cri);
 		model.addAttribute("pageMaker", pageMaker);
 	}
