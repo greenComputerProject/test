@@ -88,8 +88,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<select id="read" resultMap="gameMap">
-		   	select g.gno, m.userid, g.cno, g.title, g.content ,g.price , g.isOnSale ,g.regDate, g.ageLimit, t.tagName, s.os, s.gpu, s.cpu, s.language, s.ram, c.company, c.country 
-		   , gp.logo, gp.titlePicture, gp.video, gp.contentPicture
+		   	select g.gno, m.userid, g.cno, g.title, g.content ,g.price , g.isOnSale ,g.regDate, g.ageLimit, 
+		   		t.tagName, s.os, s.gpu, s.cpu, s.language, s.ram, c.company, c.country,
+		   		 gp.logo, gp.titlePicture, gp.video, gp.contentPicture
 		    from tbl_games g
 				left outer join tbl_tag t on g.gno = t.gno
 				left outer join tbl_spec s on g.gno = s.gno
@@ -129,7 +130,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="modify">
-			update tbl_games set title=#{title}, content=#{content}, price=#{price}, ageLimit = #{ageLimit} 
+			update tbl_games set title=#{title}, content=#{content}, price=#{price}, ageLimit = #{ageLimit}
 			
 			<if test="cno != null">
 				, cno = #{cno}

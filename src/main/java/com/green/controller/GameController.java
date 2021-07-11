@@ -53,13 +53,11 @@ public class GameController {
 	
 	
 	@GetMapping("/get")
-	public void get(@RequestParam("title") String title, Model model, @ModelAttribute Criteria cri) {
+	public void get(@RequestParam("title") String title, Model model) {
 		GameVO game = service.read(title);
-	
-		
+			
 		SessionUser user= (SessionUser)session.getAttribute("user");
 		
-
 		System.out.println("게임 컨트롤러에서 게임 조회 타이틀 :  " + title);
 		model.addAttribute("game", game);
 		
@@ -113,7 +111,6 @@ public class GameController {
 		game.setUserid(userid);
 		
 		service.register(company, game, tag, spec, resource, pictureList);
-		
 		return "redirect:/browse";
 	}
 	
@@ -124,8 +121,7 @@ public class GameController {
 		
 		TagVO tag = game.getTagvo();
 		String[] tagList = tag.getTagName().split(",");
-		String a = "";
-		
+		String a = " ";
 		model.addAttribute("game", game);
 		model.addAttribute("tag0", tagList[0]); //태그(장르)
 		
@@ -139,6 +135,7 @@ public class GameController {
 	@PostMapping("/modify")
 	public String modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, ArrayList<GamePictureVO> pictureList, RedirectAttributes rttr) {
 		System.out.println("게임 컨트롤러에서 게임 modify post");
+		System.out.println(tag.toString());
 		service.modify(company, game, tag, spec, resource, pictureList);
 		return "redirect:/browse";
 	}
