@@ -15,17 +15,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-//정렬, 필터링, 검색용 클래스
 public class SortFilterSearch {
-	//!! CASE SENSITIVE 함 (대소문자 구분
 	
-	//필터 (태그들)
 	private List<String> filterList;
-	// 정렬 기준
 	private String order;
-	// 내림차순 or 오름차순
 	private String direction;
-	// 검색어
 	private String keyword;
 
 }

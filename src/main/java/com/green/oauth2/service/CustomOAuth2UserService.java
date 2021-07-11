@@ -39,9 +39,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 		
 		String registrationId = userRequest.getClientRegistration().getRegistrationId();
 		String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
-		System.out.println("OAUTH2 USER : " + oAuth2User.toString());
-		System.out.println("registrationId".toUpperCase() + " => " + registrationId);
-		System.out.println("EMAIL: " + oAuth2User.getAttributes().get("public_profile"));
+		
 		OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 		System.out.println("CHANGED TO OAUTH ATTRIBUTES");
 		OAuthUserVO user = service.saveOrUpdate(attributes);
@@ -53,26 +51,4 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 				attributes.getAttributes(), attributes.getNameAttributeKey());
 	}
 	
-//	private OAuthUserVO saveOrUpdate(OAuthAttributes attributes) {
-//		System.out.println("ATTRIBUTES.EMAIL ====================> " + attributes.getEmail());
-//		OAuthUserVO findedUser = mapper.findByEmail(attributes.getEmail());
-//		
-//		if(findedUser != null) {
-//			findedUser.setName(attributes.getName());
-//			findedUser.setPicture(attributes.getPicture());
-//			mapper.update(findedUser);
-//		} else {
-//			OAuthUserVO user = attributes.toEntity();
-//			
-//			mapper.insert(user);
-//		}
-//		
-//		return mapper.findByEmail(attributes.getEmail());
-//	}
-//	
-//	
-//	public HttpSession getSession() {
-//		ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-//		return sra.getRequest().getSession();
-//	}
 }

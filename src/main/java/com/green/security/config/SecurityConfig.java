@@ -87,22 +87,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 			.loginPage("/")
 			.defaultSuccessUrl("/", true)
-			// client id, client secret, redirect uri  등 을 저장
 			.clientRegistrationRepository(clientRegistrationRepository())
-			//loadAuthorizedClient() 로 클라이언트 정보를 가져올 수 있음
 			.authorizedClientService(authorizedClientService())
-			//토큰이 발급되는 끝점
 			.tokenEndpoint()
-			//redirect uri 로 유저로부터 받은 authorization 코드를 이용해 구글(authorization sever) 에서 accessToken 으로 교체해줌
 			.accessTokenResponseClient(accessTokenResponseClient())
 			.and()
-			//Resource owner의 권한을 Client가 이용하기 위해 저장함
 			.authorizationEndpoint()
 			.baseUri("/oauth2/authorization").and()
-			//권한 부여를 기억하기 위해 쓴다. Authorization Request 를 저장
-//			.authorizationRequestRepository(authorizationRequestRepository()).and()
-//			
-			//userInfoEndpoint 는 accessToken 을 이용해 리소스 오너의 리소스를 가져오는 url 
 			.userInfoEndpoint()
 			.userService(userService())
 			.oidcUserService(oidcUserService());
@@ -147,8 +138,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.map(c -> getRegistration(c))
 				.filter(registration -> registration != null)
 				.collect(Collectors.toList());
-		
-		registrations.forEach(i -> System.out.println(i.getClientId()));
 
 		//Client 정보가 담김
 		return new InMemoryClientRegistrationRepository(registrations);
@@ -168,9 +157,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		String clientSecret = env.getProperty(
 				CLIENT_PROPERTY_KEY + client + ".client-secret");
 		
-		System.out.println("=======================================");
-		System.out.println("clientId".toString() + clientId);
-		System.out.println("=======================================");
 		//CommonOAuth2Provider에는 enum 값으로 Google ,Facebook, Github , Okta 가 있다.
 		//redirect uri 등이 정의돼있음.
 		if (client.equals("google")) {

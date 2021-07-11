@@ -63,10 +63,6 @@ public class GameServiceImpl implements GameService{
 		return mapper.game(nno);
 	}
 
-	/*
-	 * @Override public List<GameVO> getList(Criteria cri) {
-	 * System.out.println("서비스에서 게임 목록 조회 "); return mapper.getList(); }
-	 */
 
 	@Override
 	public boolean register(CompanyVO company, GameVO game, TagVO tag,  SpecVO spec, GameResourceVO resource, List<GamePictureVO> pictureList) {
@@ -99,9 +95,12 @@ public class GameServiceImpl implements GameService{
 	}
 
 	@Override
-	public boolean modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> pictureList) {
+	public boolean modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, String[] contentPicture) {
+		
+		
 		
 		Long cno = cmapper.getCno(company.getCompany());
+		Long grno = rmapper.getGrno(game.getGno());
 		
 		if(cno == null) {
 			
@@ -116,8 +115,14 @@ public class GameServiceImpl implements GameService{
 		smapper.modify(spec);
 		tmapper.modify(tag);
 		rmapper.modify(resource);
-		pictureList.forEach(i -> pmapper.modify(i));
+		pmapper.deleteByGrno(grno);
 		
+		for(int i=0 ; i < contentPicture.length ; i++) {
+			if(!contentPicture[i].equals("") && contentPicture[i] != null) {
+			log.info(contentPicture[i] + " , " + grno);
+			pmapper.modify(grno, contentPicture[i]);
+			}
+		}
 		return true;
 		
 	}

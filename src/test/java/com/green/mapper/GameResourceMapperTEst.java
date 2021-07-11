@@ -59,4 +59,24 @@ public class GameResourceMapperTEst {
 		
 		
 	}
+	
+	@Test
+	public void picturesDelete() {
+		
+		Long gno = 27L;
+		
+		GameResourceVO resource=  new GameResourceVO();
+		resource.setGno(gno);
+		resource.setLogo("asdasd");
+		resource.setTitlePicture("asdasd");
+		resource.setVideo("asdasd");
+		resourceMapper.modify(resource);
+		
+		Long grno = resourceMapper.getGrno(gno);
+		
+		String contentPicture=  "sakljsdl";
+		
+		pictureMapper.deleteByGrno(grno);
+		pictureMapper.modify(grno, contentPicture);
+	}
 }

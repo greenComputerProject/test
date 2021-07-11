@@ -26,8 +26,6 @@ import com.green.domain.Criteria;
 import com.green.domain.GamePictureVO;
 import com.green.domain.GameResourceVO;
 import com.green.domain.GameVO;
-import com.green.domain.LikeVO;
-import com.green.domain.PurchaseVO;
 import com.green.domain.RatingVO;
 import com.green.domain.SpecVO;
 import com.green.domain.TagVO;
@@ -97,20 +95,12 @@ public class GameController {
 	//ArrayList 로 여러 파라미터를 받지 못해서 배열로 선언하엿더니 받아짐
 	public String registerpost(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, String[] contentPicture) {
 		
-		List<GamePictureVO> pictureList = new ArrayList<GamePictureVO>();
-		GamePictureVO picture = null;
-		for(String pic : contentPicture) {
-			if(pic != null && !pic.equals("")) {
-			picture = new GamePictureVO();
-			picture.setContentPicture(pic);
-			pictureList.add(picture);
-			}
-		}
+		
 		SessionUser sessionUser = (SessionUser)session.getAttribute("user");
 		String userid =  sessionUser.getUserid();
 		game.setUserid(userid);
 		
-		service.register(company, game, tag, spec, resource, pictureList);
+		service.register(company, game, tag, spec, resource, picturesToList(contentPicture));
 		return "redirect:/browse";
 	}
 	
@@ -133,10 +123,10 @@ public class GameController {
 		
 	}
 	@PostMapping("/modify")
-	public String modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, ArrayList<GamePictureVO> pictureList, RedirectAttributes rttr) {
-		System.out.println("게임 컨트롤러에서 게임 modify post");
-		System.out.println(tag.toString());
-		service.modify(company, game, tag, spec, resource, pictureList);
+	public String modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, String[] contentPicture, RedirectAttributes rttr) {
+		log.info("contentPicture - > " + Arrays.toString(contentPicture));
+
+		service.modify(company, game, tag, spec, resource, contentPicture);
 		return "redirect:/browse";
 	}
 	
@@ -169,5 +159,19 @@ public class GameController {
 		float result = service.rating_avg(gno);
 		log.info("avg result : " + result);
 		return result;
+	}
+	
+	private List<GamePictureVO> picturesToList(String[] contentPicture) {
+		List<GamePictureVO> pictureList = new ArrayList<GamePictureVO>();
+		GamePictureVO picture = null;
+		for(String pic : contentPicture) {
+			if(pic != null && !pic.equals("")) {
+			picture = new GamePictureVO();
+			picture.setContentPicture(pic);
+			pictureList.add(picture);
+			}
+		}
+		
+		return pictureList;
 	}
 }

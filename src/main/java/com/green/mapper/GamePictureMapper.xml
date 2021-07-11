@@ -10,10 +10,14 @@
 		values(seq_games_pictures.nextval, #{contentPicture}, seq_games_resources.currval)
 	</insert>
 	
-	<update id="modify" parameterType= "com.green.domain.GamePictureVO">
+	<delete id="deleteByGrno" parameterType="Long">
+		delete from tbl_games_pictures where grno = #{grno}
+	</delete>
 		
-		update tbl_games_pictures set contentPicture = #{contentPicture}
-		where gno = #{gno}
+	<insert id="modify" parameterType= "com.green.domain.GamePictureVO">
+
+		insert into tbl_games_pictures(gpno, contentPicture, grno) 
+		values(seq_games_pictures.nextval, #{contentPicture}, #{grno})
 		
-	</update>
+	</insert>
 </mapper>

@@ -16,4 +16,9 @@
 		titlePicture =#{titlePicture}, video = #{video} where gno = #{gno}
 		
 	</update>
+	
+	<select id="getGrno" resultType="Long" parameterType="Long">
+		select grno from tbl_games_resources where gno = #{gno}
+	</select>
+	
 </mapper>

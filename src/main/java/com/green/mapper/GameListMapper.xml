@@ -28,8 +28,6 @@
 			where
 			<if test="sort.filterList != null">
 				<foreach collection="sort.filterList" item="filter"   separator=" and ">
-					<!-- ( g.ageLimit like '%'||#{filter}||'%' or g.isOnSale like '%'||#{filter}||'%'
-					 or t.tagName like '%'||#{filter}||'%' or c.country like '%'||#{filter}||'%' ) -->
 					 ( g.ageLimit = #{filter} or g.isOnSale = #{filter}
 					 or t.tagName like '%'||#{filter}||'%' or c.country = #{filter} ) 
 				</foreach>
@@ -88,8 +86,6 @@
 			where
 			<if test="sort.filterList != null">
 				<foreach collection="sort.filterList" item="filter"   separator=" and ">
-					<!-- ( g.ageLimit like '%'||#{filter}||'%' or g.isOnSale like '%'||#{filter}||'%'
-					 or t.tagName like '%'||#{filter}||'%' or c.country like '%'||#{filter}||'%' ) -->
 					 ( g.ageLimit = #{filter} or g.isOnSale = #{filter}
 					 or t.tagName like '%'||#{filter}||'%' or c.country = #{filter} ) 
 				</foreach>

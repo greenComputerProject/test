@@ -20,7 +20,7 @@ public interface GameService {
 	
 	public boolean register(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> picture);
 	
-	public boolean modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, List<GamePictureVO> picture);
+	public boolean modify(CompanyVO company, GameVO game, TagVO tag, SpecVO spec, GameResourceVO resource, String[] contentPicture);
 	
 	public GameVO news(Long nno);
 	
