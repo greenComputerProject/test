@@ -556,30 +556,13 @@
 						 return ;
 					 }
 					 
-					 
-						var IMP = window.IMP; // 생략가능
+						var IMP = window.IMP;
 						IMP.init('iamport');
 						IMP.request_pay({
 							pg: 'inicis', 
-							/*
-								'kakao':카카오페이,
-								html5_inicis':이니시스(웹표준결제)
-								'nice':나이스페이
-								'jtnet':제이티넷
-								'uplus':LG유플러스
-								'danal':다날
-								'payco':페이코
-								'syrup':시럽페이
-								'paypal':페이팔
-							*/
+							
 							pay_method: 'card',
-							/*
-								'samsung':삼성페이,
-								'card':신용카드,
-								'trans':실시간계좌이체,
-								'vbank':가상계좌,
-								'phone':휴대폰소액결제
-							*/
+							
 							merchant_uid: 'merchant_' + new Date().getTime(),
 							
 							name: '${game.title}',
@@ -624,7 +607,7 @@
 					 } 
 					
 					var rating = $(".my-rating span").text();
-					var userid = ${user.userid}
+					var userid = '${user.userid}'
 					
 					var data = {
 							gno : gno,
