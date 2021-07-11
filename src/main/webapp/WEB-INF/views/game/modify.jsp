@@ -89,7 +89,7 @@
             </div>
             </div>
             <div id="formGameTag" class="select">
-                <select onchange="clickOption(event)" name = "name" id = "name">
+                <select onchange="clickOption(event)" name = "tagName" id = "tagName">
                     <!-- <option value="">태그를 선택하세요.</option> -->
                     <option value=""> ${tag} </option>       
                     <option value="">-----------</option>
