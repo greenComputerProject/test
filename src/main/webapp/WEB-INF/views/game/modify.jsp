@@ -103,7 +103,7 @@
                 </select>
                
                 <button type="button" onclick="resetTag()">초기화</button>
-                <input type="text" name="tag" id="tag" value="" readonly required/>
+                <input type="text" name="tagName" id="tagName" value="" readonly required/>
             </div>
 			<div id="formGameAgeLimit" class="form-input">
                 <select name="ageLimit" id="ageLimit">
