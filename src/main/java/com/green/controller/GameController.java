@@ -161,7 +161,6 @@ public class GameController {
 	@PostMapping(value="/rating", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
 	public void rating(@RequestBody RatingVO rating) {
-		
 		log.info(rating.toString());
 		service.rating(rating);		
 	}

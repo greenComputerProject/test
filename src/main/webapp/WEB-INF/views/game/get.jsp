@@ -637,14 +637,13 @@
 				        type: 'POST',
 				        data: JSON.stringify(data),
 				        contentType: 'application/json; charset=utf-8',
-				        dataType: 'json',
-				        success: function(result){
-				            console.log("result :  "+ result);
-				    	},
-						error: function(a){
-							console.log(a);
-							rating_avg();
-						}
+				        dataType: 'text',
+				        success: function(){
+				            console.log("rating success");
+				            rating_avg();
+				    	},error:function(request,status,error){
+				            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				        }
 				    }); //$.ajax
 				})
 				
