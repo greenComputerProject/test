@@ -549,29 +549,23 @@
 					 if(!'${user.userid}'){
 						alert("로그인 후 구매가 가능합니다.");
 						return ;
-					 } 
-					 
+					 } 	 
 					 if('${pur}' == "true"){
 						 alert("이미 구매한 게임 입니다.")
 						 return ;
-					 }
-					 
+					 }	 
 						var IMP = window.IMP;
 						IMP.init('iamport');
 						IMP.request_pay({
-							pg: 'inicis', 
-							
-							pay_method: 'card',
-							
-							merchant_uid: 'merchant_' + new Date().getTime(),
-							
+							pg: 'inicis', 		
+							pay_method: 'card',			
+							merchant_uid: 'merchant_' + new Date().getTime(),				
 							name: '${game.title}',
 							//결제창에서 보여질 이름
 							amount: '${game.price}',
 							//가격
 							buyer_email: '${user.email}',
-							buyer_name: '${user.name}',
-							
+							buyer_name: '${user.name}',			
 						}, function (rsp) {
 							if (rsp.success) {
 								var msg = '${game.price}원이 결제되었습니다.'
@@ -581,22 +575,18 @@
 					                    dataType: "JSON",
 										data:{
 											gno : gnoValue,
-											userid : '${user.userid}'
-											
+											userid : '${user.userid}'		
 										},
 										success: function(){ 
-					                	}
-										
+					                	}					
 									})
 							} 
 							else {
 								var msg = '결제에 실패하였습니다.';
 								msg += ' 에러내용 : ' + rsp.error_msg;
-
 							}
 							alert(msg);
-						});
-						
+						});	
 				});
 				var gno = ${game.gno}
 				$(".stars i").on("click",function(){
